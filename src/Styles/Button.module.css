@@ -1,0 +1,7 @@
+.container {
+    box-shadow: var(--box-shadow);
+    cursor: var(--cursor-pointer);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
