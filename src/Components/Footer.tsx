@@ -5,7 +5,7 @@ const Footer = () => {
   const location = useLocation();
   const isPublicPage = location.pathname === "/login/";
 
-  if (!isPublicPage) {
+  if (isPublicPage) {
     return null;
   }
 

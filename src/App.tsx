@@ -10,8 +10,8 @@ function App() {
     <div className="App">
       <main>
         <Router>
-          <Button />
-          <Input />
+          {/* <Button /> */}
+          {/* <Input /> */}
           <Footer />
         </Router>
       </main>
