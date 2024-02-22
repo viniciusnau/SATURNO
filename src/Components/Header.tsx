@@ -52,23 +52,41 @@ const Header = () => {
                             {isDropdownOpen && (
                                 <div className={styles.modal}>
                                     <ul>
-                                        <li
-                                            onClick={() => {
-                                                setIsDropdownOpen(
-                                                    !isDropdownOpen
-                                                );
-                                                setToggleNav(!toggleNav);
-                                                navigate('saturno/');
-                                            }}
-                                        >
-                                            <span
-                                                className={`${styles.route} ${styles.modalItem}`}
-                                            >
-                                                Votação
-                                            </span>
-                                        </li>
                                         {isLoggedIn() && (
                                             <>
+                                                <li
+                                                    onClick={() => {
+                                                        setIsDropdownOpen(
+                                                            !isDropdownOpen
+                                                        );
+                                                        setToggleNav(
+                                                            !toggleNav
+                                                        );
+                                                        navigate('saturno/');
+                                                    }}
+                                                >
+                                                    <span
+                                                        className={`${styles.route} ${styles.modalItem}`}
+                                                    >
+                                                        Votação
+                                                    </span>
+                                                </li>
+                                                <li
+                                                    onClick={() => {
+                                                        setToggleNav(
+                                                            !toggleNav
+                                                        );
+                                                        navigate(
+                                                            'saturno/list-voting-persons'
+                                                        );
+                                                    }}
+                                                >
+                                                    <span
+                                                        className={`${styles.route} ${styles.logout}`}
+                                                    >
+                                                        Confirmação de votos
+                                                    </span>
+                                                </li>
                                                 <li
                                                     onClick={() => {
                                                         setIsDropdownOpen(
@@ -88,7 +106,7 @@ const Header = () => {
                                                         Eleições
                                                     </span>
                                                 </li>
-                                                <span
+                                                <li
                                                     onClick={() => {
                                                         setToggleNav(
                                                             !toggleNav
@@ -97,10 +115,13 @@ const Header = () => {
                                                             'saturno/confirm-hash'
                                                         );
                                                     }}
-                                                    className={`${styles.route} ${styles.logout}`}
                                                 >
-                                                    Confirmação de hash
-                                                </span>
+                                                    <span
+                                                        className={`${styles.route} ${styles.logout}`}
+                                                    >
+                                                        Confirmação de hash
+                                                    </span>
+                                                </li>
                                             </>
                                         )}
                                     </ul>

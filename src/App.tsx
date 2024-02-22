@@ -12,7 +12,7 @@ function App() {
       <main>
         <Router>
           < Header />
-          {/* <Button /> */}
+          <Button />
           {/* <Input /> */}
           < Footer />
         </Router>
