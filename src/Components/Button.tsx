@@ -1,21 +1,36 @@
-import React from 'react';
-import Button from '@mui/material/Button';
+import React from "react";
+import styles from "../Styles/Button.module.css";
 
-
-function MyComponent() {
-  return (
-    <div>
-        <Button
-        variant="contained"
-        color="success"
-        size="medium"
-        disabled={false}
-        onClick={() => {}}
-        >
-        Submit
-        </Button>
-    </div>
-  );
+interface iButton {
+  className?: any;
+  content?: any;
+  onClick?: any;
+  children?: any;
+  type?: any;
+  htmlFor?: any;
+  alt?: string;
+  title?: string;
+  disabled?: any;
+  style?: any;
 }
 
-export default MyComponent;
+const Button: React.FC<iButton> = ({
+  className,
+  onClick,
+  children,
+  disabled,
+  ...props
+}) => {
+  return (
+    <button
+      className={`${styles.container} ${className}`}
+      onClick={onClick}
+      disabled={disabled}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+export default Button;
