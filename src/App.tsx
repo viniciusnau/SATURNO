@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Button from "./Components/Button";
-import Input from "./Components/CustomInput";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Login from "./Pages/Login";
+import Vote from "./Pages/Vote";
+import ResetPassword from "./Pages/ResetPassword";
 
 function App() {
   return (
@@ -14,10 +14,10 @@ function App() {
         <Router>
           <Header />
           <Routes>
+            <Route path="/saturno/vote/" element={<Vote />} />
             <Route path="/saturno/login/" element={<Login />} />
+            <Route path="/saturno/alterar-senha" element={<ResetPassword />} />
           </Routes>
-          <Button />
-          {/* <Input /> */}
           <Footer />
         </Router>
       </main>

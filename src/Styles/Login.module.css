@@ -1,0 +1,145 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }
+  
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    padding: 1.25rem;
+    border-radius: 0.25rem;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  
+
+  
+  .google:hover,
+  .input:hover,
+  .date:hover {
+    background-color: var(--second-button-color-hover);
+  }
+  .input:disabled,
+  .date:disabled {
+    background-color: var(--second-button-color-disabled);
+  }
+  
+  .password {
+    display: flex;
+    align-items: center;
+    margin: 0.75rem 0 0;
+  }
+  
+  .passwordInput {
+    width: 100%;
+  }
+  
+  .passwordIcon {
+    margin-left: -2.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .form {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5rem;
+  }
+  
+  .login {
+    font-size: calc(var(--font-size) - 0.25rem);
+  }
+  
+  .forgotPassword {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--link-color);
+    text-decoration: none;
+  }
+  .formButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button {
+    height: 2.5rem;
+    width: 7.5rem;
+    background-color: var(--first-button-color);
+    box-shadow: 0 10px 10px -10px var(--shadow-color);
+    font-size: var(--font-size);
+    margin: 1.5rem 0 0 0;
+  }
+  
+  .button:hover {
+    background-color: var(--first-button-color-hover);
+  }
+  
+  .button:disabled {
+    background-color: var(--first-button-color-disabled);
+  }
+  
+  .lineContainer {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+  }
+  
+  .line {
+    flex-grow: 1;
+    height: 0.15rem;
+    width: 6.5rem;
+    background-color: var(--second-button-color-focus);
+    border: none;
+    border-radius: 0.25rem;
+  }
+  
+  .text {
+    margin: 0 1rem;
+    color: var(--first-text-color-disabled);
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 750px) {
+    .title {
+      font-size: var(--font-size) - 5rem;
+    }
+    .label {
+      font-size: 0.8rem;
+    }
+    .input,
+    .password {
+      width: 15rem;
+    }
+  }
+  
+  @media (min-width: 751px) {
+    .title {
+      font-size: var(--font-size) + 1rem;
+    }
+    .label {
+      font-size: 1rem;
+    }
+    .input,
+    .password {
+      width: 17.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+  }
+  
