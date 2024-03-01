@@ -1,3 +1,7 @@
+export const ColumnsTable = {
+  
+}
+
 export const snackbarConsts = {
   success: {
     title: "Requisição feita com sucesso!",

@@ -54,7 +54,7 @@ const Header = () => {
                           onClick={() => {
                             setIsDropdownOpen(!isDropdownOpen);
                             setToggleNav(!toggleNav);
-                            navigate("saturno/");
+                            navigate("saturno/vote/");
                           }}
                         >
                           <span
