@@ -62,4 +62,15 @@ export const snackbarConsts = {
     description: "Acesse o email para finalizar a troca de senha.",
     color: "#9fc54d",
   },
+  validationSuccess: {
+    title: "Hash Validada",
+    description: "A hash fornecida é válida e corresponde a votos registrados.",
+    color: "#9fc54d",
+  },
+  validationError: {
+    title: "Erro na Validação da Hash",
+    description:
+      "A hash fornecida não é válida ou não corresponde a nenhum voto registrado.",
+    color: "#ff6464",
+  },
 };
