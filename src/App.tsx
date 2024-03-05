@@ -6,6 +6,8 @@ import Footer from "./Components/Footer";
 import Login from "./Pages/Login";
 import Vote from "./Pages/Vote";
 import ResetPassword from "./Pages/ResetPassword";
+import HashValidation from "./Pages/HashValidation";
+import ProtectedRoute from "./Auth/ProtectedRoute";
 
 function App() {
   return (
@@ -14,9 +16,21 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/saturno/vote/" element={<Vote />} />
+            <Route path="/saturno/vote/" element={<Login />} />
             <Route path="/saturno/login/" element={<Login />} />
-            <Route path="/saturno/alterar-senha" element={<ResetPassword />} />
+            <Route
+              path="/saturno/password-reset/"
+              element={<ResetPassword />}
+            />
+            <Route
+              path="/saturno/hash-validation/"
+              element={
+                <ProtectedRoute
+                  Component={HashValidation}
+                  path="/saturno/hash-validation/"
+                />
+              }
+            />
           </Routes>
           <Footer />
         </Router>

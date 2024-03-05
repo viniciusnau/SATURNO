@@ -7,7 +7,11 @@ export const ProtectedRoute: React.FC<{
   path: any;
   colorInverted?: boolean;
 }> = ({ Component, ...rest }) => {
-  return isLoggedIn() ? <Component {...rest} /> : <Navigate to="/saturno/" />;
+  return isLoggedIn() ? (
+    <Component {...rest} />
+  ) : (
+    <Navigate to="/saturno/login/" />
+  );
 };
 
 export default ProtectedRoute;

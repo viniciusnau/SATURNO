@@ -29,7 +29,7 @@ const Login = () => {
   };
 
   const handleForgotPassword = () => {
-    navigate("/saturno/alterar-senha");
+    navigate("/saturno/alterar-senha/");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
@@ -101,7 +101,7 @@ const Login = () => {
             />
           </div>
           <a
-            href="/saturno/alterar-senha"
+            href="/saturno/alterar-senha/"
             className={styles.forgotPassword}
             onClick={handleForgotPassword}
           >
