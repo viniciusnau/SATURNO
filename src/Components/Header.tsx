@@ -89,7 +89,7 @@ const Header = () => {
                         <li
                           onClick={() => {
                             setToggleNav(!toggleNav);
-                            navigate("saturno/confirm-hash");
+                            navigate("saturno/confirm-hash/");
                           }}
                         >
                           <span className={`${styles.route} ${styles.logout}`}>
@@ -127,7 +127,7 @@ const Header = () => {
                   <span
                     onClick={() => {
                       setToggleNav(!toggleNav);
-                      navigate("saturno/confirm-hash");
+                      navigate("saturno/confirm-hash/");
                     }}
                     className={`${styles.route} ${styles.logout}`}
                   >

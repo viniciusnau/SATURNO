@@ -51,6 +51,58 @@ const services = {
       })
       .catch((err: any) => console.log(err));
   },
+
+  getElectionsResults: async (positionId: string) => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const authorizationMethod = apiToken ? "Token" : "Basic";
+
+    const headers = {
+      Authorization: `${authorizationMethod} ${
+        apiToken || sessionStorage.getItem("credentials")
+      }`,
+    };
+
+    const params = {
+      position_id: positionId,
+    };
+
+    return axios
+      .get(`${PATH.base}/user/elections-result/`, {
+        params: params,
+        headers: headers,
+      })
+      .then((response) => response.data)
+      .catch((error) => {
+        console.error("Erro ao obter resultados das eleições:", error);
+        throw error;
+      });
+  },
+
+  getListCandidates: async (positionId: string) => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const authorizationMethod = apiToken ? "Token" : "Basic";
+
+    const headers = {
+      Authorization: `${authorizationMethod} ${
+        apiToken || sessionStorage.getItem("credentials")
+      }`,
+    };
+
+    const params = {
+      position_id: positionId,
+    };
+
+    return axios
+      .get(`${PATH.base}/user/list-candidates/`, {
+        params: params,
+        headers: headers,
+      })
+      .then((response) => response.data)
+      .catch((error) => {
+        console.error("Erro ao obter candidatos por IDs:", error);
+        throw error;
+      });
+  },
 };
 
 export default services;
