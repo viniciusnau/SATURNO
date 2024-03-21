@@ -77,7 +77,7 @@ const Header = () => {
                           onClick={() => {
                             setIsDropdownOpen(!isDropdownOpen);
                             setToggleNav(!toggleNav);
-                            navigate("saturno/elections");
+                            navigate("saturno/elections-results");
                           }}
                         >
                           <span
@@ -118,7 +118,7 @@ const Header = () => {
                   <span
                     onClick={() => {
                       setToggleNav(!toggleNav);
-                      navigate("saturno/elections");
+                      navigate("saturno/elections-results");
                     }}
                     className={`${styles.route} ${styles.logout}`}
                   >

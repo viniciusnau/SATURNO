@@ -5,15 +5,16 @@ import Box from "@mui/material/Box";
 import Snackbar from "../Components/Snackbar";
 import styles from "../Styles/ElectionsResults.module.css";
 import image from "../Assets/jpg.jpeg";
-import default_pfp from "../Assets/default_pfp.png";
+import profileImage from "../Assets/profileImage.png";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const ElectionsResults = () => {
   const dispatch = useDispatch<any>();
-  const [selectedPosition, setSelectedPosition] = useState("1");
-  const [totalVotes, setTotalVotes] = useState(0);
-  const [blankVotes, setBlankVotes] = useState(0);
+  const [selectedPosition, setSelectedPosition] = useState<string>("1");
+  const [totalVotes, setTotalVotes] = useState<number>(0);
+  const [blankVotes, setBlankVotes] = useState<number>(0);
   const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
-  const [totalPeople, setTotalPeople] = useState(0);
+  const [totalPeople, setTotalPeople] = useState<number>(0);
 
   const { data, error, loading } = useSelector(
     (state: any) => state.electionsResultSlice
@@ -72,14 +73,10 @@ const ElectionsResults = () => {
     <div className={styles.container}>
       <div className={styles.upperContainer}>
         <div className={styles.nullVotesLegend}>
-          {/* <div
-            className={styles.legendSquare}
-            style={{ backgroundColor: "#007bff" }}
-          ></div> */}
-          <span>
+          <h3>
             Eleitores com votos em branco:{" "}
             {((blankVotes / totalPeople) * 100).toFixed(2)}% ({blankVotes})
-          </span>
+          </h3>
         </div>
         <Box className={styles.progressBarContainer}>
           <div className={styles.progressBar}>
@@ -89,15 +86,9 @@ const ElectionsResults = () => {
             ></div>
           </div>
         </Box>
-        <div className={styles.nullVotesLegend}>
-          {/* <div
-            className={styles.legendSquare}
-            style={{ backgroundColor: "#f0f0f0" }}
-          ></div> */}
-          <span>
-            Votos Computados: {totalPeople - blankVotes} de {totalPeople}
-          </span>
-        </div>
+        <h4>
+          Votos Computados: {totalPeople - blankVotes} de {totalPeople}
+        </h4>
       </div>
       <Box className={styles.megaBox}>
         <Box className={styles.listContainer}>
@@ -125,51 +116,47 @@ const ElectionsResults = () => {
                         row.id !== "total_people" && (
                           <tr
                             onClick={() => handleCandidateClick(row.id)}
-                            className={
+                            className={`${styles.tr} ${
                               selectedCandidate &&
                               selectedCandidate.id === row.id
                                 ? styles.selected
                                 : ""
-                            }
+                            }`}
                           >
-                            <td>
-                              <div className={styles.candidateInfo}>
-                                <div className={styles.circularImage}>
+                            <div className={styles.candidateInfo}>
+                              <div className={styles.circularImage}>
+                                <div
+                                  className={styles.circularProgress}
+                                  style={{
+                                    width: `${
+                                      (row.vote_count / totalVotes) * 100
+                                    }%`,
+                                  }}
+                                ></div>
+                                <img src={image} alt="Foto do Candidato" />
+                              </div>
+                              <div className={styles.info}>
+                                <p>{`${row.name}`}</p>
+                                <p
+                                  style={{ fontSize: "1.25rem" }}
+                                >{`${row.public_defense} - ${row.registration}`}</p>
+                                <p
+                                  style={{ fontSize: "1rem" }}
+                                >{`Votos computados ${row.vote_count} • ${(
+                                  (row.vote_count / totalVotes) *
+                                  100
+                                ).toFixed(2)}%`}</p>
+                                <div className={styles.progressBar}>
                                   <div
-                                    className={styles.circularProgress}
                                     style={{
                                       width: `${
                                         (row.vote_count / totalVotes) * 100
                                       }%`,
                                     }}
                                   ></div>
-                                  <img
-                                    src={image}
-                                    alt="Foto do Candidato"
-                                    style={{ width: "100%", height: "100%" }}
-                                  />
-                                </div>
-                                <div className={styles.info}>
-                                  <div>{`${row.public_defense} - ${row.registration}`}</div>
-                                  <div>{`${row.name}`}</div>
-                                  <div>{`Votos computados ${
-                                    row.vote_count
-                                  } • ${(
-                                    (row.vote_count / totalVotes) *
-                                    100
-                                  ).toFixed(2)}%`}</div>
-                                  <div className={styles.progressBar}>
-                                    <div
-                                      style={{
-                                        width: `${
-                                          (row.vote_count / totalVotes) * 100
-                                        }%`,
-                                      }}
-                                    ></div>
-                                  </div>
                                 </div>
                               </div>
-                            </td>
+                            </div>
                           </tr>
                         )}
                     </React.Fragment>
@@ -181,40 +168,51 @@ const ElectionsResults = () => {
         </Box>
 
         <Box className={styles.detailsContainer}>
-          <div className={styles.detailscontainer}>
-            Detalhes do Candidato Selecionado:
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <p className={styles.title}>Detalhes do Candidato Selecionado:</p>
+            {selectedCandidate && (
+              <AiOutlineCloseCircle
+                size={32}
+                className={styles.closeIcon}
+                onClick={handleClearSelection}
+              />
+            )}
           </div>
           <div className={styles.detailsContent}>
             <img
-              src={selectedCandidate ? image : default_pfp}
+              src={selectedCandidate ? image : profileImage}
               alt="Foto do Candidato"
               className={styles.candidateImage}
             />
             {selectedCandidate &&
             selectedCandidate.id !== "null" &&
             selectedCandidate.id !== "total_count" ? (
-              <ul>
-                <li>{`Matrícula: ${selectedCandidate.registration}`}</li>
-                <li>{`Nascimento: ${selectedCandidate.birth_date}`}</li>
-                <li>{`Posse: ${selectedCandidate.start_date}`}</li>
-                <li>{`Lotação: ${selectedCandidate.public_defense}`}</li>
-                <li>{`Antiguidade: ${selectedCandidate.seniority}`}</li>
-                <li>{`Categoria: ${selectedCandidate.category}`}</li>
-              </ul>
+              <div>
+                <p
+                  className={styles.description}
+                >{`Matrícula: ${selectedCandidate.registration}`}</p>
+                <p
+                  className={styles.description}
+                >{`Nascimento: ${selectedCandidate.birth_date}`}</p>
+                <p
+                  className={styles.description}
+                >{`Posse: ${selectedCandidate.start_date}`}</p>
+                <p
+                  className={styles.description}
+                >{`Lotação: ${selectedCandidate.public_defense}`}</p>
+                <p
+                  className={styles.description}
+                >{`Antiguidade: ${selectedCandidate.seniority}`}</p>
+                <p
+                  className={styles.description}
+                >{`Categoria: ${selectedCandidate.category}`}</p>
+              </div>
             ) : (
               <div className={styles.noCandidate}>
                 Nenhum candidato selecionado
               </div>
             )}
           </div>
-          {selectedCandidate && (
-            <button
-              onClick={handleClearSelection}
-              className={styles.clearButton}
-            >
-              Limpar seleção
-            </button>
-          )}
         </Box>
       </Box>
     </div>

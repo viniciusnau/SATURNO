@@ -1,3 +1,5 @@
-const Vote = () => {};
+const Vote = () => {
+  return <></>;
+};
 
 export default Vote;

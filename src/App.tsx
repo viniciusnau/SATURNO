@@ -17,7 +17,7 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/saturno/vote/" element={<Login />} />
+            <Route path="/saturno/vote/" element={<Vote />} />
             <Route path="/saturno/login/" element={<Login />} />
             <Route
               path="/saturno/password-reset/"
