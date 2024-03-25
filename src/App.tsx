@@ -8,7 +8,7 @@ import Vote from "./Pages/Vote";
 import ElectionsResults from "./Pages/ElectionsResults";
 import ResetPassword from "./Pages/ResetPassword";
 import HashValidation from "./Pages/HashValidation";
-import ProtectedRoute from "./Auth/ProtectedRoute";
+import { ProtectedRoute } from "./Auth/ProtectedRoute";
 
 function App() {
   return (

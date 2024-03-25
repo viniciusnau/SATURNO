@@ -74,7 +74,7 @@ const ElectionsResults = () => {
       <div className={styles.upperContainer}>
         <div className={styles.nullVotesLegend}>
           <h3>
-            Eleitores com votos em branco:{" "}
+            Eleitores com votos totalmente em branco:{" "}
             {((blankVotes / totalPeople) * 100).toFixed(2)}% ({blankVotes})
           </h3>
         </div>
@@ -86,9 +86,7 @@ const ElectionsResults = () => {
             ></div>
           </div>
         </Box>
-        <h4>
-          Votos Computados: {totalPeople - blankVotes} de {totalPeople}
-        </h4>
+        <h4>Total de eleitores: {totalPeople}</h4>
       </div>
       <Box className={styles.megaBox}>
         <Box className={styles.listContainer}>

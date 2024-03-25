@@ -1,0 +1,17 @@
+.clockContainer {
+    text-align: center;
+    margin-top: 0px;
+    background-color: #76dbac;
+  }
+  
+  .clockContainer p {
+    font-size: 18px;
+    margin: 2px 0;
+  }
+  
+  .clockContainer .logoutTimer {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  
