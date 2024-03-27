@@ -103,6 +103,27 @@ const services = {
         throw error;
       });
   },
+
+  getVoteReport: async () => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const authorizationMethod = apiToken ? "Token" : "Basic";
+
+    const headers = {
+      Authorization: `${authorizationMethod} ${
+        apiToken || sessionStorage.getItem("credentials")
+      }`,
+    };
+
+    return axios
+      .get(`${PATH.base}/user/list-candidates/`, {
+        headers: headers,
+      })
+      .then((response) => response.data)
+      .catch((error) => {
+        console.error("Err:", error);
+        throw error;
+      });
+  },
 };
 
 export default services;

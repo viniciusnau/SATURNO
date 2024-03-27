@@ -54,23 +54,13 @@ const Header = () => {
                           onClick={() => {
                             setIsDropdownOpen(!isDropdownOpen);
                             setToggleNav(!toggleNav);
-                            navigate("saturno/");
+                            navigate("saturno/vote/");
                           }}
                         >
                           <span
                             className={`${styles.route} ${styles.modalItem}`}
                           >
                             Votação
-                          </span>
-                        </li>
-                        <li
-                          onClick={() => {
-                            setToggleNav(!toggleNav);
-                            navigate("saturno/list-voting-persons");
-                          }}
-                        >
-                          <span className={`${styles.route} ${styles.logout}`}>
-                            Confirmação de votos
                           </span>
                         </li>
                         <li
@@ -89,11 +79,31 @@ const Header = () => {
                         <li
                           onClick={() => {
                             setToggleNav(!toggleNav);
+                            navigate("saturno/list-voting-persons");
+                          }}
+                        >
+                          <span className={`${styles.route} ${styles.logout}`}>
+                            Confirmação de votos
+                          </span>
+                        </li>
+                        <li
+                          onClick={() => {
+                            setToggleNav(!toggleNav);
                             navigate("saturno/confirm-hash/");
                           }}
                         >
                           <span className={`${styles.route} ${styles.logout}`}>
-                            Confirmação de hash
+                            Validação de voto
+                          </span>
+                        </li>
+                        <li
+                          onClick={() => {
+                            setToggleNav(!toggleNav);
+                            navigate("saturno/vote-report/");
+                          }}
+                        >
+                          <span className={`${styles.route} ${styles.logout}`}>
+                            Relatório de votação
                           </span>
                         </li>
                       </>
@@ -104,17 +114,17 @@ const Header = () => {
             </div>
           ) : (
             <div className={styles.navigation}>
-              <span
-                onClick={() => {
-                  setToggleNav(!toggleNav);
-                  navigate("saturno/");
-                }}
-                className={`${styles.route} ${styles.logout}`}
-              >
-                Votação
-              </span>
               {isLoggedIn() && (
                 <>
+                  <span
+                    onClick={() => {
+                      setToggleNav(!toggleNav);
+                      navigate("saturno/vote/");
+                    }}
+                    className={`${styles.route} ${styles.logout}`}
+                  >
+                    Votação
+                  </span>
                   <span
                     onClick={() => {
                       setToggleNav(!toggleNav);
@@ -127,11 +137,29 @@ const Header = () => {
                   <span
                     onClick={() => {
                       setToggleNav(!toggleNav);
+                      navigate("saturno/list-voting-persons");
+                    }}
+                    className={`${styles.route} ${styles.logout}`}
+                  >
+                    Confirmação de votos
+                  </span>
+                  <span
+                    onClick={() => {
+                      setToggleNav(!toggleNav);
                       navigate("saturno/confirm-hash/");
                     }}
                     className={`${styles.route} ${styles.logout}`}
                   >
-                    Confirmação de hash
+                    Validação de voto
+                  </span>
+                  <span
+                    onClick={() => {
+                      setToggleNav(!toggleNav);
+                      navigate("saturno/vote-report/");
+                    }}
+                    className={`${styles.route} ${styles.logout}`}
+                  >
+                    Relatório de votação
                   </span>
                 </>
               )}

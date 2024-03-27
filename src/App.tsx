@@ -9,6 +9,7 @@ import ElectionsResults from "./Pages/ElectionsResults";
 import ResetPassword from "./Pages/ResetPassword";
 import HashValidation from "./Pages/HashValidation";
 import ProtectedRoute from "./Auth/ProtectedRoute";
+import { VoteReport } from "./Pages/VoteReport";
 
 function App() {
   return (
@@ -38,6 +39,15 @@ function App() {
                 <ProtectedRoute
                   Component={ElectionsResults}
                   path="/saturno/elections-results/"
+                />
+              }
+            />
+            <Route
+              path="/saturno/vote-report/"
+              element={
+                <ProtectedRoute
+                  Component={VoteReport}
+                  path="/saturno/vote-report/"
                 />
               }
             />
