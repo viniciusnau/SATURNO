@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "../Styles/Header.module.css";
 import image from "../Assets/logo_saturno.png";
 import { HiBars3 } from "react-icons/hi2";
-import { isLoggedIn, logout } from "../Auth/Auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../Auth/Auth";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const navigate = useNavigate();
   const [isResponsive, setIsResponsive] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [toggleNav, setToggleNav] = useState<boolean>(true);
+  const { data } = useSelector((state: any) => state.loginSlice);
 
   useEffect(() => {
     const handleResize = () => {
@@ -63,29 +65,36 @@ const Header = () => {
                             Votação
                           </span>
                         </li>
-                        <li
-                          onClick={() => {
-                            setIsDropdownOpen(!isDropdownOpen);
-                            setToggleNav(!toggleNav);
-                            navigate("saturno/elections-results");
-                          }}
-                        >
-                          <span
-                            className={`${styles.route} ${styles.modalItem}`}
-                          >
-                            Eleições
-                          </span>
-                        </li>
-                        <li
-                          onClick={() => {
-                            setToggleNav(!toggleNav);
-                            navigate("saturno/list-voting-persons");
-                          }}
-                        >
-                          <span className={`${styles.route} ${styles.logout}`}>
-                            Confirmação de votos
-                          </span>
-                        </li>
+                        {data.role === "Admin" ||
+                          (data.role === "Electoral_Commission" && (
+                            <>
+                              <li
+                                onClick={() => {
+                                  setIsDropdownOpen(!isDropdownOpen);
+                                  setToggleNav(!toggleNav);
+                                  navigate("saturno/elections-results");
+                                }}
+                              >
+                                <span
+                                  className={`${styles.route} ${styles.modalItem}`}
+                                >
+                                  Eleições
+                                </span>
+                              </li>
+                              <li
+                                onClick={() => {
+                                  setToggleNav(!toggleNav);
+                                  navigate("saturno/vote-report/");
+                                }}
+                              >
+                                <span
+                                  className={`${styles.route} ${styles.logout}`}
+                                >
+                                  Relatório de votação
+                                </span>
+                              </li>
+                            </>
+                          ))}
                         <li
                           onClick={() => {
                             setToggleNav(!toggleNav);
@@ -94,16 +103,6 @@ const Header = () => {
                         >
                           <span className={`${styles.route} ${styles.logout}`}>
                             Validação de voto
-                          </span>
-                        </li>
-                        <li
-                          onClick={() => {
-                            setToggleNav(!toggleNav);
-                            navigate("saturno/vote-report/");
-                          }}
-                        >
-                          <span className={`${styles.route} ${styles.logout}`}>
-                            Relatório de votação
                           </span>
                         </li>
                       </>
@@ -125,24 +124,29 @@ const Header = () => {
                   >
                     Votação
                   </span>
-                  <span
-                    onClick={() => {
-                      setToggleNav(!toggleNav);
-                      navigate("saturno/elections-results");
-                    }}
-                    className={`${styles.route} ${styles.logout}`}
-                  >
-                    Eleições
-                  </span>
-                  <span
-                    onClick={() => {
-                      setToggleNav(!toggleNav);
-                      navigate("saturno/list-voting-persons");
-                    }}
-                    className={`${styles.route} ${styles.logout}`}
-                  >
-                    Confirmação de votos
-                  </span>
+                  {data.role === "Admin" ||
+                    (data.role === "Electoral_Commission" && (
+                      <>
+                        <span
+                          onClick={() => {
+                            setToggleNav(!toggleNav);
+                            navigate("saturno/elections-results");
+                          }}
+                          className={`${styles.route} ${styles.logout}`}
+                        >
+                          Eleições
+                        </span>
+                        <span
+                          onClick={() => {
+                            setToggleNav(!toggleNav);
+                            navigate("saturno/vote-report/");
+                          }}
+                          className={`${styles.route} ${styles.logout}`}
+                        >
+                          Relatório de votação
+                        </span>
+                      </>
+                    ))}
                   <span
                     onClick={() => {
                       setToggleNav(!toggleNav);
@@ -151,15 +155,6 @@ const Header = () => {
                     className={`${styles.route} ${styles.logout}`}
                   >
                     Validação de voto
-                  </span>
-                  <span
-                    onClick={() => {
-                      setToggleNav(!toggleNav);
-                      navigate("saturno/vote-report/");
-                    }}
-                    className={`${styles.route} ${styles.logout}`}
-                  >
-                    Relatório de votação
                   </span>
                 </>
               )}

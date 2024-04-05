@@ -1,4 +1,4 @@
-import React from "react";
+// import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header";
@@ -18,7 +18,12 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/saturno/vote/" element={<Vote />} />
+            <Route
+              path="/saturno/vote/"
+              element={
+                <ProtectedRoute Component={Vote} path="/saturno/vote/" />
+              }
+            />
             <Route path="/saturno/login/" element={<Login />} />
             <Route
               path="/saturno/password-reset/"
@@ -39,6 +44,7 @@ function App() {
                 <ProtectedRoute
                   Component={ElectionsResults}
                   path="/saturno/elections-results/"
+                  // accessRole={["Admin", "Electoral_Commission"]}
                 />
               }
             />
@@ -48,6 +54,7 @@ function App() {
                 <ProtectedRoute
                   Component={VoteReport}
                   path="/saturno/vote-report/"
+                  // accessRole={["Admin", "Electoral_Commission"]}
                 />
               }
             />
