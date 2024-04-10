@@ -3,19 +3,36 @@ import { PATH } from "../PATH";
 
 const services = {
   getLogin: async (credentials: { username: string; password: string }) => {
-    const headers = {
-      headers: {
-        Authorization:
-          "Basic " + btoa(`${credentials.username}:${credentials.password}`),
-      },
+    const body = {
+      username: credentials.username,
+      password: credentials.password,
     };
 
     return axios
-      .get(PATH.base + "/user/list-voting-persons/", headers)
+      .post(`${PATH.base}/user/token/`, body)
       .then((response: any) => {
+        const token = response.data.access;
+        sessionStorage.setItem("apiToken", token);
         return response;
       })
       .catch((err: any) => console.log(err));
+  },
+
+  logout: async () => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const headers = {
+      Authorization: `Bearer ${apiToken}`,
+    };
+
+    return axios
+      .post(`${PATH.base}/user/token/logout/`, null, {
+        headers: headers,
+      })
+      .then((response) => response.data)
+      .catch((error) => {
+        console.error("Error logging out:", error);
+        throw error;
+      });
   },
 
   resetPassword: async (body: any) => {
@@ -29,12 +46,8 @@ const services = {
 
   getHashValidation: async (checkHash: string) => {
     const apiToken = sessionStorage.getItem("apiToken");
-    const authorizationMethod = apiToken ? "Token" : "Basic";
-
     const headers = {
-      Authorization: `${authorizationMethod} ${
-        apiToken || sessionStorage.getItem("credentials")
-      }`,
+      Authorization: `Bearer ${apiToken}`,
     };
 
     const params = {
@@ -54,12 +67,8 @@ const services = {
 
   getElectionsResults: async (positionId: string) => {
     const apiToken = sessionStorage.getItem("apiToken");
-    const authorizationMethod = apiToken ? "Token" : "Basic";
-
     const headers = {
-      Authorization: `${authorizationMethod} ${
-        apiToken || sessionStorage.getItem("credentials")
-      }`,
+      Authorization: `Bearer ${apiToken}`,
     };
 
     const params = {
@@ -73,19 +82,15 @@ const services = {
       })
       .then((response) => response.data)
       .catch((error) => {
-        console.error("Erro ao obter resultados das eleições:", error);
+        console.error("Error fetching election results:", error);
         throw error;
       });
   },
 
   getListCandidates: async (positionId: string) => {
     const apiToken = sessionStorage.getItem("apiToken");
-    const authorizationMethod = apiToken ? "Token" : "Basic";
-
     const headers = {
-      Authorization: `${authorizationMethod} ${
-        apiToken || sessionStorage.getItem("credentials")
-      }`,
+      Authorization: `Bearer ${apiToken}`,
     };
 
     const params = {
@@ -99,7 +104,24 @@ const services = {
       })
       .then((response) => response.data)
       .catch((error) => {
-        console.error("Erro ao obter candidatos por IDs:", error);
+        console.error("Error fetching candidates by IDs:", error);
+        throw error;
+      });
+  },
+
+  getTokenLifetime: async () => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const headers = {
+      Authorization: `Bearer ${apiToken}`,
+    };
+
+    return axios
+      .get(`${PATH.base}/user/token-lifetime/`, {
+        headers: headers,
+      })
+      .then((response) => response.data)
+      .catch((error) => {
+        console.error("Error fetching remaining token time:", error);
         throw error;
       });
   },

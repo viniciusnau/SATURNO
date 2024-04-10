@@ -2,61 +2,50 @@ import { createSlice } from "@reduxjs/toolkit";
 import services from "../services";
 
 interface LoginState {
-  data: any[];
+  data: any;
   loading: boolean;
   error: boolean;
 }
 
 const initialState: LoginState = {
-  data: [],
+  data: {},
   loading: false,
   error: false,
 };
 
-const usersListSlice = createSlice({
+const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    getLogin: (state: any) => {
+    getLogin: (state) => {
       state.loading = true;
       state.error = false;
-      state.data = [];
     },
-    getLoginSuccess: (state: any, action: any) => {
+    getLoginSuccess: (state, action) => {
       state.loading = false;
       state.error = false;
       state.data = action.payload;
     },
-
-    getLoginFailure: (state: any) => {
+    getLoginFailure: (state) => {
       state.loading = false;
       state.error = true;
-      state.data = [];
     },
   },
 });
 
 export const { getLogin, getLoginSuccess, getLoginFailure } =
-  usersListSlice.actions;
+  loginSlice.actions;
 
-export default usersListSlice.reducer;
+export default loginSlice.reducer;
 
-export const fetchLogin =
-  (body: any) =>
-  async (
-    dispatch: (arg0: {
-      payload: any;
-      type:
-        | "login/getLogin"
-        | "login/getLoginSuccess"
-        | "login/getLoginFailure";
-    }) => void
-  ) => {
-    dispatch(getLogin());
-    try {
-      const response = await services.getLogin(body);
-      dispatch(getLoginSuccess(response.data));
-    } catch (err) {
-      dispatch(getLoginFailure());
-    }
-  };
+export const fetchLogin = (body: any) => async (dispatch: any) => {
+  dispatch(getLogin());
+  try {
+    const response = await services.getLogin(body);
+    sessionStorage.setItem("apiToken", response.data.access);
+    sessionStorage.setItem("userId", response.data.user_id);
+    dispatch(getLoginSuccess(response.data));
+  } catch (err) {
+    dispatch(getLoginFailure());
+  }
+};

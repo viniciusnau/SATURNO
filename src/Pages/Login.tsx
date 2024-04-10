@@ -43,11 +43,22 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
-    sessionStorage.setItem(
-      "credentials",
-      btoa(`${form.username}:${form.password}`)
-    );
-    dispatch(fetchLogin(form));
+    dispatch(fetchLogin(form))
+      .then(() => {
+        navigate("/saturno/vote/");
+      })
+      .catch((error: any) => {
+        if (error.response && error.response.status === 401) {
+          console.log(
+            "Credenciais inválidas. Por favor, verifique seu nome de usuário e senha."
+          );
+        } else {
+          console.log(
+            "Ocorreu um erro ao tentar fazer login. Por favor, tente novamente mais tarde."
+          );
+        }
+      });
+
     setIsDispatched(true);
     setForm({
       username: "",
@@ -56,7 +67,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (data.length && isDispatched) {
+    if (Object.keys(data).length !== 0 && isDispatched) {
       navigate("/saturno/vote/");
     }
   }, [data, isDispatched, navigate]);

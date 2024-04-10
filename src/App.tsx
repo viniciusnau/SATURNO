@@ -9,6 +9,7 @@ import ElectionsResults from "./Pages/ElectionsResults";
 import ResetPassword from "./Pages/ResetPassword";
 import HashValidation from "./Pages/HashValidation";
 import { ProtectedRoute } from "./Auth/ProtectedRoute";
+import Callback from "./Components/Callback";
 
 function App() {
   return (
@@ -17,7 +18,15 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/saturno/vote/" element={<Vote />} />
+            <Route
+              path="/saturno/vote/"
+              element={
+                <ProtectedRoute
+                  Component={ElectionsResults}
+                  path="/saturno/vote/"
+                />
+              }
+            />
             <Route path="/saturno/login/" element={<Login />} />
             <Route
               path="/saturno/password-reset/"
@@ -40,6 +49,10 @@ function App() {
                   path="/saturno/elections-results/"
                 />
               }
+            />
+            <Route
+              path="/saturno/callback/:googleToken"
+              element={<Callback />}
             />
           </Routes>
           <Footer />

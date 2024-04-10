@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import styles from "../Styles/Header.module.css";
 import image from "../Assets/logo_saturno.png";
 import { HiBars3 } from "react-icons/hi2";
-import { isLoggedIn, logout } from "../Auth/Auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { isLoggedIn, logout as frontendLogout } from "../Auth/Auth";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout as backendLogout } from "../Services/Slices/logoutSlice";
+import AutoLogoutTimer from "./AutoLogoutTimer";
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch<any>();
   const [isResponsive, setIsResponsive] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [toggleNav, setToggleNav] = useState<boolean>(true);
@@ -23,6 +27,11 @@ const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handleLogout = async () => {
+    await dispatch(backendLogout());
+    frontendLogout(navigate);
+  };
 
   return (
     <header className={styles.header}>
@@ -96,6 +105,11 @@ const Header = () => {
                             Confirmação de hash
                           </span>
                         </li>
+                        <li onClick={handleLogout}>
+                          <span className={`${styles.route} ${styles.logout}`}>
+                            Logout
+                          </span>
+                        </li>
                       </>
                     )}
                   </ul>
@@ -135,10 +149,19 @@ const Header = () => {
                   </span>
                 </>
               )}
+              {isLoggedIn() && (
+                <span
+                  onClick={handleLogout}
+                  className={`${styles.route} ${styles.logout}`}
+                >
+                  Logout
+                </span>
+              )}
             </div>
           )}
         </div>
       </div>
+      {isLoggedIn() && <AutoLogoutTimer />}{" "}
     </header>
   );
 };

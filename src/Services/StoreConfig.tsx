@@ -4,6 +4,8 @@ import resetPassword from "./Slices/resetPassword";
 import checkHashSlice from "./Slices/checkHashSlice";
 import electionsResultSlice from "./Slices/resultsSlice";
 import candidatesSlice from "./Slices/candidatesSlice";
+import authSlice from "./Slices/authState";
+import logoutSlice from "./Slices/logoutSlice";
 
 const reducer = combineReducers({
   loginSlice,
@@ -11,6 +13,8 @@ const reducer = combineReducers({
   checkHashSlice,
   electionsResultSlice,
   candidatesSlice,
+  authSlice,
+  logoutSlice,
 });
 
 export const store = configureStore({ reducer });
