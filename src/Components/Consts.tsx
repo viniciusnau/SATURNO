@@ -1,6 +1,10 @@
-export const ColumnsTable = {
-  
-}
+export const modalText = {
+  sendVote: {
+    title: "Voto prestes a ser enviado.",
+    description: "Você tem certeza que deseja reaizar esse voto?",
+    button: "Sim",
+  },
+};
 
 export const snackbarConsts = {
   success: {
@@ -15,26 +19,32 @@ export const snackbarConsts = {
     color: "#ff6464",
   },
 
-  successRegister: {
-    title: "Registro de candidato feito com sucesso!",
-    description: "Requisição feita com sucesso!",
+  countmaxError: {
+    title: "Selecao de voto fora das diretrizes.",
+    description: "Numero de candidatos selecionados ultrapassa o limite permitido.",
     color: "#9fc54d",
   },
 
-  errorRegister: {
-    title: "Erro ao efetuar registro de candidato!",
-    description: "Tente novamente mais tarde.",
+  candidateDuplicateError: {
+    title: "Selecao de voto fora das diretrizes.",
+    description: "Voce so pode selecionar os candidatos validos uma unica vez.",
     color: "#ff6464",
   },
 
-  successUpdate: {
-    title: "Atualização de candidato feito com sucesso!",
-    description: "Requisição feita com sucesso!",
+  voteSuccess: {
+    title: "Voto enviado com sucesso!",
+    description: "",
     color: "#9fc54d",
   },
 
-  errorUpdate: {
-    title: "Erro ao atualizar registro de candidato!",
+  voteCountError: {
+    title: "Verifique a quantidade de candidatos para votos dessa posição",
+    description: "Selecione os candidatos para enviar o voto.",
+    color: "#ff6464",
+  },
+
+  voteError: {
+    title: "Erro ao efetuar a requisição!",
     description: "Tente novamente mais tarde.",
     color: "#ff6464",
   },
@@ -45,17 +55,6 @@ export const snackbarConsts = {
     color: "#ff6464",
   },
 
-  successDeleteUser: {
-    title: "Candidato excluido com sucesso!",
-    description: "Exclusão feita com sucesso!",
-    color: "#9fc54d",
-  },
-
-  errorDeleteUser: {
-    title: "Erro ao excluir candidato!",
-    description: "Tente novamente mais tarde.",
-    color: "#ff6464",
-  },
   resetError: {
     title: "Erro ao redefinir senha!",
     description: "Confira se o email está correto e tente novamente.",

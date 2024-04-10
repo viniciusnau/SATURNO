@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "../Styles/Header.module.css";
 import image from "../Assets/logo_saturno.png";
 import { HiBars3 } from "react-icons/hi2";
-import { isLoggedIn, logout } from "../Auth/Auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { isLoggedIn} from "../Auth/Auth";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();

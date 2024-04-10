@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface IVoteData {
     position: any;
     chosen_person?: number;
@@ -22,5 +20,12 @@ export interface IListCandidatesState {
     error: boolean;
   }
 
+  export interface Candidate {
+    id: string;
+    name: string;
+}
 
+export interface RootState {
+    selectedCandidates: Candidate[];
+}
 

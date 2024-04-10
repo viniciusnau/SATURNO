@@ -1,0 +1,42 @@
+.votePage {
+  display: flex;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.3vw ;
+  padding-top: 1.5rem;
+}
+
+.Table {
+  width: 43.5%;
+}
+
+.TableContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.MiniTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.button {
+    height: 2.5rem;
+    width: 10.5rem;
+    background-color: var(--first-button-color);
+    box-shadow: 0 10px 10px -10px var(--shadow-color);
+    font-size: var(--font-size);
+    margin: 1.5rem 0 0 0;
+  }
+  
+  .button:hover {
+    background-color: var(--first-button-color-hover);
+  }
+  
+  .button:disabled {
+    background-color: var(--first-button-color-disabled);
+  }

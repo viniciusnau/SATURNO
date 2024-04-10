@@ -11,7 +11,6 @@ import React from "react";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
-
   const [showsnackbar, setShowSnackbar] = useState<boolean>(false);
   const [form, setForm] = useState<any>({
     email: "",
