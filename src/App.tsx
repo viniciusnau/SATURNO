@@ -1,12 +1,12 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Login from "./Pages/Login";
-import Vote from "./Pages/Vote";
-import ElectionsResults from "./Pages/ElectionsResults";
+import VotePage from "./Pages/VotePage";
+import VotePagePdf from "./Pages/VotePagePdf";
 import ResetPassword from "./Pages/ResetPassword";
+import ElectionsResults from "./Pages/ElectionsResults";
 import HashValidation from "./Pages/HashValidation";
 import { ProtectedRoute } from "./Auth/ProtectedRoute";
 import Callback from "./Components/Callback";
@@ -18,12 +18,21 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route
-              path="/saturno/vote/"
+            <Route 
+              path="/saturno/vote/" 
               element={
                 <ProtectedRoute
-                  Component={ElectionsResults}
-                  path="/saturno/vote/"
+                  Component={VotePage}
+                  path="/saturno/vote"
+                />
+              }
+            />
+            <Route
+              path="/saturno/vote-pdf/"
+              element={
+                <ProtectedRoute
+                  Component={VotePagePdf}
+                  path="/saturno/vote-pdf/"
                 />
               }
             />
