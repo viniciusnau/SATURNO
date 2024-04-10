@@ -1,0 +1,255 @@
+.container {
+  height: 80vh;
+  margin: 0.5rem 1rem;
+}
+
+.upperContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.nullVotesLegend {
+  display: flex;
+  justify-content: center;
+}
+
+.legendSquare {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.progressBarContainer {
+  width: 50%;
+}
+
+.progressBar {
+  width: 100%;
+  height: 1.25rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #007bff;
+}
+
+.megaBox {
+  display: flex;
+  max-height: 10%;
+  height: 50vh;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 150px);
+}
+
+.scrollable {
+}
+
+.circularImage {
+  width: 5em;
+  height: 5em;
+  border: 0.25rem solid #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.circularImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.progressBar {
+  background-color: #f0f0f0;
+  height: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.progressBar > div {
+  height: 100%;
+  background-color: #007bff;
+}
+
+.selected {
+  background-color: #e0e0e0;
+}
+
+.selected:hover {
+  background-color: #dadada !important;
+}
+
+.tableRow {
+  position: relative;
+}
+
+.tableRow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.listContainer {
+  height: 40rem;
+  font-size: 1.5rem;
+  width: 50%;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-right: none;
+}
+
+.listContainer table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.listContainer table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tr {
+  cursor: pointer;
+  border-bottom: 0.1rem solid #ccc;
+}
+
+.tr:hover {
+  background-color: #eee;
+}
+
+.candidateInfo {
+  padding: 0.75rem 0.5rem;
+}
+
+.listContainer .candidateInfo {
+  display: flex;
+  align-items: center;
+}
+
+.listContainer .candidateInfo .info {
+  margin: 0 0 0 0.75rem;
+  text-align: left;
+  width: 80%;
+}
+
+.listContainer .candidateInfo .info > div {
+  margin-bottom: 5px;
+}
+
+.listContainer select {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1.25rem;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%231c1c1c' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7em top 50%;
+  background-size: 1.5em auto;
+  appearance: none;
+}
+
+.listContainer select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5vw;
+  width: 50%;
+  height: 60vh;
+  border: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 450;
+}
+
+.closeIcon {
+  cursor: pointer;
+  margin: 0 0 0 .75rem;
+  color: #4b4b4b;
+}
+
+.detailsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.candidateImage {
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 0 0.5rem 0;
+}
+
+.description {
+  font-size: 1.25rem;
+  margin: .25rem 0;
+}
+
+.clearButton {
+  width: 80%;
+  max-width: 200px;
+  margin-top: 1vw;
+  padding: 1vw 2vw;
+  font-size: 1.5vw;
+  padding: 0.5vw 1vw;
+}
+
+.detailsContainer table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.detailsContainer table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.detailsContainer ul {
+  text-align: center;
+  padding-left: 0;
+}
+
+.detailsContainer ul li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+img {
+  border-radius: 0.75rem;
+}
+
+.info > p {
+  margin: 0.35rem 0;
+}
