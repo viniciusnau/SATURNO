@@ -54,7 +54,7 @@ const VotePage: React.FC = () => {
     }, [dispatch, verifyVote]);
 
     useEffect(() => {
-        if (responseDataUser && responseDataUser.data.votes_info) {
+        if (responseDataUser && responseDataUser?.data?.votes_info) {
             let maxCount;
             let positionId;
 
