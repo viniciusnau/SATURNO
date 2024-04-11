@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { PATH } from '../PATH';
-import { IVoteData, IPositionId } from '../Types/Types';
+import axios from "axios";
+import { PATH } from "../PATH";
+import { IVoteData, IPositionId } from "../Types/Types";
 
 const services = {
   getLogin: async (credentials: { username: string; password: string }) => {
@@ -128,60 +128,60 @@ const services = {
   },
 
   meId: async () => {
-    const apiToken = sessionStorage.getItem('apiToken');
+    const apiToken = sessionStorage.getItem("apiToken");
     const headers = {
       Authorization: `Bearer ${apiToken}`,
     };
 
     return axios
-        .get(`${PATH.base}/me/`, { headers: headers })
-        .then((data: any) => {
-            return data.data;
-        })
-        .catch((error: any) => {
-          console.error('Error fetching user data: ', error);
-          throw error;
-        });
+      .get(`${PATH.base}/user/me/`, { headers: headers })
+      .then((data: any) => {
+        return data.data;
+      })
+      .catch((error: any) => {
+        console.error("Error fetching user data: ", error);
+        throw error;
+      });
   },
 
   getListCandidatesByPositionId: async (data: IPositionId) => {
-    const apiToken = sessionStorage.getItem('apiToken');
+    const apiToken = sessionStorage.getItem("apiToken");
     const positionId = data.position_id;
     const headers = {
       Authorization: `Bearer ${apiToken}`,
     };
     const params = {
-        position_id: positionId,
+      position_id: positionId,
     };
 
     return axios
-        .get(`${PATH.base}/list-candidates/`, {
-            params: params,
-            headers: headers,
-        })
-        .then((data: any) => {
-            return data;
-        })
-    .catch((error) => {
-      console.error("Error fetching remaining token time:", error);
-      throw error;
-    });
+      .get(`${PATH.base}/user/list-candidates/`, {
+        params: params,
+        headers: headers,
+      })
+      .then((data: any) => {
+        return data;
+      })
+      .catch((error) => {
+        console.error("Error fetching remaining token time:", error);
+        throw error;
+      });
   },
 
   postVote: async (data: IVoteData) => {
-      const apiToken = sessionStorage.getItem('apiToken');
-      const header = {
-        Authorization: `Bearer ${apiToken}`,
-      };
-      const headers = {
-        headers : header
-      }
-      return axios
-          .post(`${PATH.base}/create-vote/`, data, headers)
-          .then((data: any) => {
-              return data;
-          })
-          .catch((err: any) => console.log('err', err));
+    const apiToken = sessionStorage.getItem("apiToken");
+    const header = {
+      Authorization: `Bearer ${apiToken}`,
+    };
+    const headers = {
+      headers: header,
+    };
+    return axios
+      .post(`${PATH.base}/user/create-vote/`, data, headers)
+      .then((data: any) => {
+        return data;
+      })
+      .catch((err: any) => console.log("err", err));
   },
 };
 
