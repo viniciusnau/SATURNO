@@ -1,0 +1,200 @@
+@import "../colors.css";
+
+.content {
+  margin: 0;
+  overflow-y: auto;
+  max-height: 12.75rem;
+  border-radius: 1rem;
+}
+
+.container {
+  margin: 0 auto;
+  border: 4px solid #f0f0f0;
+}
+
+.table {
+  border-collapse: collapse;
+  border: 4px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerTable {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin: 0 0 0.75rem 1rem;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  font-size: var(--font-size);
+}
+
+.columnHeader {
+  flex: 1;
+  padding: 0.5rem 0.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.tableBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.tableRow {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 0;
+  width: 100%;
+  height: 2.5rem;
+}
+
+.tableCell {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.deleteButton {
+  height: 2.5rem;
+  width: 3rem;
+  background-color: var(--first-button-color);
+  box-shadow: 0 10px 10px -10px var(--shadow-color);
+  font-size: var(--font-size);
+  border-radius: 20rem;
+}
+
+.deleteButton:hover {
+  background-color: var(--first-button-color-hover);
+}
+
+.deleteButton:disabled {
+  background-color: var(--first-button-color-disabled);
+}
+.tableRow:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 750px) {
+  .content {
+    width: 80vw;
+    margin: 0 auto;
+  }
+
+  .headerTable {
+    font-size: var(--font-size)-0.15rem;
+  }
+
+  .columnTitle,
+  .tableCell,
+  .backButton,
+  .currentPage,
+  .empty {
+    font-size: var(--font-size)-0.3rem;
+  }
+
+  .deleteButton {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+  }
+}
+
+@media (min-width: 751px) {
+  .content {
+    width: 80vw;
+  }
+
+  .headerTable,
+  .currentPage {
+    font-size: var(--font-size) + 0.2rem;
+  }
+
+  .columnTitle,
+  .tableCell,
+  .backButton,
+  .empty {
+    font-size: var(--font-size);
+  }
+
+  .button,
+  .downloadButton {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .backButton {
+    width: 5rem;
+    height: 2.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content {
+    width: 80vw;
+    max-width: 800px;
+  }
+
+  .headerTable {
+    font-size: var(--font-size) + 0.25rem;
+  }
+
+  .columnTitle,
+  .tableCell,
+  .backButton,
+  .currentPage,
+  .empty {
+    font-size: var(--font-size);
+  }
+
+  .button,
+  .downloadButton {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.spin svg {
+  opacity: 1;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

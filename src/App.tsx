@@ -1,15 +1,15 @@
-// import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Login from "./Pages/Login";
-import Vote from "./Pages/Vote";
-import ElectionsResults from "./Pages/ElectionsResults";
+import VotePage from "./Pages/VotePage";
+import VotePagePdf from "./Pages/VotePagePdf";
 import ResetPassword from "./Pages/ResetPassword";
+import ElectionsResults from "./Pages/ElectionsResults";
 import HashValidation from "./Pages/HashValidation";
-import ProtectedRoute from "./Auth/ProtectedRoute";
-import { VoteReport } from "./Pages/VoteReport";
+import { ProtectedRoute } from "./Auth/ProtectedRoute";
+import Callback from "./Components/Callback";
 
 function App() {
   return (
@@ -18,10 +18,22 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route
-              path="/saturno/vote/"
+            <Route 
+              path="/saturno/vote/" 
               element={
-                <ProtectedRoute Component={Vote} path="/saturno/vote/" />
+                <ProtectedRoute
+                  Component={VotePage}
+                  path="/saturno/vote"
+                />
+              }
+            />
+            <Route
+              path="/saturno/vote-pdf/"
+              element={
+                <ProtectedRoute
+                  Component={VotePagePdf}
+                  path="/saturno/vote-pdf/"
+                />
               }
             />
             <Route path="/saturno/login/" element={<Login />} />
@@ -44,19 +56,12 @@ function App() {
                 <ProtectedRoute
                   Component={ElectionsResults}
                   path="/saturno/elections-results/"
-                  // accessRole={["Admin", "Electoral_Commission"]}
                 />
               }
             />
             <Route
-              path="/saturno/vote-report/"
-              element={
-                <ProtectedRoute
-                  Component={VoteReport}
-                  path="/saturno/vote-report/"
-                  // accessRole={["Admin", "Electoral_Commission"]}
-                />
-              }
+              path="/saturno/callback/:googleToken"
+              element={<Callback />}
             />
           </Routes>
           <Footer />

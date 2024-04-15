@@ -3,16 +3,22 @@ import loginSlice from "./Slices/getLogin";
 import resetPassword from "./Slices/resetPassword";
 import checkHashSlice from "./Slices/checkHashSlice";
 import electionsResultSlice from "./Slices/resultsSlice";
-import candidatesSlice from "./Slices/candidatesSlice";
-import voteReportSlice from "./Slices/voteReportSlice";
+import authSlice from "./Slices/authState";
+import logoutSlice from "./Slices/logoutSlice";
+import meId from "./Slices/meId";
+import getListCandidates from "./Slices/getListCandidates";
+import selectedCandidate from "./Slices/selectedCandidate";
 
 const reducer = combineReducers({
   loginSlice,
   resetPassword,
   checkHashSlice,
   electionsResultSlice,
-  candidatesSlice,
-  voteReportSlice,
+  authSlice,
+  logoutSlice,
+  meId,
+  getListCandidates,
+  selectedCandidate
 });
 
 export const store = configureStore({ reducer });
