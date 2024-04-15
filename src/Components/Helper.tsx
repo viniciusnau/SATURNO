@@ -14,3 +14,13 @@ export function handleKeyPress(
 export function neverNull(value: string) {
   return value ? value : "-";
 }
+
+export const publicDefenses = [
+  "Florianópolis",
+  "Lages",
+  "Palhoça",
+  "Biguaçu",
+  "Balneário Camboriu",
+];
+
+export const seniorities = ["Dont know the correct name", "of it", "OMG"];
