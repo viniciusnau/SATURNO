@@ -8,6 +8,8 @@ import logoutSlice from "./Slices/logoutSlice";
 import meId from "./Slices/meId";
 import getListCandidates from "./Slices/getListCandidates";
 import selectedCandidate from "./Slices/selectedCandidate";
+import candidatesSlice from "./Slices/candidatesSlice";
+import voteReportSlice from "./Slices/voteReportSlice";
 
 const reducer = combineReducers({
   loginSlice,
@@ -18,7 +20,9 @@ const reducer = combineReducers({
   logoutSlice,
   meId,
   getListCandidates,
-  selectedCandidate
+  selectedCandidate,
+  candidatesSlice,
+  voteReportSlice,
 });
 
 export const store = configureStore({ reducer });

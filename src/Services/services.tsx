@@ -168,6 +168,29 @@ const services = {
       });
   },
 
+  getVoteReport: async () => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const authorizationMethod = apiToken ? "Token" : "Basic";
+
+    const headers = {
+      Authorization: `${authorizationMethod} ${
+        apiToken || sessionStorage.getItem("credentials")
+      }`,
+    };
+
+    return axios
+      .get(`${PATH.base}/user/list-candidates/`, {
+        headers: headers,
+      })
+      .then((data: any) => {
+        return data;
+      })
+      .catch((error) => {
+        console.error("Error fetching remaining token time:", error);
+        throw error;
+      });
+  },
+
   postVote: async (data: IVoteData) => {
     const apiToken = sessionStorage.getItem("apiToken");
     const header = {
