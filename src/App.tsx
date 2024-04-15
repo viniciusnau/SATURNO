@@ -11,6 +11,7 @@ import HashValidation from "./Pages/HashValidation";
 import Callback from "./Components/Callback";
 import ProtectedRoute from "./Auth/ProtectedRoute";
 import { Register } from "./Pages/Register";
+import { VoteReport } from "./Pages/VoteReport";
 
 function App() {
   return (
@@ -54,6 +55,17 @@ function App() {
                 <ProtectedRoute
                   Component={ElectionsResults}
                   path="/saturno/elections-results/"
+                  // accessRole={["Admin", "Electoral_Commission"]}
+                />
+              }
+            />
+            <Route
+              path="/saturno/vote-report/"
+              element={
+                <ProtectedRoute
+                  Component={VoteReport}
+                  path="/saturno/vote-report/"
+                  // accessRole={["Admin", "Electoral_Commission"]}
                 />
               }
             />

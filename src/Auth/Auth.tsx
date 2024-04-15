@@ -1,5 +1,6 @@
 export const logout = (navigate: any) => {
   sessionStorage.clear();
+  localStorage.clear();
   navigate("/saturno/login/");
 };
 
