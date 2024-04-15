@@ -8,8 +8,9 @@ import VotePagePdf from "./Pages/VotePagePdf";
 import ResetPassword from "./Pages/ResetPassword";
 import ElectionsResults from "./Pages/ElectionsResults";
 import HashValidation from "./Pages/HashValidation";
-import { ProtectedRoute } from "./Auth/ProtectedRoute";
 import Callback from "./Components/Callback";
+import ProtectedRoute from "./Auth/ProtectedRoute";
+import { VoteReport } from "./Pages/VoteReport";
 
 function App() {
   return (
@@ -18,13 +19,10 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route 
-              path="/saturno/vote/" 
+            <Route
+              path="/saturno/vote/"
               element={
-                <ProtectedRoute
-                  Component={VotePage}
-                  path="/saturno/vote"
-                />
+                <ProtectedRoute Component={VotePage} path="/saturno/vote" />
               }
             />
             <Route
@@ -56,6 +54,17 @@ function App() {
                 <ProtectedRoute
                   Component={ElectionsResults}
                   path="/saturno/elections-results/"
+                  // accessRole={["Admin", "Electoral_Commission"]}
+                />
+              }
+            />
+            <Route
+              path="/saturno/vote-report/"
+              element={
+                <ProtectedRoute
+                  Component={VoteReport}
+                  path="/saturno/vote-report/"
+                  // accessRole={["Admin", "Electoral_Commission"]}
                 />
               }
             />
