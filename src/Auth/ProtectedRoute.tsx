@@ -15,7 +15,7 @@ export const ProtectedRoute: React.FC<{
     const storedToken = sessionStorage.getItem("apiToken") ?? "";
 
     const websocket = new WebSocket(
-      `ws://saturno.defensoria.sc.def.br/ws/user_session/${userId}/?token=${storedToken}`
+      `wss://saturno.defensoria.sc.def.br/ws/user_session/${userId}/?token=${storedToken}`
     );
     function handleWebSocketMessage(event: MessageEvent) {
       const message = JSON.parse(event.data);
