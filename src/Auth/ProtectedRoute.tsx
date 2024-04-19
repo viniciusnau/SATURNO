@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { isLoggedIn, logout } from "./Auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const ProtectedRoute: React.FC<{
   Component: React.FC<any>;
   path: any;
   colorInverted?: boolean;
-}> = ({ Component, ...rest }) => {
+  accessRole?: string[];
+}> = ({ Component, accessRole, ...rest }) => {
   const dispatch = useDispatch<any>();
+  const { data } = useSelector((state: any) => state.loginSlice);
 
   useEffect(() => {
     const userId = parseInt(sessionStorage.getItem("userId") || "0", 10);
@@ -34,11 +36,14 @@ export const ProtectedRoute: React.FC<{
     };
   }, [dispatch]);
 
-  return isLoggedIn() ? (
-    <Component {...rest} />
-  ) : (
-    <Navigate to="/saturno/login/" />
-  );
+  if (isLoggedIn() && !accessRole) {
+    return <Component {...rest} />;
+  }
+
+  if (isLoggedIn() && accessRole && accessRole.includes(data.role)) {
+    return <Component {...rest} />;
+  }
+  return <Navigate to="/saturno/login/" />;
 };
 
 export default ProtectedRoute;

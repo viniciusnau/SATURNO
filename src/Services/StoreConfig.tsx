@@ -10,6 +10,7 @@ import getListCandidates from "./Slices/getListCandidates";
 import selectedCandidate from "./Slices/selectedCandidate";
 import candidatesSlice from "./Slices/candidatesSlice";
 import voteReportSlice from "./Slices/voteReportSlice";
+import postRegister from "./Slices/postRegisterSlice";
 
 const reducer = combineReducers({
   loginSlice,
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   selectedCandidate,
   candidatesSlice,
   voteReportSlice,
+  postRegister,
 });
 
 export const store = configureStore({ reducer });

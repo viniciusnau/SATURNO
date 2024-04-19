@@ -54,7 +54,7 @@ export const fetchResetPassword =
     dispatch(getVoteReport());
     try {
       const response = await services.getVoteReport();
-      dispatch(getVoteReportSuccess(response));
+      dispatch(getVoteReportSuccess({ message: "Sucesso!" }));
     } catch (err) {
       console.log("err: ", err);
       dispatch(getVoteReportFailure());

@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { logout as backendLogout } from "../Services/Slices/logoutSlice";
 import AutoLogoutTimer from "./AutoLogoutTimer";
 import { useSelector } from "react-redux";
+import { roles } from "./Consts";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -74,8 +75,8 @@ const Header = () => {
                             Votação
                           </span>
                         </li>
-                        {data.role === "Admin" ||
-                          (data.role === "Electoral_Commission" && (
+                        {data.role === roles.admin ||
+                          (data.role === roles.electoralCommision && (
                             <>
                               <li
                                 onClick={() => {
@@ -138,8 +139,8 @@ const Header = () => {
                   >
                     Votação
                   </span>
-                  {data.role === "Admin" ||
-                    (data.role === "Electoral_Commission" && (
+                  {data.role === roles.admin ||
+                    (data.role === roles.electoralCommision && (
                       <>
                         <span
                           onClick={() => {

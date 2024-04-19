@@ -1,3 +1,5 @@
+@import "../colors.css";
+
 .container {
     display: flex;
     justify-content: center;
@@ -20,13 +22,12 @@
     margin-bottom: 1.25rem;
   }
   
-
-  
   .google:hover,
   .input:hover,
   .date:hover {
     background-color: var(--second-button-color-hover);
   }
+  
   .input:disabled,
   .date:disabled {
     background-color: var(--second-button-color-disabled);
@@ -57,23 +58,38 @@
     align-items: center;
     justify-content: center;
     border-radius: 5rem;
+
+  }
+
+  .icon {
+    width: 2.25rem;
+    margin: 0 .5rem 0 0;
+    padding: .25rem;
   }
   
   .login {
     font-size: calc(var(--font-size) - 0.25rem);
   }
   
-  .forgotPassword {
-    display: block;
+  .linkContainer {
+    display: flex;
+    justify-content:  center;
+    margin: .75rem 0 0 0
+  }
+
+  .link {
     text-align: center;
-    margin-top: 1rem;
     color: var(--link-color);
     text-decoration: none;
+    height: 1.5rem;
+    margin: 0 .5rem
   }
+
   .formButton {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1.75rem 0 0 0;
   }
   
   .button {
@@ -82,7 +98,6 @@
     background-color: var(--first-button-color);
     box-shadow: 0 10px 10px -10px var(--shadow-color);
     font-size: var(--font-size);
-    margin: 1.5rem 0 0 0;
   }
   
   .button:hover {
@@ -96,7 +111,7 @@
   .lineContainer {
     display: flex;
     align-items: center;
-    margin: 1.5rem 0;
+    margin: 1rem 0 1.5rem 0;
   }
   
   .line {
@@ -116,7 +131,7 @@
   
   @media (max-width: 750px) {
     .title {
-      font-size: var(--font-size) - 5rem;
+      font-size: calc(var(--font-size) - 1rem);
     }
     .label {
       font-size: 0.8rem;
@@ -129,7 +144,7 @@
   
   @media (min-width: 751px) {
     .title {
-      font-size: var(--font-size) + 1rem;
+      font-size: calc(var(--font-size) + .75rem);
     }
     .label {
       font-size: 1rem;
