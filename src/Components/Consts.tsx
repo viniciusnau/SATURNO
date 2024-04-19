@@ -1,7 +1,7 @@
 export const modalText = {
   sendVote: {
-    title: "Voto prestes a ser enviado.",
-    description: "Você tem certeza que deseja reaizar esse voto?",
+    title: "Voto prestes a ser registrado!",
+    description: "Você tem certeza que deseja finalizar a votação?",
     button: "Sim",
   },
 };
@@ -20,14 +20,14 @@ export const snackbarConsts = {
   },
 
   countmaxError: {
-    title: "Selecao de voto fora das diretrizes.",
+    title: "Seleção de voto fora das diretrizes.",
     description: "Numero de candidatos selecionados ultrapassa o limite permitido.",
     color: "#9fc54d",
   },
 
   candidateDuplicateError: {
-    title: "Selecao de voto fora das diretrizes.",
-    description: "Voce so pode selecionar os candidatos validos uma unica vez.",
+    title: "Seleção de voto fora das diretrizes.",
+    description: "Candidato já selecionado!",
     color: "#ff6464",
   },
 
