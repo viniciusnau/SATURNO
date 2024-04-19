@@ -28,7 +28,7 @@ export const snackbarConsts = {
   countmaxError: {
     title: "Seleção de voto fora das diretrizes.",
     description: "Número de candidatos selecionados ultrapassa o limite permitido.",
-    color: "#9fc54d",
+    color: "#ff6464",
   },
 
   candidateDuplicateError: {
