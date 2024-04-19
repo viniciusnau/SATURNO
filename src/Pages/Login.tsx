@@ -100,7 +100,7 @@ const Login = () => {
             underline="hover"
             className={styles.link}
           >
-            Registrar-se
+            Registre-se
           </Link>
           <Link
             href="/saturno/password-reset/"
