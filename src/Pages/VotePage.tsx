@@ -155,7 +155,7 @@ const VotePage: React.FC = () => {
         />
       </div>
       <Button className={styles.button} onClick={handleSubmitVote}>
-        Realizar Votação
+        Finalizar Votação
       </Button>
     </div>
   );

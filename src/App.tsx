@@ -10,6 +10,7 @@ import ElectionsResults from "./Pages/ElectionsResults";
 import HashValidation from "./Pages/HashValidation";
 import Callback from "./Components/Callback";
 import ProtectedRoute from "./Auth/ProtectedRoute";
+import { Register } from "./Pages/Register";
 import { VoteReport } from "./Pages/VoteReport";
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
               path="/saturno/callback/:googleToken"
               element={<Callback />}
             />
+            <Route path="/saturno/register/" element={<Register />} />
           </Routes>
           <Footer />
         </Router>

@@ -1,9 +1,15 @@
 export const modalText = {
   sendVote: {
-    title: "Voto prestes a ser enviado.",
-    description: "Você tem certeza que deseja reaizar esse voto?",
+    title: "Voto prestes a ser registrado!",
+    description: "Você tem certeza que deseja finalizar a votação?",
     button: "Sim",
   },
+};
+
+export const roles = {
+  admin: "administrative",
+  electoralCommision: "electoral commission",
+  publicDefender: "public defender",
 };
 
 export const snackbarConsts = {
@@ -20,14 +26,14 @@ export const snackbarConsts = {
   },
 
   countmaxError: {
-    title: "Selecao de voto fora das diretrizes.",
-    description: "Numero de candidatos selecionados ultrapassa o limite permitido.",
+    title: "Seleção de voto fora das diretrizes.",
+    description: "Número de candidatos selecionados ultrapassa o limite permitido.",
     color: "#9fc54d",
   },
 
   candidateDuplicateError: {
-    title: "Selecao de voto fora das diretrizes.",
-    description: "Voce so pode selecionar os candidatos validos uma unica vez.",
+    title: "Seleção de voto fora das diretrizes.",
+    description: "Candidato já selecionado!",
     color: "#ff6464",
   },
 
@@ -54,7 +60,7 @@ export const snackbarConsts = {
     description: "Tente novamente mais tarde.",
     color: "#ff6464",
   },
-  
+
   errorLogin: {
     title: "Erro ao verificar as credenciais!",
     description: "Certifique se os campos estão corretos.",
@@ -74,12 +80,25 @@ export const snackbarConsts = {
   },
 
   validationSuccess: {
-    title: "Hash Validada",
+    title: "Comprovante de validação",
     description: "A hash fornecida é válida e corresponde a votos registrados.",
     color: "#9fc54d",
   },
 
   validationError: {
+    title: "Erro no Comprovante de validação",
+    description:
+      "A hash fornecida não é válida ou não corresponde a nenhum voto registrado.",
+    color: "#ff6464",
+  },
+
+  registerSuccess: {
+    title: "Hash Validada",
+    description: "A hash fornecida é válida e corresponde a votos registrados.",
+    color: "#9fc54d",
+  },
+
+  registerError: {
     title: "Erro na Validação da Hash",
     description:
       "A hash fornecida não é válida ou não corresponde a nenhum voto registrado.",

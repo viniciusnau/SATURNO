@@ -42,8 +42,6 @@ export const fetchLogin = (body: any) => async (dispatch: any) => {
   dispatch(getLogin());
   try {
     const response = await services.getLogin(body);
-    sessionStorage.setItem("apiToken", response.data.access);
-    sessionStorage.setItem("userId", response.data.user_id);
     dispatch(getLoginSuccess(response.data));
   } catch (err) {
     dispatch(getLoginFailure());
