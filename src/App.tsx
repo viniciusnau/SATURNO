@@ -73,16 +73,7 @@ function App() {
               path="/saturno/callback/:googleToken"
               element={<Callback />}
             />
-            <Route
-              path="/saturno/register/"
-              element={
-                <ProtectedRoute
-                  Component={Register}
-                  path="/saturno/register/"
-                  // accessRole={["Admin", "Electoral_Commission"]}
-                />
-              }
-            />
+            <Route path="/saturno/register/" element={<Register />} />
           </Routes>
           <Footer />
         </Router>

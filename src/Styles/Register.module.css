@@ -1,3 +1,5 @@
+@import "../colors.css";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -11,4 +13,38 @@
   box-shadow: 0px 10px 10px -10px var(--shadow-color);
   color: #626262 !important;
   text-align: start;
+}
+
+.button {
+  background-color: var(--forty-button-color);
+  color: var(--first-text-color);
+  font-size: .8rem;
+  height: 2.5rem;
+  width: 7rem;
+  margin-top: 1.5rem;
+}
+
+.button:hover {
+  background-color: var(--forty-button-color-hover);
+}
+
+.button:disabled {
+  background-color: var(--forty-button-color-disabled);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 750px) {
+  .title {
+    font-size: calc(var(--font-size) + .25rem);
+  }
+}
+
+@media (min-width: 751px) {
+  .title {
+    font-size: calc(var(--font-size) + .75rem);
+  }
 }

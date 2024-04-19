@@ -10,6 +10,7 @@ import Snackbar from "../Components/Snackbar";
 import Loading from "../Components/Loading";
 import { handleKeyPress } from "../Components/Helper";
 import Button from "../Components/Button";
+import { Link } from "@mui/material";
 
 const Login = () => {
   const dispatch = useDispatch<any>();
@@ -28,10 +29,6 @@ const Login = () => {
     window.location.href = googleLoginUrl;
   };
 
-  const handleForgotPassword = () => {
-    navigate("/saturno/password-reset/");
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
     const { name, value } = e.target;
     setForm((prev: any) => {
@@ -43,22 +40,7 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(fetchLogin(form))
-      .then(() => {
-        navigate("/saturno/vote/");
-      })
-      .catch((error: any) => {
-        if (error.response && error.response.status === 401) {
-          console.log(
-            "Credenciais inválidas. Por favor, verifique seu nome de usuário e senha."
-          );
-        } else {
-          console.log(
-            "Ocorreu um erro ao tentar fazer login. Por favor, tente novamente mais tarde."
-          );
-        }
-      });
-
+    dispatch(fetchLogin(form));
     setIsDispatched(true);
     setForm({
       username: "",
@@ -111,13 +93,22 @@ const Login = () => {
               value={form.password}
             />
           </div>
-          <a
+        </div>
+        <div className={styles.linkContainer}>
+          <Link
+            href="/saturno/register/"
+            underline="hover"
+            className={styles.link}
+          >
+            Criar conta nova
+          </Link>
+          <Link
             href="/saturno/password-reset/"
-            className={styles.forgotPassword}
-            onClick={handleForgotPassword}
+            underline="hover"
+            className={styles.link}
           >
             Esqueceu a senha?
-          </a>
+          </Link>
         </div>
         <div className={styles.lineContainer}>
           <hr className={styles.line} />
@@ -126,13 +117,7 @@ const Login = () => {
         </div>
 
         <Button className={styles.google} onClick={handleGoogleLogin}>
-          <img
-            width="30rem"
-            style={{ marginRight: ".5rem", padding: ".25rem" }}
-            alt="Ícone do Google"
-            src={icon}
-            className={styles.icon}
-          />
+          <img alt="Ícone do Google" src={icon} className={styles.icon} />
           <p className={styles.login}>Continuar com google</p>
         </Button>
 

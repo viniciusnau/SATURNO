@@ -1,40 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../Styles/Register.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../Components/Input";
-import { Input as MUIInput } from "@mui/material";
-import { Button, MenuItem, Select } from "@mui/material";
-import { publicDefenses, seniorities } from "../Components/Helper";
-
-interface iForm {
-  name: string;
-  registration: string;
-  birth_date: string;
-  start_date: string;
-  public_defense: string;
-  seniority: string;
-  profile_picture: string;
-  email: string;
-}
+import { Button } from "@mui/material";
+import { IRegister } from "../Types/Types";
+import { fetchRegister } from "../Services/Slices/postRegisterSlice";
+import Snackbar from "../Components/Snackbar";
 
 export const Register = () => {
   const dispatch = useDispatch<any>();
-  const [form, setForm] = useState<iForm>({
+  const [form, setForm] = useState<IRegister>({
     name: "",
     registration: "",
-    birth_date: "",
-    start_date: "",
-    public_defense: publicDefenses[0],
-    seniority: seniorities[0],
-    profile_picture: "",
     email: "",
+    password: "",
   });
+  const [isDispatched, setIsDispatched] = useState<boolean>(false);
   const { data, error, loading } = useSelector(
     (state: any) => state.voteReportSlice
   );
 
   const handleSubmit = () => {
-    // dispatch(fetchRegister(form));
+    const formatted = { ...form, is_public_defender: true };
+    dispatch(fetchRegister(formatted));
+    setIsDispatched(true);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
@@ -47,21 +36,33 @@ export const Register = () => {
     });
   };
 
+  useEffect(() => {
+    setIsDispatched(false);
+  }, []);
+
   return (
     <div className={styles.container}>
-      <h3>Registro de eleitores:</h3>
+      {data?.message?.length && isDispatched && (
+        <Snackbar type="registerSuccess" setShowSnackbar={setIsDispatched} />
+      )}
+      {error && isDispatched && (
+        <Snackbar type="registerError" setShowSnackbar={setIsDispatched} />
+      )}
+      <h2 className={styles.title} style={{ color: "initial" }}>
+        Registro de eleitores
+      </h2>
       <Input
         className={styles.input}
         fieldType="outlined"
         label="Usuário"
-        name="username"
+        name="name"
         onChange={handleChange}
         value={form.name}
       />
       <Input
         className={styles.input}
         fieldType="outlined"
-        label="Número de registro"
+        label="Matricula"
         name="registration"
         onChange={handleChange}
         value={form.registration}
@@ -77,51 +78,10 @@ export const Register = () => {
       <Input
         className={styles.input}
         fieldType="outlined"
-        label="Data de nascimento"
-        name="birth_date"
+        label="Senha"
+        name="password"
         onChange={handleChange}
-        value={form.birth_date}
-      />
-      <Input
-        className={styles.input}
-        fieldType="outlined"
-        label="Data de início"
-        name="start_date"
-        onChange={handleChange}
-        value={form.start_date}
-      />
-      <Select
-        value={form.public_defense}
-        onChange={handleChange}
-        className={styles.input}
-        name="public_defense"
-      >
-        {Object.entries(publicDefenses).map(([label, value]) => (
-          <MenuItem key={value} value={value}>
-            {value}
-          </MenuItem>
-        ))}
-      </Select>
-      <Select
-        value={form.seniority}
-        onChange={handleChange}
-        className={styles.input}
-        name="seniority"
-      >
-        {Object.entries(seniorities).map(([label, value]) => (
-          <MenuItem key={value} value={value}>
-            {value}
-          </MenuItem>
-        ))}
-      </Select>
-      <MUIInput
-        // className={styles.input}
-        // fieldType="outlined"
-        // label="Foto de perfil xesque"
-        name="profile_picture"
-        onChange={handleChange}
-        value={form.profile_picture}
-        type="file"
+        value={form.password}
       />
 
       <Button className={styles.button} onClick={handleSubmit}>

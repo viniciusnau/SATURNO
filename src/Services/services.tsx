@@ -1,6 +1,6 @@
 import axios from "axios";
 import { PATH } from "../PATH";
-import { IVoteData, IPositionId } from "../Types/Types";
+import { IVoteData, IPositionId, IRegister } from "../Types/Types";
 
 const services = {
   getLogin: async (credentials: { username: string; password: string }) => {
@@ -12,8 +12,8 @@ const services = {
     return axios
       .post(`${PATH.base}/user/token/`, body)
       .then((response: any) => {
-        const token = response.data.access;
-        sessionStorage.setItem("apiToken", token);
+        sessionStorage.setItem("apiToken", response.data.access);
+        sessionStorage.setItem("userId", response.data.user_id);
         return response;
       })
       .catch((err: any) => console.log(err));
@@ -201,6 +201,22 @@ const services = {
     };
     return axios
       .post(`${PATH.base}/user/create-vote/`, data, headers)
+      .then((data: any) => {
+        return data;
+      })
+      .catch((err: any) => console.log("err", err));
+  },
+
+  postRegister: async (data: IRegister) => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const header = {
+      Authorization: `Bearer ${apiToken}`,
+    };
+    const headers = {
+      headers: header,
+    };
+    return axios
+      .post(`${PATH.base}/user/create-persons/`, data, headers)
       .then((data: any) => {
         return data;
       })

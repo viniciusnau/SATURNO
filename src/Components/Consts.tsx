@@ -6,6 +6,12 @@ export const modalText = {
   },
 };
 
+export const roles = {
+  admin: "administrative",
+  electoralCommision: "electoral commission",
+  publicDefender: "public defender",
+};
+
 export const snackbarConsts = {
   success: {
     title: "Requisição feita com sucesso!",
@@ -21,7 +27,8 @@ export const snackbarConsts = {
 
   countmaxError: {
     title: "Selecao de voto fora das diretrizes.",
-    description: "Numero de candidatos selecionados ultrapassa o limite permitido.",
+    description:
+      "Numero de candidatos selecionados ultrapassa o limite permitido.",
     color: "#9fc54d",
   },
 
@@ -54,7 +61,7 @@ export const snackbarConsts = {
     description: "Tente novamente mais tarde.",
     color: "#ff6464",
   },
-  
+
   errorLogin: {
     title: "Erro ao verificar as credenciais!",
     description: "Certifique se os campos estão corretos.",
@@ -74,12 +81,25 @@ export const snackbarConsts = {
   },
 
   validationSuccess: {
-    title: "Hash Validada",
+    title: "Comprovante de validação",
     description: "A hash fornecida é válida e corresponde a votos registrados.",
     color: "#9fc54d",
   },
 
   validationError: {
+    title: "Erro no Comprovante de validação",
+    description:
+      "A hash fornecida não é válida ou não corresponde a nenhum voto registrado.",
+    color: "#ff6464",
+  },
+
+  registerSuccess: {
+    title: "Hash Validada",
+    description: "A hash fornecida é válida e corresponde a votos registrados.",
+    color: "#9fc54d",
+  },
+
+  registerError: {
     title: "Erro na Validação da Hash",
     description:
       "A hash fornecida não é válida ou não corresponde a nenhum voto registrado.",
