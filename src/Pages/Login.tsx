@@ -28,7 +28,7 @@ const Login = () => {
 
   useEffect(() => {
     const currentDateTime = new Date();
-    const deadlineDateTime = new Date("2024-04-20T20:40:59");
+    const deadlineDateTime = new Date("2024-04-20T20:50:59");
     if (currentDateTime >= deadlineDateTime) {
       setLimitTime(true);
     }
