@@ -6,18 +6,29 @@ import { fetchSelectCandidate } from '../Services/Slices/selectedCandidate';
 import { useDispatch, useSelector } from 'react-redux';
 import Snackbar from './Snackbar';
 import { RiAddCircleLine } from 'react-icons/ri';
+import Nubsaibot from "../Assets/Nubsaibot.jpg";
+import avatar from "../Assets/avatar.svg";
+import subzero from "../Assets/subzero.jpeg";
+import scorpion from "../Assets/scorpion.jpeg";
+import raiden from "../Assets/raiden.jpeg";
+import liukang from "../Assets/liukang.jpeg";
+import shang from "../Assets/shang.jpeg";
+import cage from "../Assets/cage.jpeg";
+import kitana from "../Assets/kitana.jpeg";
+
 
 interface IData {
     row?: { id: number }[];
+    image?: any;
     checkboxSelection?: boolean;
     disableSelectionOnClick?: boolean;
     loading?: boolean;
-    image?: string;
 }
 
-const Table: React.FC<IData> = ({ row, loading, image }) => {
+const Table: React.FC<IData> = ({ row, loading }) => {
     const dispatch = useDispatch<any>();
     const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
+    const [selectedCandidateImage, setSelectedCandidateImage] = useState<string | null>(null); // State to track selected candidate's image
     const [error, setError] = useState<any>(null);
     const responseSelectedCandidates = useSelector(
         (state: any) => state.selectedCandidate.selectedCandidates
@@ -26,6 +37,35 @@ const Table: React.FC<IData> = ({ row, loading, image }) => {
 
     const handleCandidateClick = (rowId: any) => {
         const candidate = row?.find((candidate: any) => candidate.id === rowId);
+        if (candidate) {
+            if (candidate.id === 39) {
+                setSelectedCandidateImage(Nubsaibot);
+            }
+            else if (candidate.id === 28) {
+                setSelectedCandidateImage(subzero);
+            }
+            else if (candidate.id === 27) {
+                setSelectedCandidateImage(scorpion);
+            }
+            else if (candidate.id === 26) {
+                setSelectedCandidateImage(raiden);
+            }
+            else if (candidate.id === 25) {
+                setSelectedCandidateImage(liukang);
+            }
+            else if (candidate.id === 24) {
+                setSelectedCandidateImage(shang);
+            }
+            else if (candidate.id === 23) {
+                setSelectedCandidateImage(cage);
+            }
+            else if (candidate.id === 22) {
+                setSelectedCandidateImage(kitana);
+            }
+            else {
+                setSelectedCandidateImage(avatar);
+            }
+        }
         setSelectedCandidate(candidate);
     };
 
@@ -89,7 +129,7 @@ const Table: React.FC<IData> = ({ row, loading, image }) => {
                                                         }
                                                     >
                                                         <img
-                                                            src={image}
+                                                            src={row.image}
                                                             alt="Foto do Candidato"
                                                             style={{
                                                                 width: '100%',
@@ -118,7 +158,7 @@ const Table: React.FC<IData> = ({ row, loading, image }) => {
                     </div>
                     <div className={styles.detailsContent}>
                         <img
-                            src={image}
+                            src={selectedCandidateImage || avatar}
                             alt="Foto do Candidato"
                             className={styles.candidateImage}
                         />
