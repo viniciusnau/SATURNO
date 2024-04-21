@@ -22,7 +22,17 @@ const Login = () => {
   const [form, setForm] = useState({
     username: "",
     password: "",
-  });
+  }); 
+  const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
+  const [limitTime, setLimitTime] = useState<boolean>(false);
+
+  useEffect(() => {
+    const currentDateTime = new Date();
+    const deadlineDateTime = new Date("2024-04-20T20:50:59");
+    if (currentDateTime >= deadlineDateTime) {
+      setLimitTime(true);
+    }
+  }, []);
 
   const handleGoogleLogin = () => {
     const googleLoginUrl = `${PATH.base}/user/google-redirect`;
@@ -40,6 +50,11 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
+    if (limitTime) { 
+      setShowSnackbar(true);
+      return;
+    }
+
     dispatch(fetchLogin(form));
     setIsDispatched(true);
     setForm({
@@ -60,6 +75,12 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
+      {showSnackbar && (
+        <Snackbar
+          type="errorLoginExpired"
+          setShowSnackbar={setShowSnackbar}
+        />
+      )}
       {error && isDispatched && (
         <Snackbar type="errorLogin" setShowSnackbar={setIsDispatched} />
       )}

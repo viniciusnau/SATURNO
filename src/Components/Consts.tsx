@@ -66,6 +66,12 @@ export const snackbarConsts = {
     description: "Certifique se os campos estão corretos.",
     color: "#ff6464",
   },
+  
+  errorLoginExpired: {
+    title: "Erro ao logar no sistema!",
+    description: "Nao e mais permitido ingresso no saturno.",
+    color: "#ff6464",
+  },
 
   resetError: {
     title: "Erro ao redefinir senha!",
