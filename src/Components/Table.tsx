@@ -18,7 +18,7 @@ import kitana from "../Assets/kitana.jpeg";
 
 
 interface IData {
-    row?: { id: number }[];
+    row?: { id: number, image: any }[];
     image?: any;
     checkboxSelection?: boolean;
     disableSelectionOnClick?: boolean;
@@ -86,6 +86,36 @@ const Table: React.FC<IData> = ({ row, loading }) => {
         dispatch(fetchSelectCandidate(selectedCandidate));
     };
 
+    const loadImage = (row: any) => {
+        if (row.id === 39) {
+            return Nubsaibot;
+        }
+        else if (row.id === 28) {
+            return subzero;
+        }
+        else if (row.id === 27) {
+            return scorpion;
+        }
+        else if (row.id === 26) {
+            return raiden;
+        }
+        else if (row.id === 25) {
+            return liukang;
+        }
+        else if (row.id === 24) {
+            return shang;
+        }
+        else if (row.id === 23) {
+            return cage;
+        }
+        else if (row.id === 22) {
+            return kitana;
+        }
+        else {
+            return avatar;
+        }
+    }
+
     return (
         <div>
             {error && <Snackbar type={error} setShowSnackbar={setError} />}
@@ -129,7 +159,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
                                                         }
                                                     >
                                                         <img
-                                                            src={row.image}
+                                                            src={loadImage(row)}
                                                             alt="Foto do Candidato"
                                                             style={{
                                                                 width: '100%',

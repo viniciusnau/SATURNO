@@ -9,7 +9,6 @@ import styles from "../Styles/VotePage.module.css";
 import Table from "../Components/Table";
 import Button from "../Components/Button";
 import avatar from "../Assets/avatar.svg";
-import Nubsaibot from "../Assets/Nubsaibot.jpg";
 import MiniTable from "../Components/MiniTable";
 import Snackbar from "../Components/Snackbar";
 import Modal from "../Components/Modal";
@@ -128,10 +127,6 @@ const VotePage: React.FC = () => {
       positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
     });
   };
-
-  const handleImage = () => {
-    return avatar
-  }
 
   return (
     <div className={styles.VotePage}>
