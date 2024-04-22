@@ -17,6 +17,8 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [toggleNav, setToggleNav] = useState<boolean>(true);
   const { data } = useSelector((state: any) => state.loginSlice);
+  const meIdData = useSelector((state: any) => state.meId);
+  let position = ""
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,6 +36,8 @@ const Header = () => {
   useEffect(() => {
     dispatch(fetchmeId());
   }, [dispatch]);
+
+  position = meIdData.data.position;
 
   const handleLogout = async () => {
     await dispatch(backendLogout());
@@ -79,26 +83,30 @@ const Header = () => {
                             Votação
                           </span>
                         </li>
-                        <li
-                          onClick={() => {
-                            setToggleNav(!toggleNav);
-                            navigate("saturno/elections-results/");
-                          }}
-                        >
-                          <span className={`${styles.route} ${styles.logout}`}>
-                            Resultado das Eleições
-                          </span>
-                        </li>
-                        <li
-                          onClick={() => {
-                            setToggleNav(!toggleNav);
-                            navigate("saturno/vote-report/");
-                          }}
-                        >
-                          <span className={`${styles.route} ${styles.logout}`}>
-                            Relatorio
-                          </span>
-                        </li>
+                        {position !== "public defender" && (
+                          <>
+                            <li
+                              onClick={() => {
+                                setToggleNav(!toggleNav);
+                                navigate("saturno/elections-results/");
+                              }}
+                            >
+                              <span className={`${styles.route} ${styles.logout}`}>
+                                Resultado das Eleições
+                              </span>
+                            </li>
+                            <li
+                              onClick={() => {
+                                setToggleNav(!toggleNav);
+                                navigate("saturno/vote-report/");
+                              }}
+                            >
+                              <span className={`${styles.route} ${styles.logout}`}>
+                                Relatórios
+                              </span>
+                            </li>
+                          </>
+                        )}
                         <li
                           onClick={() => {
                             setToggleNav(!toggleNav);
@@ -133,24 +141,28 @@ const Header = () => {
                   >
                     Votação
                   </span>
-                  <span
-                    onClick={() => {
-                      setToggleNav(!toggleNav);
-                      navigate("saturno/elections-results/");
-                    }}
-                    className={`${styles.route} ${styles.logout}`}
-                  >
-                    Resultado das Eleições
-                  </span>
-                  <span
-                    onClick={() => {
-                      setToggleNav(!toggleNav);
-                      navigate("saturno/vote-report/");
-                    }}
-                    className={`${styles.route} ${styles.logout}`}
-                  >
-                    Relatorio
-                  </span>
+                  {position !== "public defender" && (
+                    <>
+                      <span
+                        onClick={() => {
+                          setToggleNav(!toggleNav);
+                          navigate("saturno/elections-results/");
+                        }}
+                        className={`${styles.route} ${styles.logout}`}
+                      >
+                        Resultado das Eleições
+                      </span>
+                      <span
+                        onClick={() => {
+                          setToggleNav(!toggleNav);
+                          navigate("saturno/vote-report/");
+                        }}
+                        className={`${styles.route} ${styles.logout}`}
+                      >
+                        Relatórios
+                      </span>
+                    </>
+                  )}
                   <span
                     onClick={() => {
                       setToggleNav(!toggleNav);
