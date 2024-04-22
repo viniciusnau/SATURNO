@@ -1,89 +1,137 @@
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import styles from "../Styles/VoteReport.module.css";
+import React, { useState, useEffect } from "react";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { BiSolidDownload } from "react-icons/bi";
-import { useSelector } from "react-redux";
-
-interface votingCandidates {
-  name: string;
-  voted_dpg: boolean;
-  voted_counsil: boolean;
-}
+import { useSelector, useDispatch } from "react-redux";
+import { fetchElectionsPDFData } from "../Services/Slices/electionsResultPDFDataSlice";
+import styles from "../Styles/VoteReport.module.css";
+import services from "../Services/services";
 
 export const VoteReport = () => {
-  const columns = ["Nome", "Votou DPG?", "Votou Conselho?"];
-  const rows = [
-    createData("Guilherme Pereira", false, false),
-    createData("Maria Antonia", false, true),
-    createData("Otavio Bresque", true, false),
-    createData("Vinicius Bota", true, true),
-  ];
+  const dispatch = useDispatch<any>();
+  const [selectedFilter, setSelectedFilter] = useState("0");
+  const { data, error, loading } = useSelector((state: any) => state.electionsPDFDataSlice);
 
-  const { data, error, loading } = useSelector(
-    (state: any) => state.voteReportSlice
-  );
+  useEffect(() => {
+    dispatch(fetchElectionsPDFData(selectedFilter));
+  }, [dispatch, selectedFilter]);
 
-  function createData(
-    name: string,
-    voted_dpg: boolean,
-    voted_counsil: boolean
-  ) {
-    return { name, voted_dpg, voted_counsil };
-  }
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
+    try {
+      const response = await services.downloadElectionsResultPDF(selectedFilter);
+      let filename = "";
+      switch (selectedFilter) {
+        case "0":
+          filename = "resultados_relacao_inscritos.pdf";
+          break;
+        case "1":
+          filename = "resultados_eleicao_defensor_publico_geral.pdf";
+          break;
+        case "2":
+          filename = "resultados_eleicao_conselho_superior.pdf";
+          break;
+        default:
+          filename = "resultados.pdf";
+      }
+      downloadPDF(response, filename);
+    } catch (error) {
+      console.error("Erro ao fazer o download do PDF:", error);
+    }
+  };
+  
+  const downloadPDF = (pdfData: Blob, filename: string) => {
+    const url = URL.createObjectURL(pdfData);
     const a = document.createElement("a");
-    a.href = data.file;
-    a.download = "downloadedFile.pdf";
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
+  };
+  
+
+  const handleFilterChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setSelectedFilter(event.target.value as string);
+  };
+
+  const renderTable = () => {
+    if (selectedFilter === "1" || selectedFilter === "2") {
+      return (
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">Posição</TableCell>
+            <TableCell align="center">Nome do Candidato</TableCell>
+            <TableCell align="center">Votos</TableCell>
+          </TableRow>
+        </TableHead>
+      );
+    } else {
+      return (
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">Matrícula</TableCell>
+            <TableCell align="center">Nome do Eleitor</TableCell>
+            <TableCell align="center">Votou DPG?</TableCell>
+            <TableCell align="center">Votou Conselho?</TableCell>
+          </TableRow>
+        </TableHead>
+      );
+    }
+  };
+
+  const renderRows = () => {
+    if (!data || !data.result_data) {
+      return null;
+    }
+
+    if (selectedFilter === "1" || selectedFilter === "2") {
+      return data.result_data.map((row: any, index: number) => (
+        <TableRow key={index}>
+          <TableCell align="center">{row.position}</TableCell>
+          <TableCell align="center">{row.name}</TableCell>
+          <TableCell align="center">{row.vote_count}</TableCell>
+        </TableRow>
+      ));
+    } else {
+      return data.result_data.map((row: any, index: number) => (
+        <TableRow key={index}>
+          <TableCell align="center">{row.registration}</TableCell>
+          <TableCell align="center">{row.person}</TableCell>
+          <TableCell align="center">{row.voting_info && (row.voting_info[0]?.vote_status === "voted" ? "Sim" : "Não")}</TableCell>
+          <TableCell align="center">{row.voting_info && (row.voting_info[1]?.vote_status === "voted" ? "Sim" : "Não")}</TableCell>
+        </TableRow>
+      ));
+    }
   };
 
   return (
     <div className={styles.container}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+        <div className={styles.filterContainer}>
+          <select value={selectedFilter} onChange={handleFilterChange}>
+            <option value="0">Relação dos inscritos</option>
+            <option value="1">Resultados Defensor Público-Geral</option>
+            <option value="2">Resultados Conselho Superior</option>
+          </select>
+        </div>
         <div className={styles.downloadContainer}>
           <BiSolidDownload size={24} onClick={handleDownload} />
         </div>
         <TableContainer component={Paper} className={styles.tableContainer}>
           <Table size="medium" aria-label="a dense table">
-            <TableHead>
-              <TableRow>
-                {columns.map((item: string, index: number) => (
-                  <TableCell align="center">{item}</TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
+            {renderTable()}
             <TableBody>
-              {rows.map((row: any) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell align="center" component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="center">
-                    {row.voted_dpg ? "Sim" : "Não"}
-                  </TableCell>
-                  <TableCell align="center">
-                    {row.voted_counsil ? "Sim" : "Não"}
-                  </TableCell>
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={4} align="center">Carregando...</TableCell>
                 </TableRow>
-              ))}
+              ) : error ? (
+                <TableRow>
+                  <TableCell colSpan={4} align="center">Erro ao carregar os dados</TableCell>
+                </TableRow>
+              ) : (
+                renderRows()
+              )}
             </TableBody>
           </Table>
         </TableContainer>
