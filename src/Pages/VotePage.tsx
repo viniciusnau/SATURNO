@@ -69,7 +69,7 @@ const VotePage: React.FC = () => {
             if (votePosition1 && votePosition1.vote_status === 'not voted') {
                 maxCount = 3;
                 positionId = 1;
-                setPositionCandidates('DPG');
+                setPositionCandidates('Defensor Público Geral');
             } else {
                 if (
                     votePosition2 &&
@@ -77,7 +77,7 @@ const VotePage: React.FC = () => {
                 ) {
                     maxCount = 5;
                     positionId = 2;
-                    setPositionCandidates('Conselheiro');
+                    setPositionCandidates('Conselho Superior');
                 }
             }
             dispatch(setMaxCount(maxCount)) &&
