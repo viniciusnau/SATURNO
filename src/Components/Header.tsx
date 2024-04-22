@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { logout as backendLogout } from "../Services/Slices/logoutSlice";
 import AutoLogoutTimer from "./AutoLogoutTimer";
 import { useSelector } from "react-redux";
-import { roles } from "./Consts";
+import { fetchmeId } from "../Services/Slices/meId";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -30,6 +30,10 @@ const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchmeId());
+  }, [dispatch]);
 
   const handleLogout = async () => {
     await dispatch(backendLogout());
@@ -107,7 +111,7 @@ const Header = () => {
                         </li>
                         <li onClick={handleLogout}>
                           <span className={`${styles.route} ${styles.logout}`}>
-                            Sair
+                            Logout
                           </span>
                         </li>
                       </>
