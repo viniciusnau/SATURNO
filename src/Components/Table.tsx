@@ -214,7 +214,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
                                     className={styles.button}
                                     onClick={handleSelectedCandidate}
                                 >
-                                    <RiAddCircleLine />
+                                    Adicionar
                                 </Button>
                             )}
                         </div>
