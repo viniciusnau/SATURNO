@@ -2,35 +2,33 @@ import { createSlice } from "@reduxjs/toolkit";
 import services from "../services";
 
 interface FileContentState {
-  data: string;
+  data: any;
   loading: boolean;
-  error: boolean | any[];
+  error: boolean;
 }
 
 const initialState: FileContentState = {
-  data: "",
+  data: {},
   loading: false,
   error: false,
 };
 
 const fileContentSlice = createSlice({
-  name: "fileContentSlice",
+  name: "fileContent",
   initialState,
   reducers: {
     getFileContent: (state) => {
       state.loading = true;
       state.error = false;
-      state.data = "";
     },
-    getFileContentSuccess: (state, actions) => {
+    getFileContentSuccess: (state, action) => {
       state.loading = false;
       state.error = false;
-      state.data = actions.payload;
+      state.data = action.payload;
     },
-    getFileContentFailure: (state, actions) => {
+    getFileContentFailure: (state) => {
       state.loading = false;
-      state.error = actions.payload ? actions.payload : true;
-      state.data = "";
+      state.error = true;
     },
   },
 });
@@ -40,23 +38,12 @@ export const { getFileContent, getFileContentSuccess, getFileContentFailure } =
 
 export default fileContentSlice.reducer;
 
-export const fetchFileContent =
-  () =>
-  async (
-    dispatch: (arg0: {
-      payload: any;
-      type:
-        | "fileContentSlice/getFileContent"
-        | "fileContentSlice/getFileContentSuccess"
-        | "fileContentSlice/getFileContentFailure";
-    }) => void
-  ) => {
-    dispatch(getFileContent());
-    try {
-      const response = await services.getFileContentBase64();
-      dispatch(getFileContentSuccess({ response }));
-    } catch (err) {
-      console.log("err: ", err);
-      dispatch(getFileContentFailure({ status: 503 }));
-    }
-  };
+export const fetchFileContent = () => async (dispatch: any) => {
+  dispatch(getFileContent());
+  try {
+    const response = await services.downloadHashReportPDF();
+    dispatch(getFileContentSuccess(response.data));
+  } catch (err) {
+    dispatch(getFileContentFailure());
+  }
+};

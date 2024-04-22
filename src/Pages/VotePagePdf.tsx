@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "../Styles/VotePagePdf.module.css";
-import { Worker, Viewer, SpecialZoomLevel } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFileContent } from "../Services/Slices/fileContentSlice";
 import Snackbar from "../Components/Snackbar";
 import { Button } from "@mui/material";
 import { MdDownload } from "react-icons/md";
+import { fetchFileContent } from "../Services/Slices/fileContentSlice";
 
 const VotePagePdf: React.FC = () => {
   const { data, loading, error } = useSelector(
@@ -18,6 +17,17 @@ const VotePagePdf: React.FC = () => {
   useEffect(() => {
     dispatch<any>(fetchFileContent());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isDispatched) {
+      const file_name = "DIÁRIO OFICIAL Modelo.docx";
+      // const file = await services.downloadFiles(file_name);
+      const a = document.createElement("a");
+      a.href = data?.data?.url;
+      a.download = "template.pdf";
+      a.click();
+    }
+  }, [data, isDispatched]);
 
   return (
     <div className={styles.container}>

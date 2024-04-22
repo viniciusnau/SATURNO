@@ -222,7 +222,7 @@ const services = {
       })
       .catch((err: any) => console.log("err", err));
   },
-
+  // pdf: 1 - public defenser, 2: conselho, 0: eleitores
   downloadElectionsResultPDF: async (positionId: any) => {
     const apiToken = sessionStorage.getItem("apiToken");
     const headers = {
@@ -248,6 +248,7 @@ const services = {
       });
   },
 
+  // relatorio de votacao
   getElectionsResultPDFData: async (positionId: any) => {
     const apiToken = sessionStorage.getItem("apiToken");
     const headers = {
@@ -268,6 +269,26 @@ const services = {
       })
       .catch((error) => {
         console.error("Error fetching PDF data:", error);
+        throw error;
+      });
+  },
+
+  downloadHashReportPDF: async () => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const headers = {
+      Authorization: `Bearer ${apiToken}`,
+    };
+
+    return axios
+      .get(`${PATH.base}/user/hash-report/`, {
+        headers: headers,
+        responseType: "blob",
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.error("Error fetching PDF:", error);
         throw error;
       });
   },
