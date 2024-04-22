@@ -85,7 +85,7 @@ export const Register = () => {
       />
 
       <Button className={styles.button} onClick={handleSubmit}>
-        Registrar
+        Solicitar validação
       </Button>
     </div>
   );
