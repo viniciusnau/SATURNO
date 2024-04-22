@@ -129,29 +129,24 @@ const Header = () => {
                   >
                     Votação
                   </span>
-                  {data.role === roles.admin ||
-                    (data.role === roles.electoralCommision && (
-                      <>
-                        <span
-                          onClick={() => {
-                            setToggleNav(!toggleNav);
-                            navigate("saturno/elections-results");
-                          }}
-                          className={`${styles.route} ${styles.logout}`}
-                        >
-                          Eleições
-                        </span>
-                        <span
-                          onClick={() => {
-                            setToggleNav(!toggleNav);
-                            navigate("saturno/vote-report/");
-                          }}
-                          className={`${styles.route} ${styles.logout}`}
-                        >
-                          Relatório de votação
-                        </span>
-                      </>
-                    ))}
+                  <span
+                    onClick={() => {
+                      setToggleNav(!toggleNav);
+                      navigate("saturno/elections-results/");
+                    }}
+                    className={`${styles.route} ${styles.logout}`}
+                  >
+                    Resultado das Eleições
+                  </span>
+                  <span
+                    onClick={() => {
+                      setToggleNav(!toggleNav);
+                      navigate("saturno/vote-report/");
+                    }}
+                    className={`${styles.route} ${styles.logout}`}
+                  >
+                    Relatorio
+                  </span>
                   <span
                     onClick={() => {
                       setToggleNav(!toggleNav);
