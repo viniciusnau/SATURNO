@@ -94,15 +94,20 @@ export const snackbarConsts = {
   },
 
   registerSuccess: {
-    title: "Hash Validada",
-    description: "A hash fornecida é válida e corresponde a votos registrados.",
+    title: "Registro de eleitor",
+    description: "Registro feito com sucesso!.",
     color: "#9fc54d",
   },
 
   registerError: {
+    title: "Erro ao registrar candidato",
+    description: "Tente novamente mais tarde.",
+    color: "#ff6464",
+  },
+
+  fileContentError: {
     title: "Erro na Validação da Hash",
-    description:
-      "A hash fornecida não é válida ou não corresponde a nenhum voto registrado.",
+    description: "Erro ao carregar comprovante, tente novamente mais tarde.",
     color: "#ff6464",
   },
 };

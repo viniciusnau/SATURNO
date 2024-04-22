@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn, logout } from "../Auth/Auth";
 import { fetchTokenTimeLeft } from "../Services/Slices/authState";
 import { useNavigate } from "react-router-dom";
+import styles from "../Styles/AutoLogoutTimer.module.css";
 
 const AutoLogoutTimer = () => {
   const dispatch = useDispatch<any>();
@@ -44,7 +45,7 @@ const AutoLogoutTimer = () => {
     }
   }, [tokenTimeLeft]);
 
-  return <div>Tempo restante: {timeLeft}</div>;
+  return <div className={styles.text}>Tempo restante: {timeLeft}</div>;
 };
 
 export default AutoLogoutTimer;

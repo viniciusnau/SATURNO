@@ -1,5 +1,21 @@
-* {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@import "../colors.css";
+
+.title {
+  margin: 2rem 0 0 0;
 }
+
+.button {
+  margin: 1rem 0 0 0;
+}
+
+@media (max-width: 750px) {
+    .title {
+      font-size: calc(var(--font-size) - 1rem);
+    }
+  }
+  
+  @media (min-width: 751px) {
+    .title {
+      font-size: calc(var(--font-size) + .75rem);
+    }
+  }

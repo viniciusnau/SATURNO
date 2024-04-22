@@ -1,0 +1,34 @@
+@import "../colors.css";
+
+
+.text {
+  text-decoration: none;
+  margin: 0 2.5rem 0 0;
+  color: #e0e0e0;
+  position: relative;
+  transition: color 0.3s ease;
+  font-weight: bold;
+  cursor: var(--cursor-pointer);
+}
+
+.text::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--first-text-color);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+
+.text:hover {
+  color: #ffff;
+}
+
+.text:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
+}

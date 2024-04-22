@@ -117,7 +117,7 @@ const Header = () => {
                         </li>
                         <li onClick={handleLogout}>
                           <span className={`${styles.route} ${styles.logout}`}>
-                            Logout
+                            Sair
                           </span>
                         </li>
                       </>
@@ -178,7 +178,7 @@ const Header = () => {
                   onClick={handleLogout}
                   className={`${styles.route} ${styles.logout}`}
                 >
-                  Logout
+                  Sair
                 </span>
               )}
             </div>

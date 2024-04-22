@@ -222,6 +222,24 @@ const services = {
       })
       .catch((err: any) => console.log("err", err));
   },
+
+  getFileContentBase64: () => {
+    return axios
+      .get(`${PATH.base}/vote-pdf/`)
+      .then((response) => {
+        if (response.data && response.data.file_content_base64) {
+          return response.data.file_content_base64;
+        } else {
+          throw new Error(
+            "A resposta da API não contém o conteúdo do arquivo em base64."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching file content:", error);
+        throw error;
+      });
+  },
 };
 
 export default services;
