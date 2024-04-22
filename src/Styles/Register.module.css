@@ -2,13 +2,24 @@
 
 .container {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.containerData {
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .input {
   width: 20rem;
-  margin: .5rem 0 !important;
+  margin: 0.5rem 0 !important;
   background-color: var(--second-button-color);
   box-shadow: 0px 10px 10px -10px var(--shadow-color);
   color: #626262 !important;
@@ -16,20 +27,20 @@
 }
 
 .button {
-  background-color: var(--forty-button-color);
-  color: var(--first-text-color);
-  font-size: .8rem;
   height: 2.5rem;
-  width: 7rem;
-  margin-top: 1.5rem;
+  width: 10.5rem;
+  background-color: var(--first-button-color);
+  box-shadow: 0 10px 10px -10px var(--shadow-color);
+  font-size: var(--font-size);
+  margin: 1.5rem 0 0 ;
 }
 
 .button:hover {
-  background-color: var(--forty-button-color-hover);
+  background-color: var(--first-button-color-hover);
 }
 
 .button:disabled {
-  background-color: var(--forty-button-color-disabled);
+  background-color: var(--first-button-color-disabled);
 }
 
 .title {
