@@ -208,15 +208,8 @@ const services = {
   },
 
   postRegister: async (data: IRegister) => {
-    const apiToken = sessionStorage.getItem("apiToken");
-    const header = {
-      Authorization: `Bearer ${apiToken}`,
-    };
-    const headers = {
-      headers: header,
-    };
     return axios
-      .post(`${PATH.base}/user/create-persons/`, data, headers)
+      .post(`${PATH.base}/user/create-persons/`, data)
       .then((data: any) => {
         return data;
       })

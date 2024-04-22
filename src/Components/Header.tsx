@@ -75,36 +75,26 @@ const Header = () => {
                             Votação
                           </span>
                         </li>
-                        {data.role === roles.admin ||
-                          (data.role === roles.electoralCommision && (
-                            <>
-                              <li
-                                onClick={() => {
-                                  setIsDropdownOpen(!isDropdownOpen);
-                                  setToggleNav(!toggleNav);
-                                  navigate("saturno/elections-results");
-                                }}
-                              >
-                                <span
-                                  className={`${styles.route} ${styles.modalItem}`}
-                                >
-                                  Eleições
-                                </span>
-                              </li>
-                              <li
-                                onClick={() => {
-                                  setToggleNav(!toggleNav);
-                                  navigate("saturno/vote-report/");
-                                }}
-                              >
-                                <span
-                                  className={`${styles.route} ${styles.logout}`}
-                                >
-                                  Relatório de votação
-                                </span>
-                              </li>
-                            </>
-                          ))}
+                        <li
+                          onClick={() => {
+                            setToggleNav(!toggleNav);
+                            navigate("saturno/elections-results/");
+                          }}
+                        >
+                          <span className={`${styles.route} ${styles.logout}`}>
+                            Resultado das Eleições
+                          </span>
+                        </li>
+                        <li
+                          onClick={() => {
+                            setToggleNav(!toggleNav);
+                            navigate("saturno/vote-report/");
+                          }}
+                        >
+                          <span className={`${styles.route} ${styles.logout}`}>
+                            Relatorio
+                          </span>
+                        </li>
                         <li
                           onClick={() => {
                             setToggleNav(!toggleNav);
