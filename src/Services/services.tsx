@@ -241,7 +241,6 @@ const services = {
       });
   },
 
-  // relatorio de votacao
   getElectionsResultPDFData: async (positionId: any) => {
     const apiToken = sessionStorage.getItem("apiToken");
     const headers = {
