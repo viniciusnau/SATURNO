@@ -3,6 +3,7 @@ import { BiSolidDownload } from "react-icons/bi";
 import services from "../Services/services";
 import Button from "../Components/Button";
 import styles from "../Styles/VotePagePdf.module.css";
+import { Padding } from "@mui/icons-material";
 
 export const VotePagePdf = () => {
   const handleDownload = async () => {
@@ -26,10 +27,15 @@ export const VotePagePdf = () => {
 
   return (
     <div className={styles.container}>
-      <Button onClick={handleDownload} className={styles.button}>
-        Baixar comprovante
-        <BiSolidDownload size={24} />
-      </Button>
+      <h2 className={styles.title} style={{ color: "initial" }}>
+        Comprovante de votação
+      </h2>
+      <div className={styles.buttonContainer}>
+        <Button onClick={handleDownload} className={styles.button}>
+          Baixar comprovante
+          <BiSolidDownload size={24} />
+        </Button>
+      </div>
     </div>
   );
 };
