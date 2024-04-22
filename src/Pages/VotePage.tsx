@@ -127,7 +127,7 @@ const VotePage: React.FC = () => {
             const voteData = {
                 position: positionId,
                 chosen_person: `${candidate.id}`,
-                voting_person: `${responseDataUser.data.user_id}`,
+                voting_person: `${responseDataUser.data.person_id}`,
             };
             dispatch(fetchPostVote(voteData)) && setVotePage(true);
             dispatch(removeAllCandidates()) && setMessage('voteSuccess');
