@@ -1,13 +1,14 @@
 import React from "react";
 import { BiSolidDownload } from "react-icons/bi";
 import services from "../Services/services";
-import { Button } from "@mui/material";
+import Button from "../Components/Button";
+import styles from "../Styles/VotePagePdf.module.css";
 
 export const VotePagePdf = () => {
   const handleDownload = async () => {
     try {
       const response = await services.downloadHashReportPDF();
-      downloadPDF(response, "hash_report.pdf");
+      downloadPDF(response, "Comprovante_Votação.pdf");
     } catch (error) {
       console.error("Error downloading PDF:", error);
     }
@@ -24,9 +25,9 @@ export const VotePagePdf = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "20px" }}>
-      <Button onClick={handleDownload}>
-        Comprovante
+    <div className={styles.container}>
+      <Button onClick={handleDownload} className={styles.button}>
+        Baixar comprovante
         <BiSolidDownload size={24} />
       </Button>
     </div>
