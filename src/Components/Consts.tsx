@@ -1,7 +1,7 @@
 export const modalText = {
   sendVote: {
-    title: "Voto prestes a ser enviado.",
-    description: "Você tem certeza que deseja reaizar esse voto?",
+    title: "Voto prestes a ser registrado!",
+    description: "Você tem certeza que deseja finalizar a votação?",
     button: "Sim",
   },
 };
@@ -26,15 +26,15 @@ export const snackbarConsts = {
   },
 
   countmaxError: {
-    title: "Selecao de voto fora das diretrizes.",
+    title: "Seleção de voto fora das diretrizes.",
     description:
-      "Numero de candidatos selecionados ultrapassa o limite permitido.",
-    color: "#9fc54d",
+      "Número de candidatos selecionados ultrapassa o limite permitido.",
+    color: "#ff6464",
   },
 
   candidateDuplicateError: {
-    title: "Selecao de voto fora das diretrizes.",
-    description: "Voce so pode selecionar os candidatos validos uma unica vez.",
+    title: "Seleção de voto fora das diretrizes.",
+    description: "Candidato já selecionado!",
     color: "#ff6464",
   },
 
@@ -68,6 +68,12 @@ export const snackbarConsts = {
     color: "#ff6464",
   },
 
+  errorLoginExpired: {
+    title: "Erro ao logar no sistema!",
+    description: "Não é mais permitido ingresso no saturno.",
+    color: "#ff6464",
+  },
+
   resetError: {
     title: "Erro ao redefinir senha!",
     description: "Confira se o email está correto e tente novamente.",
@@ -86,13 +92,6 @@ export const snackbarConsts = {
     color: "#9fc54d",
   },
 
-  validationError: {
-    title: "Erro no Comprovante de validação",
-    description:
-      "A hash fornecida não é válida ou não corresponde a nenhum voto registrado.",
-    color: "#ff6464",
-  },
-
   registerSuccess: {
     title: "Registro de eleitor",
     description: "Registro feito com sucesso!.",
@@ -108,6 +107,12 @@ export const snackbarConsts = {
   fileContentError: {
     title: "Erro na Validação da Hash",
     description: "Erro ao carregar comprovante, tente novamente mais tarde.",
+    color: "#ff6464",
+  },
+  validationError: {
+    title: "Erro no Comprovante de validação",
+    description:
+      "A hash fornecida não é válida ou não corresponde a nenhum voto registrado.",
     color: "#ff6464",
   },
 };

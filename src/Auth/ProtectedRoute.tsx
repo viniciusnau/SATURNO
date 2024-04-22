@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { isLoggedIn, logout } from "./Auth";
 import { useDispatch, useSelector } from "react-redux";
+import { PATH } from "../PATH";
 
 export const ProtectedRoute: React.FC<{
   Component: React.FC<any>;
@@ -17,7 +18,7 @@ export const ProtectedRoute: React.FC<{
     const storedToken = sessionStorage.getItem("apiToken") ?? "";
 
     const websocket = new WebSocket(
-      `ws://saturno.defensoria.sc.def.br/ws/user_session/${userId}/?token=${storedToken}`
+      `${PATH.websocketBase}/user_session/${userId}/?token=${storedToken}`
     );
     function handleWebSocketMessage(event: MessageEvent) {
       const message = JSON.parse(event.data);

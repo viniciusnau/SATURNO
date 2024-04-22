@@ -223,20 +223,51 @@ const services = {
       .catch((err: any) => console.log("err", err));
   },
 
-  getFileContentBase64: () => {
+  downloadElectionsResultPDF: async (positionId: any) => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const headers = {
+      Authorization: `Bearer ${apiToken}`,
+    };
+
+    const params = {
+      position_id: positionId,
+    };
+
     return axios
-      .get(`${PATH.base}/vote-pdf/`)
+      .get(`${PATH.base}/user/elections-result-pdf-file/`, {
+        params: params,
+        headers: headers,
+        responseType: "blob",
+      })
       .then((response) => {
-        if (response.data && response.data.file_content_base64) {
-          return response.data.file_content_base64;
-        } else {
-          throw new Error(
-            "A resposta da API não contém o conteúdo do arquivo em base64."
-          );
-        }
+        return response.data;
       })
       .catch((error) => {
-        console.error("Error fetching file content:", error);
+        console.error("Error fetching PDF:", error);
+        throw error;
+      });
+  },
+
+  getElectionsResultPDFData: async (positionId: any) => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const headers = {
+      Authorization: `Bearer ${apiToken}`,
+    };
+
+    const params = {
+      position_id: positionId,
+    };
+
+    return axios
+      .get(`${PATH.base}/user/elections-result-pdf-data/`, {
+        params: params,
+        headers: headers,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.error("Error fetching PDF data:", error);
         throw error;
       });
   },
