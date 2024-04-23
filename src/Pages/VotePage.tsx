@@ -77,7 +77,7 @@ const VotePage: React.FC = () => {
                 ) {
                     maxCount = 5;
                     positionId = 2;
-                    setPositionCandidates('Conselho Superior');
+                    setPositionCandidates('Membro do Conselho Superior');
                 }
             }
             dispatch(setMaxCount(maxCount)) &&
@@ -104,7 +104,7 @@ const VotePage: React.FC = () => {
                 public_defense: '-',
             };
 
-            const updatedRows = [...data, blankVoteRow];
+            const updatedRows = [blankVoteRow, ...data];
             setRows(updatedRows);
         }
     }, [isDispatched, loading, error, data]);

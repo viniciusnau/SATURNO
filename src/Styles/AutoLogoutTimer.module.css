@@ -9,6 +9,8 @@
   transition: color 0.3s ease;
   font-weight: bold;
   cursor: var(--cursor-pointer);
+  z-index: 1;
+
 }
 
 .text::before {
