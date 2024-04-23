@@ -85,7 +85,7 @@ const ElectionsResults = () => {
       <div className={styles.upperContainer}>
         <div className={styles.nullVotesLegend}>
           <h3>
-            Eleitores com votos totalmente em branco:{" "}
+            Eleitores com votos em branco:{" "}
             {((blankVotes / totalPeople) * 100).toFixed(2)}% ({blankVotes})
           </h3>
         </div>
