@@ -4,9 +4,28 @@ import { fetchElectionsResult } from "../Services/Slices/resultsSlice";
 import Box from "@mui/material/Box";
 import Snackbar from "../Components/Snackbar";
 import styles from "../Styles/ElectionsResults.module.css";
-import image from "../Assets/jpg.jpeg";
-import profileImage from "../Assets/profileImage.png";
+import avatar from "../Assets/avatar.svg"
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import Nubsaibot from "../Assets/Nubsaibot.jpg";
+import subzero from "../Assets/subzero.jpeg";
+import scorpion from "../Assets/scorpion.jpeg";
+import raiden from "../Assets/raiden.jpeg";
+import liukang from "../Assets/liukang.jpeg";
+import shang from "../Assets/shang.jpeg";
+import cage from "../Assets/cage.jpeg";
+import kitana from "../Assets/kitana.jpeg";
+import akuma from "../Assets/kitana.jpeg";
+import blanka from "../Assets/blanka.jpeg";
+import chunli from "../Assets/chunli.jpeg";
+import jp from "../Assets/jp.jpeg";
+import juri from "../Assets/juri.jpeg";
+import ken from "../Assets/ken.jpeg";
+import guile from "../Assets/guile.jpeg";
+import manon from "../Assets/manon.jpeg";
+import ryu from "../Assets/ryu.jpeg";
+import kimberly from "../Assets/kimberly.jpeg";
+import cammy from "../Assets/cammy.jpeg";
+import luke from "../Assets/luke.jpeg";
 
 const ElectionsResults = () => {
   const dispatch = useDispatch<any>();
@@ -15,7 +34,7 @@ const ElectionsResults = () => {
   const [blankVotes, setBlankVotes] = useState<number>(0);
   const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
   const [totalPeople, setTotalPeople] = useState<number>(0);
-
+  const [selectedCandidateImage, setSelectedCandidateImage] = useState<string | null>(null);
   const { data, error, loading } = useSelector(
     (state: any) => state.electionsResultSlice
   );
@@ -44,11 +63,107 @@ const ElectionsResults = () => {
   const handleCandidateClick = (rowId: any) => {
     const candidate = data.find((candidate: any) => candidate.id === rowId);
     setSelectedCandidate(candidate);
+    if (candidate) {
+      if (candidate.id === 39) {
+          setSelectedCandidateImage(Nubsaibot);
+      }
+      else if (candidate.id === 28) {
+          setSelectedCandidateImage(subzero);
+      }
+      else if (candidate.id === 27) {
+          setSelectedCandidateImage(scorpion);
+      }
+      else if (candidate.id === 26) {
+          setSelectedCandidateImage(raiden);
+      }
+      else if (candidate.id === 25) {
+          setSelectedCandidateImage(liukang);
+      }
+      else if (candidate.id === 24) {
+          setSelectedCandidateImage(shang);
+      }
+      else if (candidate.id === 23) {
+          setSelectedCandidateImage(cage);
+      }
+      else if (candidate.id === 22) {
+          setSelectedCandidateImage(kitana);
+      }
+      else if (candidate.id === 42) {
+          setSelectedCandidateImage(blanka);
+      }
+      else if (candidate.id === 41) {
+          setSelectedCandidateImage(akuma);
+      }
+      else if (candidate.id === 40) {
+          setSelectedCandidateImage(ryu);
+      }
+      else if (candidate.id === 38) {
+          setSelectedCandidateImage(guile);
+      }
+      else if (candidate.id === 36) {
+          setSelectedCandidateImage(manon);
+      }
+      else if (candidate.id === 35) {
+          setSelectedCandidateImage(kimberly);
+      }
+      else if (candidate.id === 34) {
+          setSelectedCandidateImage(jp);
+      }
+      else if (candidate.id === 33) {
+          setSelectedCandidateImage(cammy);
+      }
+      else if (candidate.id === 32) {
+          setSelectedCandidateImage(ken);
+      }
+      else if (candidate.id === 31) {
+          setSelectedCandidateImage(juri);
+      }
+      else if (candidate.id === 30) {
+          setSelectedCandidateImage(chunli);
+      }
+      else if (candidate.id === 29) {
+          setSelectedCandidateImage(luke);
+      }
+      else {
+          setSelectedCandidateImage(avatar);
+      }
+  }
+  setSelectedCandidate(candidate);
   };
 
   const handleClearSelection = () => {
     setSelectedCandidate(null);
   };
+
+  const loadImage = (row: any) => {
+    if (row.id === 39) {
+        return Nubsaibot;
+    }
+    else if (row.id === 28) {
+        return subzero;
+    }
+    else if (row.id === 27) {
+        return scorpion;
+    }
+    else if (row.id === 26) {
+        return raiden;
+    }
+    else if (row.id === 25) {
+        return liukang;
+    }
+    else if (row.id === 24) {
+        return shang;
+    }
+    else if (row.id === 23) {
+        return cage;
+    }
+    else if (row.id === 22) {
+        return kitana;
+    }
+    else {
+        return avatar;
+    }
+}
 
   useEffect(() => {
     dispatch(fetchElectionsResult(selectedPosition));
@@ -142,7 +257,7 @@ const ElectionsResults = () => {
                                     }%`,
                                   }}
                                 ></div>
-                                <img src={image} alt="Foto do Candidato" />
+                                <img src={loadImage(row)} alt="Foto do Candidato" />
                               </div>
                               <div className={styles.info}>
                                 <p>{`${row.name}`}</p>
@@ -189,7 +304,7 @@ const ElectionsResults = () => {
           </div>
           <div className={styles.detailsContent}>
             <img
-              src={selectedCandidate ? image : profileImage}
+              src={selectedCandidate && selectedCandidateImage ? selectedCandidateImage : avatar}
               alt="Foto do Candidato"
               className={styles.candidateImage}
             />
