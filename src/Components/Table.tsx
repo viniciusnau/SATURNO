@@ -35,6 +35,14 @@ const Table: React.FC<IData> = ({ row, loading }) => {
     );
     const maxCountCandidates = useSelector((state: any) => state.meId.maxCount);
 
+    const formatDate = (dateString: string | number | Date) => {
+        const date = new Date(dateString);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
+
     const handleCandidateClick = (rowId: any) => {
         const candidate = row?.find((candidate: any) => candidate.id === rowId);
         if (candidate) {
@@ -197,7 +205,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
                                 <ul>
                                     <li>{`Candidato: ${selectedCandidate.candidate}`}</li>
                                     <li>{`Matrícula: ${selectedCandidate.registration}`}</li>
-                                    <li>{`Nascimento: ${selectedCandidate.birth_date}`}</li>
+                                    <li>{`Nascimento: ${formatDate(selectedCandidate.birth_date)}`}</li>
                                     <li>{`Posse: ${selectedCandidate.start_date}`}</li>
                                     <li>{`Lotação: ${selectedCandidate.public_defense}`}</li>
                                     <li>{`Antiguidade: ${selectedCandidate.seniority}`}</li>
