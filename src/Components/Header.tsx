@@ -83,7 +83,7 @@ const Header = () => {
                             Votação
                           </span>
                         </li>
-                        {position !== "public defender" && (
+                        {position !== "public_defender" && (
                           <>
                             <li
                               onClick={() => {
