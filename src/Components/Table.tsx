@@ -206,7 +206,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
                                     <li>{`Candidato: ${selectedCandidate.candidate}`}</li>
                                     <li>{`Matrícula: ${selectedCandidate.registration}`}</li>
                                     <li>{`Nascimento: ${formatDate(selectedCandidate.birth_date)}`}</li>
-                                    <li>{`Posse: ${selectedCandidate.start_date}`}</li>
+                                    <li>{`Posse: ${formatDate(selectedCandidate.start_date)}`}</li>
                                     <li>{`Lotação: ${selectedCandidate.public_defense}`}</li>
                                     <li>{`Antiguidade: ${selectedCandidate.seniority}`}</li>
                                     <li>{`Categoria: ${selectedCandidate.category}`}</li>
