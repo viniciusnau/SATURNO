@@ -10,7 +10,7 @@ import getListCandidates from "./Slices/getListCandidates";
 import selectedCandidate from "./Slices/selectedCandidate";
 import candidatesSlice from "./Slices/candidatesSlice";
 import voteReportSlice from "./Slices/voteReportSlice";
-import postRegister from "./Slices/postRegisterSlice";
+import RegisterSlice from "./Slices/postRegisterSlice";
 import electionsPDFDataSlice from "./Slices/electionsResultPDFDataSlice";
 import fileContentSlice from "./Slices/fileContentSlice";
 
@@ -26,7 +26,7 @@ const reducer = combineReducers({
   selectedCandidate,
   candidatesSlice,
   voteReportSlice,
-  postRegister,
+  RegisterSlice,
   electionsPDFDataSlice,
   fileContentSlice,
 });
