@@ -25,6 +25,14 @@ const ElectionsResults = () => {
     "Conselho Superior": "2",
   };
 
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+};
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPosition(event.target.value);
     setSelectedCandidate(null);
@@ -191,10 +199,10 @@ const ElectionsResults = () => {
                 >{`Matrícula: ${selectedCandidate.registration}`}</p>
                 <p
                   className={styles.description}
-                >{`Nascimento: ${selectedCandidate.birth_date}`}</p>
+                >{`Nascimento: ${formatDate(selectedCandidate.birth_date)}`}</p>
                 <p
                   className={styles.description}
-                >{`Posse: ${selectedCandidate.start_date}`}</p>
+                >{`Posse: ${formatDate(selectedCandidate.start_date)}`}</p>
                 <p
                   className={styles.description}
                 >{`Lotação: ${selectedCandidate.public_defense}`}</p>
