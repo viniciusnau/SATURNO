@@ -15,6 +15,18 @@ import liukang from "../Assets/liukang.jpeg";
 import shang from "../Assets/shang.jpeg";
 import cage from "../Assets/cage.jpeg";
 import kitana from "../Assets/kitana.jpeg";
+import akuma from "../Assets/kitana.jpeg";
+import blanka from "../Assets/blanka.jpeg";
+import chunli from "../Assets/chunli.jpeg";
+import jp from "../Assets/jp.jpeg";
+import juri from "../Assets/juri.jpeg";
+import ken from "../Assets/ken.jpeg";
+import guile from "../Assets/guile.jpeg";
+import manon from "../Assets/manon.jpeg";
+import ryu from "../Assets/ryu.jpeg";
+import kimberly from "../Assets/kimberly.jpeg";
+import cammy from "../Assets/cammy.jpeg";
+import luke from "../Assets/luke.jpeg";
 
 
 interface IData {
@@ -72,6 +84,42 @@ const Table: React.FC<IData> = ({ row, loading }) => {
             }
             else if (candidate.id === 22) {
                 setSelectedCandidateImage(kitana);
+            }
+            else if (candidate.id === 42) {
+                setSelectedCandidateImage(blanka);
+            }
+            else if (candidate.id === 41) {
+                setSelectedCandidateImage(akuma);
+            }
+            else if (candidate.id === 40) {
+                setSelectedCandidateImage(ryu);
+            }
+            else if (candidate.id === 38) {
+                setSelectedCandidateImage(guile);
+            }
+            else if (candidate.id === 36) {
+                setSelectedCandidateImage(manon);
+            }
+            else if (candidate.id === 35) {
+                setSelectedCandidateImage(kimberly);
+            }
+            else if (candidate.id === 34) {
+                setSelectedCandidateImage(jp);
+            }
+            else if (candidate.id === 33) {
+                setSelectedCandidateImage(cammy);
+            }
+            else if (candidate.id === 32) {
+                setSelectedCandidateImage(ken);
+            }
+            else if (candidate.id === 31) {
+                setSelectedCandidateImage(juri);
+            }
+            else if (candidate.id === 30) {
+                setSelectedCandidateImage(chunli);
+            }
+            else if (candidate.id === 29) {
+                setSelectedCandidateImage(luke);
             }
             else {
                 setSelectedCandidateImage(avatar);
