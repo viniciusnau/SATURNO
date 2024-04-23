@@ -15,7 +15,7 @@ import liukang from "../Assets/liukang.jpeg";
 import shang from "../Assets/shang.jpeg";
 import cage from "../Assets/cage.jpeg";
 import kitana from "../Assets/kitana.jpeg";
-import akuma from "../Assets/kitana.jpeg";
+import akuma from "../Assets/akuma.jpeg";
 import blanka from "../Assets/blanka.jpeg";
 import chunli from "../Assets/chunli.jpeg";
 import jp from "../Assets/jp.jpeg";
@@ -169,6 +169,42 @@ const Table: React.FC<IData> = ({ row, loading }) => {
         }
         else if (row.id === 22) {
             return kitana;
+        }
+        else if (row.id === 42) {
+            return blanka;
+        }
+        else if (row.id === 41) {
+            return akuma;
+        }
+        else if (row.id === 40) {
+            return ryu;
+        }
+        else if (row.id === 38) {
+            return guile;
+        }
+        else if (row.id === 36) {
+            return manon;
+        }
+        else if (row.id === 35) {
+            return kimberly;
+        }
+        else if (row.id === 34) {
+            return jp;
+        }
+        else if (row.id === 33) {
+            return cammy;
+        }
+        else if (row.id === 32) {
+            return ken;
+        }
+        else if (row.id === 31) {
+            return juri;
+        }
+        else if (row.id === 30) {
+            return chunli;
+        }
+        else if (row.id === 29) {
+            return luke;
         }
         else {
             return avatar;
