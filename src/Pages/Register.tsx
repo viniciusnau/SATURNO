@@ -77,8 +77,8 @@ export const Register = () => {
           value={form.email}
         />
         <Input
-          className={styles.input}
-          fieldType="outlined"
+          className={styles.password}
+          fieldType="password"
           label="Senha"
           name="password"
           onChange={handleChange}
