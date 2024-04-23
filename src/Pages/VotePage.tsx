@@ -149,6 +149,7 @@ const VotePage: React.FC = () => {
                     content="sendVote"
                     confirm={handleConfirmVote}
                     setOpenModal={setIsOpenModal}
+                    open={isOpenModal}
                 />
             )}
             <h1 className={styles.title}>
