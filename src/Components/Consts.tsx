@@ -94,12 +94,12 @@ export const snackbarConsts = {
 
   registerSuccess: {
     title: "Registro de eleitor",
-    description: "Registro feito com sucesso!.",
+    description: "Solicitação enviada com sucesso!.",
     color: "#9fc54d",
   },
 
   registerError: {
-    title: "Erro ao registrar candidato",
+    title: "Erro ao registrar eleitor",
     description: "Tente novamente mais tarde.",
     color: "#ff6464",
   },

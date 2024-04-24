@@ -7,12 +7,14 @@ interface IModal {
   content: keyof typeof modalText;
   confirm: () => void;
   setOpenModal: any;
+  open: boolean;
 }
 
 const Modal: React.FC<IModal> = ({
   content,
   confirm,
   setOpenModal,
+  open,
 }) => {
   const handleCancel = () => {
     setOpenModal(false);
@@ -26,18 +28,23 @@ const Modal: React.FC<IModal> = ({
   const modalContent = modalText[content];
 
   return (
-    <div className={styles.container}>
-      <h2>{modalContent.title}</h2>
-      <div className={styles.buttonContainer}>
-        <p>{modalContent.description}</p>
-        <Button className={styles.button} onClick={handleCancel}>
-          Cancelar
-        </Button>
-        <Button className={styles.button} onClick={handleConfirm}>
-          {modalContent.button}
-        </Button>
+    <>
+      {open && (
+        <div className={styles.backdrop}></div>
+      )}
+      <div className={`${styles.container} ${open ? styles.open : ""}`}>
+        <h2>{modalContent.title}</h2>
+        <div className={styles.buttonContainer}>
+          <p>{modalContent.description}</p>
+          <Button className={styles.button} onClick={handleCancel}>
+            Cancelar
+          </Button>
+          <Button className={styles.button} onClick={handleConfirm}>
+            {modalContent.button}
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

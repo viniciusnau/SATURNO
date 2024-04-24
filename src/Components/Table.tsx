@@ -15,6 +15,18 @@ import liukang from "../Assets/liukang.jpeg";
 import shang from "../Assets/shang.jpeg";
 import cage from "../Assets/cage.jpeg";
 import kitana from "../Assets/kitana.jpeg";
+import akuma from "../Assets/akuma.jpeg";
+import blanka from "../Assets/blanka.jpeg";
+import chunli from "../Assets/chunli.jpeg";
+import jp from "../Assets/jp.jpeg";
+import juri from "../Assets/juri.jpeg";
+import ken from "../Assets/ken.jpeg";
+import guile from "../Assets/guile.jpeg";
+import manon from "../Assets/manon.jpeg";
+import ryu from "../Assets/ryu.jpeg";
+import kimberly from "../Assets/kimberly.jpeg";
+import cammy from "../Assets/cammy.jpeg";
+import luke from "../Assets/luke.jpeg";
 
 
 interface IData {
@@ -34,6 +46,17 @@ const Table: React.FC<IData> = ({ row, loading }) => {
         (state: any) => state.selectedCandidate.selectedCandidates
     );
     const maxCountCandidates = useSelector((state: any) => state.meId.maxCount);
+
+    const formatDate = (dateString: string | number | Date) => {
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) {
+            return '';
+        }
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
 
     const handleCandidateClick = (rowId: any) => {
         const candidate = row?.find((candidate: any) => candidate.id === rowId);
@@ -61,6 +84,42 @@ const Table: React.FC<IData> = ({ row, loading }) => {
             }
             else if (candidate.id === 22) {
                 setSelectedCandidateImage(kitana);
+            }
+            else if (candidate.id === 42) {
+                setSelectedCandidateImage(blanka);
+            }
+            else if (candidate.id === 41) {
+                setSelectedCandidateImage(akuma);
+            }
+            else if (candidate.id === 40) {
+                setSelectedCandidateImage(ryu);
+            }
+            else if (candidate.id === 38) {
+                setSelectedCandidateImage(guile);
+            }
+            else if (candidate.id === 36) {
+                setSelectedCandidateImage(manon);
+            }
+            else if (candidate.id === 35) {
+                setSelectedCandidateImage(kimberly);
+            }
+            else if (candidate.id === 34) {
+                setSelectedCandidateImage(jp);
+            }
+            else if (candidate.id === 33) {
+                setSelectedCandidateImage(cammy);
+            }
+            else if (candidate.id === 32) {
+                setSelectedCandidateImage(ken);
+            }
+            else if (candidate.id === 31) {
+                setSelectedCandidateImage(juri);
+            }
+            else if (candidate.id === 30) {
+                setSelectedCandidateImage(chunli);
+            }
+            else if (candidate.id === 29) {
+                setSelectedCandidateImage(luke);
             }
             else {
                 setSelectedCandidateImage(avatar);
@@ -110,6 +169,42 @@ const Table: React.FC<IData> = ({ row, loading }) => {
         }
         else if (row.id === 22) {
             return kitana;
+        }
+        else if (row.id === 42) {
+            return blanka;
+        }
+        else if (row.id === 41) {
+            return akuma;
+        }
+        else if (row.id === 40) {
+            return ryu;
+        }
+        else if (row.id === 38) {
+            return guile;
+        }
+        else if (row.id === 36) {
+            return manon;
+        }
+        else if (row.id === 35) {
+            return kimberly;
+        }
+        else if (row.id === 34) {
+            return jp;
+        }
+        else if (row.id === 33) {
+            return cammy;
+        }
+        else if (row.id === 32) {
+            return ken;
+        }
+        else if (row.id === 31) {
+            return juri;
+        }
+        else if (row.id === 30) {
+            return chunli;
+        }
+        else if (row.id === 29) {
+            return luke;
         }
         else {
             return avatar;
@@ -197,8 +292,8 @@ const Table: React.FC<IData> = ({ row, loading }) => {
                                 <ul>
                                     <li>{`Candidato: ${selectedCandidate.candidate}`}</li>
                                     <li>{`Matrícula: ${selectedCandidate.registration}`}</li>
-                                    <li>{`Nascimento: ${selectedCandidate.birth_date}`}</li>
-                                    <li>{`Posse: ${selectedCandidate.start_date}`}</li>
+                                    <li>{`Nascimento: ${formatDate(selectedCandidate.birth_date)}`}</li>
+                                    <li>{`Posse: ${formatDate(selectedCandidate.start_date)}`}</li>
                                     <li>{`Lotação: ${selectedCandidate.public_defense}`}</li>
                                     <li>{`Antiguidade: ${selectedCandidate.seniority}`}</li>
                                     <li>{`Categoria: ${selectedCandidate.category}`}</li>

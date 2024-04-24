@@ -30,11 +30,14 @@ const HashValidation = () => {
   };
 
   const handleSubmit = async () => {
-    const hashes = form.hash.split("&&");
+    const trimmedHashes = form.hash.replace(/\s/g, '');
+
+    const hashes = trimmedHashes.split("&&");
+
     let allHashesValid = true;
 
     for (let hash of hashes) {
-      const response = await dispatch(fetchCheckHash(hash.trim()));
+      const response = await dispatch(fetchCheckHash(hash));
       if (response.error) {
         allHashesValid = false;
         break;
