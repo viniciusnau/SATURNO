@@ -5,12 +5,14 @@ interface LoginState {
   data: any;
   loading: boolean;
   error: boolean;
+  status: number;
 }
 
 const initialState: LoginState = {
   data: {},
   loading: false,
   error: false,
+  status: 401,
 };
 
 const loginSlice = createSlice({
@@ -20,15 +22,18 @@ const loginSlice = createSlice({
     getLogin: (state) => {
       state.loading = true;
       state.error = false;
+      state.status = 401;
     },
     getLoginSuccess: (state, action) => {
       state.loading = false;
       state.error = false;
+      state.status = 200;
       state.data = action.payload;
     },
     getLoginFailure: (state) => {
       state.loading = false;
       state.error = true;
+      state.status = 401;
     },
   },
 });

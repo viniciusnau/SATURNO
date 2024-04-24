@@ -15,14 +15,15 @@ import { Link } from "@mui/material";
 const Login = () => {
   const dispatch = useDispatch<any>();
   const navigate = useNavigate();
-  const { data, loading, error } = useSelector(
+  const { data, loading, error, status } = useSelector(
     (state: any) => state.loginSlice
   );
   const [isDispatched, setIsDispatched] = useState<boolean>(false);
+  const [hasResponseValue, setHasResponseValue] = useState<boolean>(false);
   const [form, setForm] = useState({
     username: "",
     password: "",
-  }); 
+  });
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [limitTime, setLimitTime] = useState<boolean>(false);
 
@@ -50,7 +51,7 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
-    if (limitTime) { 
+    if (limitTime) {
       setShowSnackbar(true);
       return;
     }
@@ -64,22 +65,28 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(data).length !== 0 && isDispatched) {
+    if (isDispatched && status === 200) {
       navigate("/saturno/vote/");
     }
   }, [data, isDispatched, navigate]);
 
   useEffect(() => {
-    setIsDispatched(false);
-  }, []);
+    if (isDispatched) {
+      setTimeout(() => {
+        setIsDispatched(false);
+        setHasResponseValue(false);
+      }, 3000);
+    }
+  }, [isDispatched]);
+
+  useEffect(() => {
+    setHasResponseValue(true);
+  }, [data]);
 
   return (
     <div className={styles.container}>
       {showSnackbar && (
-        <Snackbar
-          type="errorLoginExpired"
-          setShowSnackbar={setShowSnackbar}
-        />
+        <Snackbar type="errorLoginExpired" setShowSnackbar={setShowSnackbar} />
       )}
       {error && isDispatched && (
         <Snackbar type="errorLogin" setShowSnackbar={setIsDispatched} />

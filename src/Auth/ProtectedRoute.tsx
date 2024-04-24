@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { isLoggedIn, logout } from "./Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { PATH } from "../PATH";
@@ -12,6 +12,7 @@ export const ProtectedRoute: React.FC<{
 }> = ({ Component, accessRole, ...rest }) => {
   const dispatch = useDispatch<any>();
   const { data } = useSelector((state: any) => state.loginSlice);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userId = parseInt(sessionStorage.getItem("userId") || "0", 10);
@@ -24,9 +25,7 @@ export const ProtectedRoute: React.FC<{
       const message = JSON.parse(event.data);
 
       if (message.access_token && storedToken !== message.access_token) {
-        logout(() => {
-          window.location.href = "/saturno/login/";
-        });
+        logout(navigate);
       }
     }
 
