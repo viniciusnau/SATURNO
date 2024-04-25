@@ -40,7 +40,7 @@ const Header = () => {
       dispatch(fetchmeId());
     }
   }, [dispatch, location.pathname]);
-
+  console.log(meIdData);
   if (meIdData !== null) {
     position = meIdData.data.position;
   }
