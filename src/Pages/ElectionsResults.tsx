@@ -4,7 +4,7 @@ import { fetchElectionsResult } from "../Services/Slices/resultsSlice";
 import Box from "@mui/material/Box";
 import Snackbar from "../Components/Snackbar";
 import styles from "../Styles/ElectionsResults.module.css";
-import avatar from "../Assets/avatar.svg"
+import avatar from "../Assets/avatar.svg";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Nubsaibot from "../Assets/Nubsaibot.jpg";
 import subzero from "../Assets/subzero.jpeg";
@@ -29,12 +29,15 @@ import luke from "../Assets/luke.jpeg";
 
 const ElectionsResults = () => {
   const dispatch = useDispatch<any>();
+  const [startTime, setStartTime] = useState<boolean>(false);
   const [selectedPosition, setSelectedPosition] = useState<string>("1");
   const [totalVotes, setTotalVotes] = useState<number>(0);
   const [blankVotes, setBlankVotes] = useState<number>(0);
   const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
   const [totalPeople, setTotalPeople] = useState<number>(0);
-  const [selectedCandidateImage, setSelectedCandidateImage] = useState<string | null>(null);
+  const [selectedCandidateImage, setSelectedCandidateImage] = useState<
+    string | null
+  >(null);
   const { data, error, loading } = useSelector(
     (state: any) => state.electionsResultSlice
   );
@@ -47,13 +50,21 @@ const ElectionsResults = () => {
   const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
-      return '';
-  }
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      return "";
+    }
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
-};
+  };
+
+  useEffect(() => {
+    const currentDateTime = new Date();
+    const availableDateTime = new Date("2024-06-06T17:00:59");
+    if (currentDateTime >= availableDateTime) {
+      setStartTime(true);
+    }
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPosition(event.target.value);
@@ -65,70 +76,50 @@ const ElectionsResults = () => {
     setSelectedCandidate(candidate);
     if (candidate) {
       if (candidate.id === 39) {
-          setSelectedCandidateImage(Nubsaibot);
+        setSelectedCandidateImage(Nubsaibot);
+      } else if (candidate.id === 28) {
+        setSelectedCandidateImage(subzero);
+      } else if (candidate.id === 27) {
+        setSelectedCandidateImage(scorpion);
+      } else if (candidate.id === 26) {
+        setSelectedCandidateImage(raiden);
+      } else if (candidate.id === 25) {
+        setSelectedCandidateImage(liukang);
+      } else if (candidate.id === 24) {
+        setSelectedCandidateImage(shang);
+      } else if (candidate.id === 23) {
+        setSelectedCandidateImage(cage);
+      } else if (candidate.id === 22) {
+        setSelectedCandidateImage(kitana);
+      } else if (candidate.id === 42) {
+        setSelectedCandidateImage(blanka);
+      } else if (candidate.id === 41) {
+        setSelectedCandidateImage(akuma);
+      } else if (candidate.id === 40) {
+        setSelectedCandidateImage(ryu);
+      } else if (candidate.id === 38) {
+        setSelectedCandidateImage(guile);
+      } else if (candidate.id === 36) {
+        setSelectedCandidateImage(manon);
+      } else if (candidate.id === 35) {
+        setSelectedCandidateImage(kimberly);
+      } else if (candidate.id === 34) {
+        setSelectedCandidateImage(jp);
+      } else if (candidate.id === 33) {
+        setSelectedCandidateImage(cammy);
+      } else if (candidate.id === 32) {
+        setSelectedCandidateImage(ken);
+      } else if (candidate.id === 31) {
+        setSelectedCandidateImage(juri);
+      } else if (candidate.id === 30) {
+        setSelectedCandidateImage(chunli);
+      } else if (candidate.id === 29) {
+        setSelectedCandidateImage(luke);
+      } else {
+        setSelectedCandidateImage(avatar);
       }
-      else if (candidate.id === 28) {
-          setSelectedCandidateImage(subzero);
-      }
-      else if (candidate.id === 27) {
-          setSelectedCandidateImage(scorpion);
-      }
-      else if (candidate.id === 26) {
-          setSelectedCandidateImage(raiden);
-      }
-      else if (candidate.id === 25) {
-          setSelectedCandidateImage(liukang);
-      }
-      else if (candidate.id === 24) {
-          setSelectedCandidateImage(shang);
-      }
-      else if (candidate.id === 23) {
-          setSelectedCandidateImage(cage);
-      }
-      else if (candidate.id === 22) {
-          setSelectedCandidateImage(kitana);
-      }
-      else if (candidate.id === 42) {
-          setSelectedCandidateImage(blanka);
-      }
-      else if (candidate.id === 41) {
-          setSelectedCandidateImage(akuma);
-      }
-      else if (candidate.id === 40) {
-          setSelectedCandidateImage(ryu);
-      }
-      else if (candidate.id === 38) {
-          setSelectedCandidateImage(guile);
-      }
-      else if (candidate.id === 36) {
-          setSelectedCandidateImage(manon);
-      }
-      else if (candidate.id === 35) {
-          setSelectedCandidateImage(kimberly);
-      }
-      else if (candidate.id === 34) {
-          setSelectedCandidateImage(jp);
-      }
-      else if (candidate.id === 33) {
-          setSelectedCandidateImage(cammy);
-      }
-      else if (candidate.id === 32) {
-          setSelectedCandidateImage(ken);
-      }
-      else if (candidate.id === 31) {
-          setSelectedCandidateImage(juri);
-      }
-      else if (candidate.id === 30) {
-          setSelectedCandidateImage(chunli);
-      }
-      else if (candidate.id === 29) {
-          setSelectedCandidateImage(luke);
-      }
-      else {
-          setSelectedCandidateImage(avatar);
-      }
-  }
-  setSelectedCandidate(candidate);
+    }
+    setSelectedCandidate(candidate);
   };
 
   const handleClearSelection = () => {
@@ -137,33 +128,25 @@ const ElectionsResults = () => {
 
   const loadImage = (row: any) => {
     if (row.id === 39) {
-        return Nubsaibot;
+      return Nubsaibot;
+    } else if (row.id === 28) {
+      return subzero;
+    } else if (row.id === 27) {
+      return scorpion;
+    } else if (row.id === 26) {
+      return raiden;
+    } else if (row.id === 25) {
+      return liukang;
+    } else if (row.id === 24) {
+      return shang;
+    } else if (row.id === 23) {
+      return cage;
+    } else if (row.id === 22) {
+      return kitana;
+    } else {
+      return avatar;
     }
-    else if (row.id === 28) {
-        return subzero;
-    }
-    else if (row.id === 27) {
-        return scorpion;
-    }
-    else if (row.id === 26) {
-        return raiden;
-    }
-    else if (row.id === 25) {
-        return liukang;
-    }
-    else if (row.id === 24) {
-        return shang;
-    }
-    else if (row.id === 23) {
-        return cage;
-    }
-    else if (row.id === 22) {
-        return kitana;
-    }
-    else {
-        return avatar;
-    }
-}
+  };
 
   useEffect(() => {
     dispatch(fetchElectionsResult(selectedPosition));
@@ -195,7 +178,7 @@ const ElectionsResults = () => {
     }
   }, [data]);
 
-  return (
+  return startTime ? (
     <div className={styles.container}>
       <div className={styles.upperContainer}>
         <div className={styles.nullVotesLegend}>
@@ -257,7 +240,10 @@ const ElectionsResults = () => {
                                     }%`,
                                   }}
                                 ></div>
-                                <img src={loadImage(row)} alt="Foto do Candidato" />
+                                <img
+                                  src={loadImage(row)}
+                                  alt="Foto do Candidato"
+                                />
                               </div>
                               <div className={styles.info}>
                                 <p>{`${row.name}`}</p>
@@ -304,7 +290,11 @@ const ElectionsResults = () => {
           </div>
           <div className={styles.detailsContent}>
             <img
-              src={selectedCandidate && selectedCandidateImage ? selectedCandidateImage : avatar}
+              src={
+                selectedCandidate && selectedCandidateImage
+                  ? selectedCandidateImage
+                  : avatar
+              }
               alt="Foto do Candidato"
               className={styles.candidateImage}
             />
@@ -315,12 +305,12 @@ const ElectionsResults = () => {
                 <p
                   className={styles.description}
                 >{`Matrícula: ${selectedCandidate.registration}`}</p>
-                <p
-                  className={styles.description}
-                >{`Nascimento: ${formatDate(selectedCandidate.birth_date)}`}</p>
-                <p
-                  className={styles.description}
-                >{`Posse: ${formatDate(selectedCandidate.start_date)}`}</p>
+                <p className={styles.description}>{`Nascimento: ${formatDate(
+                  selectedCandidate.birth_date
+                )}`}</p>
+                <p className={styles.description}>{`Posse: ${formatDate(
+                  selectedCandidate.start_date
+                )}`}</p>
                 <p
                   className={styles.description}
                 >{`Lotação: ${selectedCandidate.public_defense}`}</p>
@@ -339,6 +329,11 @@ const ElectionsResults = () => {
           </div>
         </Box>
       </Box>
+    </div>
+  ) : (
+    <div className={styles.notAvailableMessage}>
+      A visualização dos resultados estará disponível a partir de 06/06/2024
+      17:00.
     </div>
   );
 };

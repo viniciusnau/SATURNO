@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import { BiSolidDownload } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchElectionsPDFData } from "../Services/Slices/electionsResultPDFDataSlice";
@@ -9,16 +17,28 @@ import services from "../Services/services";
 export const VoteReport = () => {
   const dispatch = useDispatch<any>();
   const [selectedFilter, setSelectedFilter] = useState("0");
-  const { data, error, loading } = useSelector((state: any) => state.electionsPDFDataSlice);
+  const { data, error, loading } = useSelector(
+    (state: any) => state.electionsPDFDataSlice
+  );
+  const [startTime, setStartTime] = useState<boolean>(false);
+
+  useEffect(() => {
+    const currentDateTime = new Date();
+    const availableDateTime = new Date("2024-06-06T17:00:59");
+    if (currentDateTime <= availableDateTime) {
+      setStartTime(true);
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(fetchElectionsPDFData(selectedFilter));
   }, [dispatch, selectedFilter]);
 
-
   const handleDownload = async () => {
     try {
-      const response = await services.downloadElectionsResultPDF(selectedFilter);
+      const response = await services.downloadElectionsResultPDF(
+        selectedFilter
+      );
       let filename = "";
       switch (selectedFilter) {
         case "0":
@@ -38,7 +58,7 @@ export const VoteReport = () => {
       console.error("Erro ao fazer o download do PDF:", error);
     }
   };
-  
+
   const downloadPDF = (pdfData: Blob, filename: string) => {
     const url = URL.createObjectURL(pdfData);
     const a = document.createElement("a");
@@ -48,7 +68,6 @@ export const VoteReport = () => {
     a.click();
     document.body.removeChild(a);
   };
-  
 
   const handleFilterChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSelectedFilter(event.target.value as string);
@@ -97,8 +116,14 @@ export const VoteReport = () => {
         <TableRow key={index}>
           <TableCell align="center">{row.registration}</TableCell>
           <TableCell align="center">{row.person}</TableCell>
-          <TableCell align="center">{row.voting_info && (row.voting_info[0]?.vote_status === "voted" ? "Sim" : "Não")}</TableCell>
-          <TableCell align="center">{row.voting_info && (row.voting_info[1]?.vote_status === "voted" ? "Sim" : "Não")}</TableCell>
+          <TableCell align="center">
+            {row.voting_info &&
+              (row.voting_info[0]?.vote_status === "voted" ? "Sim" : "Não")}
+          </TableCell>
+          <TableCell align="center">
+            {row.voting_info &&
+              (row.voting_info[1]?.vote_status === "voted" ? "Sim" : "Não")}
+          </TableCell>
         </TableRow>
       ));
     }
@@ -106,9 +131,20 @@ export const VoteReport = () => {
 
   return (
     <div className={styles.container}>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
         <div className={styles.filterContainer}>
-          <select value={selectedFilter} onChange={handleFilterChange}>
+          <select
+            value={selectedFilter}
+            onChange={handleFilterChange}
+            disabled={startTime}
+          >
             <option value="0">Relação dos inscritos</option>
             <option value="1">Resultados Defensor Público-Geral</option>
             <option value="2">Resultados Conselho Superior</option>
@@ -123,11 +159,15 @@ export const VoteReport = () => {
             <TableBody>
               {loading ? (
                 <TableRow>
-                  <TableCell colSpan={4} align="center">Carregando...</TableCell>
+                  <TableCell colSpan={4} align="center">
+                    Carregando...
+                  </TableCell>
                 </TableRow>
               ) : error ? (
                 <TableRow>
-                  <TableCell colSpan={4} align="center">Erro ao carregar os dados</TableCell>
+                  <TableCell colSpan={4} align="center">
+                    Erro ao carregar os dados
+                  </TableCell>
                 </TableRow>
               ) : (
                 renderRows()
