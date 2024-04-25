@@ -1,4 +1,4 @@
 export const PATH = {
-  base: "http://localhost:8000/api",
-  websocketBase: "ws://localhost:8000/ws",
+  base: "https://saturno.defensoria.sc.def.br/api",
+  websocketBase: "wss://saturno.defensoria.sc.def.br/ws",
 };
