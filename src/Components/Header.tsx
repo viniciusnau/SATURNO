@@ -40,10 +40,10 @@ const Header = () => {
       dispatch(fetchmeId());
     }
   }, [dispatch, location.pathname]);
-  console.log(meIdData);
-  if (meIdData !== null) {
+
+  if (meIdData.data && meIdData.data.length !== 0) {
     position = meIdData.data.position;
-  }
+}
 
   const handleLogout = async () => {
     await dispatch(backendLogout());
