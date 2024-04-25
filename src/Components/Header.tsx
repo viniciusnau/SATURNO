@@ -36,6 +36,7 @@ const Header = () => {
 
   useEffect(() => {
     if (location.pathname !== "/saturno/login" || "/saturno/register") {
+      console.log(location.pathname);
       dispatch(fetchmeId());
     }
   }, [dispatch, location.pathname]);
