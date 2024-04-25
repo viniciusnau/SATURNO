@@ -29,6 +29,7 @@ import luke from '../Assets/luke.jpeg';
 
 const ElectionsResults = () => {
     const dispatch = useDispatch<any>();
+    const [startTime, setStartTime] = useState<boolean>(true);
     const [selectedPosition, setSelectedPosition] = useState<string>('1');
     const [totalVotes, setTotalVotes] = useState<number>(0);
     const [blankVotes, setBlankVotes] = useState<number>(0);
@@ -42,20 +43,28 @@ const ElectionsResults = () => {
     );
 
     const positionOptions = {
-        'Defensor Público-Geral': '1',
-        'Conselho Superior': '2',
+      "Defensor Público-Geral": "1",
+      "Conselho Superior": "2",
     };
 
     const formatDate = (dateString: string | number | Date) => {
-        const date = new Date(dateString);
-        if (isNaN(date.getTime())) {
-            return '';
-        }
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}/${month}/${year}`;
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return "";
+      }
+      const day = date.getDate().toString().padStart(2, "0");
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
     };
+  
+    useEffect(() => {
+      const currentDateTime = new Date();
+      const availableDateTime = new Date("2024-04-04T17:00:59");
+      if (currentDateTime <= availableDateTime) {
+        setStartTime(false);
+      }
+    }, []);
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedPosition(event.target.value);
@@ -197,191 +206,224 @@ const ElectionsResults = () => {
         }
     }, [data]);
 
-    return (
-        <div className={styles.container}>
-            <div className={styles.upperContainer}>
-                <div className={styles.nullVotesLegend}>
-                    <h3>
-                        Eleitores com votos nulos:{' '}
-                        {((blankVotes / totalPeople) * 100).toFixed(2)}% (
-                        {blankVotes})
-                    </h3>
-                </div>
-                <Box className={styles.progressBarContainer}>
-                    <div className={styles.progressBar}>
-                        <div
-                            className={styles.progressFill}
-                            style={{
-                                width: `${(blankVotes / totalPeople) * 100}%`,
-                            }}
-                        ></div>
-                    </div>
-                </Box>
-                <h4>Total de eleitores: {totalPeople}</h4>
+  return startTime ? (
+    <div className={styles.container}>
+    <div className={styles.upperContainer}>
+        <div className={styles.nullVotesLegend}>
+            <h3>
+                Eleitores com votos nulos:{' '}
+                {((blankVotes / totalPeople) * 100).toFixed(2)}% (
+                {blankVotes})
+            </h3>
+        </div>
+        <Box className={styles.progressBarContainer}>
+            <div className={styles.progressBar}>
+                <div
+                    className={styles.progressFill}
+                    style={{
+                        width: `${(blankVotes / totalPeople) * 100}%`,
+                    }}
+                ></div>
             </div>
-            <Box className={styles.megaBox}>
-                <Box className={styles.listContainer}>
-                    <select value={selectedPosition} onChange={handleChange}>
-                        {Object.entries(positionOptions).map(
-                            ([label, value]) => (
-                                <option key={value} value={value}>
-                                    {label}
-                                </option>
-                            )
-                        )}
-                    </select>
-                    {error && <Snackbar type="errorUpdate" />}
-                    {loading && <Box className={styles.loadingContainer}></Box>}
-                    {!loading && data.length === 0 && (
-                        <div className={styles.noResults}>
-                            Nenhum resultado encontrado
-                        </div>
-                    )}
-                    {data && data.length > 0 && (
-                        <div className={styles.scrollable}>
-                            <table>
-                                <thead></thead>
-                                <tbody>
-                                    {data.map((row: any, index: number) => (
-                                        <React.Fragment key={row.id}>
-                                            {row.id !== 'total_count' &&
-                                                row.id !== 'none_votes' &&
-                                                row.id !== 'total_people' && (
-                                                    <tr
-                                                        onClick={() =>
-                                                            handleCandidateClick(
-                                                                row.id
-                                                            )
+        </Box>
+        <h4>Total de eleitores: {totalPeople}</h4>
+    </div>
+    <Box className={styles.megaBox}>
+        <Box className={styles.listContainer}>
+            <select value={selectedPosition} onChange={handleChange}>
+                {Object.entries(positionOptions).map(
+                    ([label, value]) => (
+                        <option key={value} value={value}>
+                            {label}
+                        </option>
+                    )
+                )}
+            </select>
+            {error && <Snackbar type="errorUpdate" />}
+            {loading && <Box className={styles.loadingContainer}></Box>}
+            {!loading && data.length === 0 && (
+                <div className={styles.noResults}>
+                    Nenhum resultado encontrado
+                </div>
+            )}
+            {data && data.length > 0 && (
+                <div className={styles.scrollable}>
+                    <table>
+                        <thead></thead>
+                        <tbody>
+                            {data.map((row: any, index: number) => (
+                                <React.Fragment key={row.id}>
+                                    {row.id !== 'total_count' &&
+                                        row.id !== 'none_votes' &&
+                                        row.id !== 'total_people' && (
+                                            <tr
+                                                onClick={() =>
+                                                    handleCandidateClick(
+                                                        row.id
+                                                    )
+                                                }
+                                                className={`${
+                                                    styles.tr
+                                                } ${
+                                                    selectedCandidate &&
+                                                    selectedCandidate.id ===
+                                                        row.id
+                                                        ? styles.selected
+                                                        : ''
+                                                }`}
+                                            >
+                                                <div
+                                                    className={
+                                                        styles.candidateInfo
+                                                    }
+                                                >
+                                                    <div
+                                                        className={
+                                                            styles.circularImage
                                                         }
-                                                        className={`${
-                                                            styles.tr
-                                                        } ${
-                                                            selectedCandidate &&
-                                                            selectedCandidate.id ===
-                                                                row.id
-                                                                ? styles.selected
-                                                                : ''
-                                                        }`}
                                                     >
                                                         <div
                                                             className={
-                                                                styles.info
+                                                                styles.circularProgress
+                                                            }
+                                                            style={{
+                                                                width: `${
+                                                                    (row.vote_count /
+                                                                        totalVotes) *
+                                                                    100
+                                                                }%`,
+                                                            }}
+                                                        ></div>
+                                                        <img
+                                                            src={loadImage(
+                                                                row
+                                                            )}
+                                                            alt="Foto do Candidato"
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            styles.info
+                                                        }
+                                                    >
+                                                        <p>{`${row.name}`}</p>
+                                                        {selectedCandidate &&
+                                                            row.id !==
+                                                                null && (
+                                                                <p
+                                                                    style={{
+                                                                        fontSize:
+                                                                            '1.25rem',
+                                                                    }}
+                                                                >{`${row.public_defense} - ${row.registration}`}</p>
+                                                            )}
+                                                        <p
+                                                            style={{
+                                                                fontSize:
+                                                                    '1rem',
+                                                            }}
+                                                        >{`Votos computados ${
+                                                            row.vote_count
+                                                        } • ${(
+                                                            (row.vote_count /
+                                                                totalVotes) *
+                                                            100
+                                                        ).toFixed(
+                                                            2
+                                                        )}%`}</p>
+                                                        <div
+                                                            className={
+                                                                styles.progressBar
                                                             }
                                                         >
-                                                            <p>{`${row.name}`}</p>
-                                                            {selectedCandidate &&
-                                                                row.id !==
-                                                                    null &&
-                                                                row.public_defense !==
-                                                                    null &&
-                                                                row.registration !==
-                                                                    null && (
-                                                                    <p
-                                                                        style={{
-                                                                            fontSize:
-                                                                                '1.25rem',
-                                                                        }}
-                                                                    >{`${row.public_defense} - ${row.registration}`}</p>
-                                                                )}
-                                                            <p
-                                                                style={{
-                                                                    fontSize:
-                                                                        '1rem',
-                                                                }}
-                                                            >{`Votos computados ${
-                                                                row.vote_count
-                                                            } • ${(
-                                                                (row.vote_count /
-                                                                    totalVotes) *
-                                                                100
-                                                            ).toFixed(2)}%`}</p>
                                                             <div
-                                                                className={
-                                                                    styles.progressBar
-                                                                }
-                                                            >
-                                                                <div
-                                                                    style={{
-                                                                        width: `${
-                                                                            (row.vote_count /
-                                                                                totalVotes) *
-                                                                            100
-                                                                        }%`,
-                                                                    }}
-                                                                ></div>
-                                                            </div>
+                                                                style={{
+                                                                    width: `${
+                                                                        (row.vote_count /
+                                                                            totalVotes) *
+                                                                        100
+                                                                    }%`,
+                                                                }}
+                                                            ></div>
                                                         </div>
-                                                    </tr>
-                                                )}
-                                        </React.Fragment>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    )}
-                </Box>
+                                                    </div>
+                                                </div>
+                                            </tr>
+                                        )}
+                                </React.Fragment>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
+        </Box>
 
-                <Box className={styles.detailsContainer}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <p className={styles.title}>
-                            Detalhes do Candidato Selecionado:
-                        </p>
-                        {selectedCandidate && (
-                            <AiOutlineCloseCircle
-                                size={32}
-                                className={styles.closeIcon}
-                                onClick={handleClearSelection}
-                            />
-                        )}
+        <Box className={styles.detailsContainer}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <p className={styles.title}>
+                    Detalhes do Candidato Selecionado:
+                </p>
+                {selectedCandidate && (
+                    <AiOutlineCloseCircle
+                        size={32}
+                        className={styles.closeIcon}
+                        onClick={handleClearSelection}
+                    />
+                )}
+            </div>
+            <div className={styles.detailsContent}>
+                <img
+                    src={
+                        selectedCandidate && selectedCandidateImage
+                            ? selectedCandidateImage
+                            : avatar
+                    }
+                    alt="Foto do Candidato"
+                    className={styles.candidateImage}
+                />
+                {selectedCandidate &&
+                selectedCandidate.id !== 'none_votes' &&
+                selectedCandidate.id !== null &&
+                selectedCandidate.id !== 'total_count' ? (
+                    <div>
+                        <p
+                            className={styles.description}
+                        >{`Matrícula: ${selectedCandidate.registration}`}</p>
+                        <p
+                            className={styles.description}
+                        >{`Nascimento: ${formatDate(
+                            selectedCandidate.birth_date
+                        )}`}</p>
+                        <p
+                            className={styles.description}
+                        >{`Posse: ${formatDate(
+                            selectedCandidate.start_date
+                        )}`}</p>
+                        <p
+                            className={styles.description}
+                        >{`Lotação: ${selectedCandidate.public_defense}`}</p>
+                        <p
+                            className={styles.description}
+                        >{`Antiguidade: ${selectedCandidate.seniority}`}</p>
+                        <p
+                            className={styles.description}
+                        >{`Categoria: ${selectedCandidate.category}`}</p>
                     </div>
-                    <div className={styles.detailsContent}>
-                        <img
-                            src={
-                                selectedCandidate && selectedCandidateImage
-                                    ? selectedCandidateImage
-                                    : avatar
-                            }
-                            alt="Foto do Candidato"
-                            className={styles.candidateImage}
-                        />
-                        {selectedCandidate &&
-                        selectedCandidate.id !== 'none_votes' &&
-                        selectedCandidate.id !== null &&
-                        selectedCandidate.id !== 'total_count' ? (
-                            <div>
-                                <p
-                                    className={styles.description}
-                                >{`Matrícula: ${selectedCandidate.registration}`}</p>
-                                <p
-                                    className={styles.description}
-                                >{`Nascimento: ${formatDate(
-                                    selectedCandidate.birth_date
-                                )}`}</p>
-                                <p
-                                    className={styles.description}
-                                >{`Posse: ${formatDate(
-                                    selectedCandidate.start_date
-                                )}`}</p>
-                                <p
-                                    className={styles.description}
-                                >{`Lotação: ${selectedCandidate.public_defense}`}</p>
-                                <p
-                                    className={styles.description}
-                                >{`Antiguidade: ${selectedCandidate.seniority}`}</p>
-                                <p
-                                    className={styles.description}
-                                >{`Categoria: ${selectedCandidate.category}`}</p>
-                            </div>
-                        ) : (
-                            <div className={styles.noCandidate}>
-                                Nenhum candidato selecionado
-                            </div>
-                        )}
+                ) : (
+                    <div className={styles.noCandidate}>
+                        Nenhum candidato selecionado
                     </div>
-                </Box>
-            </Box>
-        </div>
-    );
+                )}
+            </div>
+        </Box>
+    </Box>
+</div>
+  ) : (
+    <div className={styles.notAvailableMessage}>
+      A visualização dos resultados estará disponível a partir de 06/06/2024
+      17:00.
+    </div>
+  );
 };
 
 export default ElectionsResults;
