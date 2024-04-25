@@ -13,6 +13,7 @@ import voteReportSlice from "./Slices/voteReportSlice";
 import RegisterSlice from "./Slices/postRegisterSlice";
 import electionsPDFDataSlice from "./Slices/electionsResultPDFDataSlice";
 import fileContentSlice from "./Slices/fileContentSlice";
+import googleTokenLoginSlice from "./Slices/getGoogleLogin";
 
 const reducer = combineReducers({
   loginSlice,
@@ -29,6 +30,7 @@ const reducer = combineReducers({
   RegisterSlice,
   electionsPDFDataSlice,
   fileContentSlice,
+  googleTokenLoginSlice,
 });
 
 export const store = configureStore({ reducer });

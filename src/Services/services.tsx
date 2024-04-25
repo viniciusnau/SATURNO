@@ -19,6 +19,24 @@ const services = {
       .catch((err: any) => console.log(err));
   },
 
+  googleTokenLogin: async (googleToken: any) => {
+    const body = {
+      google_token: googleToken,
+    };
+
+    return axios
+      .post(`${PATH.base}/user/google-token-login/`, body)
+      .then((response) => {
+        sessionStorage.setItem("apiToken", response.data.access_token);
+        sessionStorage.setItem("userId", response.data.user_id);
+        return response;
+      })
+      .catch((error) => {
+        console.error("Error logging in with Google token:", error);
+        throw error;
+      });
+  },
+
   logout: async () => {
     const apiToken = sessionStorage.getItem("apiToken");
     const headers = {
