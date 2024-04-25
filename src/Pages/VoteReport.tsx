@@ -20,13 +20,13 @@ export const VoteReport = () => {
   const { data, error, loading } = useSelector(
     (state: any) => state.electionsPDFDataSlice
   );
-  const [startTime, setStartTime] = useState<boolean>(false);
+  const [startTime, setStartTime] = useState<boolean>(true);
 
   useEffect(() => {
     const currentDateTime = new Date();
     const availableDateTime = new Date("2024-06-06T17:00:59");
     if (currentDateTime <= availableDateTime) {
-      setStartTime(true);
+      setStartTime(false);
     }
   }, []);
 
@@ -143,7 +143,7 @@ export const VoteReport = () => {
           <select
             value={selectedFilter}
             onChange={handleFilterChange}
-            disabled={startTime}
+            disabled={!startTime}
           >
             <option value="0">Relação dos inscritos</option>
             <option value="1">Resultados Defensor Público-Geral</option>

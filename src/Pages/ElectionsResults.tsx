@@ -29,7 +29,7 @@ import luke from "../Assets/luke.jpeg";
 
 const ElectionsResults = () => {
   const dispatch = useDispatch<any>();
-  const [startTime, setStartTime] = useState<boolean>(false);
+  const [startTime, setStartTime] = useState<boolean>(true);
   const [selectedPosition, setSelectedPosition] = useState<string>("1");
   const [totalVotes, setTotalVotes] = useState<number>(0);
   const [blankVotes, setBlankVotes] = useState<number>(0);
@@ -60,9 +60,9 @@ const ElectionsResults = () => {
 
   useEffect(() => {
     const currentDateTime = new Date();
-    const availableDateTime = new Date("2023-06-06T17:00:59");
-    if (currentDateTime >= availableDateTime) {
-      setStartTime(true);
+    const availableDateTime = new Date("2024-06-06T17:00:59");
+    if (currentDateTime <= availableDateTime) {
+      setStartTime(false);
     }
   }, []);
 
