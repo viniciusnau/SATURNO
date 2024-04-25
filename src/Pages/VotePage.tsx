@@ -95,7 +95,7 @@ const VotePage: React.FC = () => {
         if (isDispatched && !loading && !error) {
             const blankVoteRow = {
                 id: '',
-                candidate: 'Voto Branco',
+                candidate: 'Voto Nulo',
                 registration: '-',
                 birth_date: '-',
                 start_date: '-',
