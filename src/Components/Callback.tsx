@@ -11,7 +11,7 @@ const Callback: React.FC = () => {
       sessionStorage.setItem("googleToken", googleToken);
     }
 
-    navigate("/sies/register");
+    navigate("/saturno/vote");
   }, [googleToken, navigate]);
 
   return (
