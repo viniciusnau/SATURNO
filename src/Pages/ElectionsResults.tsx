@@ -265,18 +265,42 @@ const ElectionsResults = () => {
                                                     >
                                                         <div
                                                             className={
-                                                                styles.candidateInfo
+                                                                styles.info
                                                             }
                                                         >
+                                                            <p>{`${row.name}`}</p>
+                                                            {selectedCandidate &&
+                                                                row.id !==
+                                                                    null &&
+                                                                row.public_defense !==
+                                                                    null &&
+                                                                row.registration !==
+                                                                    null && (
+                                                                    <p
+                                                                        style={{
+                                                                            fontSize:
+                                                                                '1.25rem',
+                                                                        }}
+                                                                    >{`${row.public_defense} - ${row.registration}`}</p>
+                                                                )}
+                                                            <p
+                                                                style={{
+                                                                    fontSize:
+                                                                        '1rem',
+                                                                }}
+                                                            >{`Votos computados ${
+                                                                row.vote_count
+                                                            } • ${(
+                                                                (row.vote_count /
+                                                                    totalVotes) *
+                                                                100
+                                                            ).toFixed(2)}%`}</p>
                                                             <div
                                                                 className={
-                                                                    styles.circularImage
+                                                                    styles.progressBar
                                                                 }
                                                             >
                                                                 <div
-                                                                    className={
-                                                                        styles.circularProgress
-                                                                    }
                                                                     style={{
                                                                         width: `${
                                                                             (row.vote_count /
@@ -285,58 +309,6 @@ const ElectionsResults = () => {
                                                                         }%`,
                                                                     }}
                                                                 ></div>
-                                                                <img
-                                                                    src={loadImage(
-                                                                        row
-                                                                    )}
-                                                                    alt="Foto do Candidato"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                className={
-                                                                    styles.info
-                                                                }
-                                                            >
-                                                                <p>{`${row.name}`}</p>
-                                                                {selectedCandidate &&
-                                                                    row.id !==
-                                                                        null && (
-                                                                        <p
-                                                                            style={{
-                                                                                fontSize:
-                                                                                    '1.25rem',
-                                                                            }}
-                                                                        >{`${row.public_defense} - ${row.registration}`}</p>
-                                                                    )}
-                                                                <p
-                                                                    style={{
-                                                                        fontSize:
-                                                                            '1rem',
-                                                                    }}
-                                                                >{`Votos computados ${
-                                                                    row.vote_count
-                                                                } • ${(
-                                                                    (row.vote_count /
-                                                                        totalVotes) *
-                                                                    100
-                                                                ).toFixed(
-                                                                    2
-                                                                )}%`}</p>
-                                                                <div
-                                                                    className={
-                                                                        styles.progressBar
-                                                                    }
-                                                                >
-                                                                    <div
-                                                                        style={{
-                                                                            width: `${
-                                                                                (row.vote_count /
-                                                                                    totalVotes) *
-                                                                                100
-                                                                            }%`,
-                                                                        }}
-                                                                    ></div>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </tr>

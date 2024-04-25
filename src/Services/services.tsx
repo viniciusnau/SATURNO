@@ -129,6 +129,10 @@ const services = {
 
   meId: async () => {
     const apiToken = sessionStorage.getItem("apiToken");
+    if (!apiToken) {
+      console.error("No API token provided.");
+      return null;
+    }
     const headers = {
       Authorization: `Bearer ${apiToken}`,
     };
