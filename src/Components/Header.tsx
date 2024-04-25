@@ -41,7 +41,9 @@ const Header = () => {
     }
   }, [dispatch, location.pathname]);
 
-  position = meIdData.data.position;
+  if (meIdData !== null) {
+    position = meIdData.data.position;
+  }
 
   const handleLogout = async () => {
     await dispatch(backendLogout());
