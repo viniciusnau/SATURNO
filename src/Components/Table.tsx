@@ -64,61 +64,61 @@ const Table: React.FC<IData> = ({ row, loading }) => {
             if (candidate.id === 39) {
                 setSelectedCandidateImage(Nubsaibot);
             }
-            else if (candidate.id === 28) {
+            else if (candidate.id === 21) {
                 setSelectedCandidateImage(subzero);
             }
-            else if (candidate.id === 27) {
+            else if (candidate.id === 22) {
                 setSelectedCandidateImage(scorpion);
             }
-            else if (candidate.id === 26) {
+            else if (candidate.id === 23) {
                 setSelectedCandidateImage(raiden);
             }
-            else if (candidate.id === 25) {
+            else if (candidate.id === 24) {
                 setSelectedCandidateImage(liukang);
             }
-            else if (candidate.id === 24) {
+            else if (candidate.id === 25) {
                 setSelectedCandidateImage(shang);
             }
-            else if (candidate.id === 23) {
+            else if (candidate.id === 27) {
                 setSelectedCandidateImage(cage);
             }
-            else if (candidate.id === 22) {
+            else if (candidate.id === 28) {
                 setSelectedCandidateImage(kitana);
             }
-            else if (candidate.id === 42) {
+            else if (candidate.id === 6) {
                 setSelectedCandidateImage(blanka);
             }
-            else if (candidate.id === 41) {
+            else if (candidate.id === 7) {
                 setSelectedCandidateImage(akuma);
             }
-            else if (candidate.id === 40) {
+            else if (candidate.id === 9) {
                 setSelectedCandidateImage(ryu);
             }
-            else if (candidate.id === 38) {
+            else if (candidate.id === 10) {
                 setSelectedCandidateImage(guile);
             }
-            else if (candidate.id === 36) {
+            else if (candidate.id === 11) {
                 setSelectedCandidateImage(manon);
             }
-            else if (candidate.id === 35) {
+            else if (candidate.id === 12) {
                 setSelectedCandidateImage(kimberly);
             }
-            else if (candidate.id === 34) {
+            else if (candidate.id === 13) {
                 setSelectedCandidateImage(jp);
             }
-            else if (candidate.id === 33) {
+            else if (candidate.id === 14) {
                 setSelectedCandidateImage(cammy);
             }
-            else if (candidate.id === 32) {
+            else if (candidate.id === 15) {
                 setSelectedCandidateImage(ken);
             }
-            else if (candidate.id === 31) {
+            else if (candidate.id === 16) {
                 setSelectedCandidateImage(juri);
             }
-            else if (candidate.id === 30) {
+            else if (candidate.id === 18) {
                 setSelectedCandidateImage(chunli);
             }
-            else if (candidate.id === 29) {
+            else if (candidate.id === 19) {
                 setSelectedCandidateImage(luke);
             }
             else {
@@ -148,68 +148,50 @@ const Table: React.FC<IData> = ({ row, loading }) => {
     const loadImage = (row: any) => {
         if (row.id === 39) {
             return Nubsaibot;
-        }
-        else if (row.id === 28) {
+        } else if (row.id === 21) {
             return subzero;
-        }
-        else if (row.id === 27) {
+        } else if (row.id === 22) {
             return scorpion;
-        }
-        else if (row.id === 26) {
+        } else if (row.id === 23) {
             return raiden;
-        }
-        else if (row.id === 25) {
+        } else if (row.id === 24) {
             return liukang;
-        }
-        else if (row.id === 24) {
+        } else if (row.id === 25) {
             return shang;
-        }
-        else if (row.id === 23) {
+        } else if (row.id === 27) {
             return cage;
-        }
-        else if (row.id === 22) {
+        } else if (row.id === 28) {
             return kitana;
-        }
-        else if (row.id === 42) {
-            return blanka;
-        }
-        else if (row.id === 41) {
+        } else if (row.id === 6) {
+            return blanka; 
+        } else if (row.id === 7) {
             return akuma;
-        }
-        else if (row.id === 40) {
+        } else if (row.id === 9) {
             return ryu;
-        }
-        else if (row.id === 38) {
+        } else if (row.id === 10) {
             return guile;
-        }
-        else if (row.id === 36) {
+        } else if (row.id === 11) {
             return manon;
-        }
-        else if (row.id === 35) {
+        } else if (row.id === 12) {
             return kimberly;
-        }
-        else if (row.id === 34) {
+        } else if (row.id === 13) {
             return jp;
-        }
-        else if (row.id === 33) {
+        } else if (row.id === 14) {
             return cammy;
-        }
-        else if (row.id === 32) {
+        } else if (row.id === 15) {
             return ken;
-        }
-        else if (row.id === 31) {
+        } else if (row.id === 16) {
             return juri;
-        }
-        else if (row.id === 30) {
+        } else if (row.id === 18) {
             return chunli;
-        }
-        else if (row.id === 29) {
+        } else if (row.id === 19) {
             return luke;
-        }
-        else {
+        } else if (row.id === null) {
+            return avatar;
+        } else {
             return avatar;
         }
-    }
+    };
 
     return (
         <div>
