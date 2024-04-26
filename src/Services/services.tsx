@@ -24,8 +24,17 @@ const services = {
       google_token: googleToken,
     };
 
+    const csrfToken = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("csrftoken"))
+      ?.split("=")[1];
+
+    const headers = {
+      "X-CSRFToken": csrfToken,
+    };
+
     return axios
-      .post(`${PATH.base}/user/google-token-login/`, body)
+      .post(`${PATH.base}/user/google-token-login/`, body, { headers })
       .then((response) => {
         sessionStorage.setItem("apiToken", response.data.access_token);
         sessionStorage.setItem("userId", response.data.user_id);
@@ -36,6 +45,7 @@ const services = {
         throw error;
       });
   },
+
 
   logout: async () => {
     const apiToken = sessionStorage.getItem("apiToken");
