@@ -60,7 +60,7 @@ const ElectionsResults = () => {
   
     useEffect(() => {
       const currentDateTime = new Date();
-      const availableDateTime = new Date("2024-04-04T17:00:59");
+      const availableDateTime = new Date("2023-04-04T17:00:59");
       if (currentDateTime <= availableDateTime) {
         setStartTime(false);
       }
