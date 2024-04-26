@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../Styles/Header.module.css";
 import image from "../Assets/logo_saturno.png";
 import { HiBars3 } from "react-icons/hi2";
@@ -6,9 +6,9 @@ import { isLoggedIn, logout as frontendLogout } from "../Auth/Auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout as backendLogout } from "../Services/Slices/logoutSlice";
-import AutoLogoutTimer from "./AutoLogoutTimer";
 import { useSelector } from "react-redux";
 import { fetchmeId } from "../Services/Slices/meId";
+import AutoLogoutTimer from "./AutoLogoutTimer";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -43,12 +43,22 @@ const Header = () => {
 
   if (meIdData.data && meIdData.data.length !== 0) {
     position = meIdData.data.position;
-}
+  }
 
   const handleLogout = async () => {
     await dispatch(backendLogout());
     frontendLogout(navigate);
   };
+
+  const [showAutoLogoutTimer, setShowAutoLogoutTimer] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAutoLogoutTimer(true);
+    }, 15000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <header className={styles.header}>
@@ -97,7 +107,9 @@ const Header = () => {
                                 navigate("saturno/elections-results/");
                               }}
                             >
-                              <span className={`${styles.route} ${styles.logout}`}>
+                              <span
+                                className={`${styles.route} ${styles.logout}`}
+                              >
                                 Resultado das Eleições
                               </span>
                             </li>
@@ -107,7 +119,9 @@ const Header = () => {
                                 navigate("saturno/vote-report/");
                               }}
                             >
-                              <span className={`${styles.route} ${styles.logout}`}>
+                              <span
+                                className={`${styles.route} ${styles.logout}`}
+                              >
                                 Relatórios
                               </span>
                             </li>
@@ -192,6 +206,7 @@ const Header = () => {
           )}
         </div>
       </div>
+      {isLoggedIn() && showAutoLogoutTimer && <AutoLogoutTimer />}{" "}
     </header>
   );
 };
