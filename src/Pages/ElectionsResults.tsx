@@ -59,11 +59,19 @@ const ElectionsResults = () => {
     };
 
     useEffect(() => {
+<<<<<<< HEAD
         const currentDateTime = new Date();
         const availableDateTime = new Date('2024-04-04T17:00:59');
         if (currentDateTime <= availableDateTime) {
             setStartTime(false);
         }
+=======
+      const currentDateTime = new Date();
+      const availableDateTime = new Date("2023-04-04T17:00:59");
+      if (currentDateTime <= availableDateTime) {
+        setStartTime(false);
+      }
+>>>>>>> 32b7bb34cce5810da6de54e985e117661706cc04
     }, []);
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
