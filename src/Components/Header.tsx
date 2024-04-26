@@ -206,6 +206,7 @@ const Header = () => {
           )}
         </div>
       </div>
+      {isLoggedIn() && showAutoLogoutTimer && <AutoLogoutTimer />}{" "}
     </header>
   );
 };
