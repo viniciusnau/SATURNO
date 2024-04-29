@@ -3,14 +3,16 @@ import services from "../services";
 
 interface AuthState {
   apiToken: string | null;
-  tokenExpiration: number | null;
   tokenTimeLeft: number | null;
+  expiresAt: string | null;
+  currentTime: string | null;
 }
 
 const initialState: AuthState = {
   apiToken: null,
-  tokenExpiration: null,
   tokenTimeLeft: null,
+  expiresAt: null,
+  currentTime: null,
 };
 
 const authSlice = createSlice({
@@ -20,24 +22,29 @@ const authSlice = createSlice({
     setApiToken: (state, action) => {
       state.apiToken = action.payload;
     },
-    setTokenExpiration: (state, action) => {
-      state.tokenExpiration = action.payload;
-    },
     setTokenTimeLeft: (state, action) => {
       state.tokenTimeLeft = action.payload;
+    },
+    setExpiresAt: (state, action) => {
+      state.expiresAt = action.payload;
+    },
+    setCurrentTime: (state, action) => {
+      state.currentTime = action.payload;
     },
   },
 });
 
-export const { setApiToken, setTokenExpiration, setTokenTimeLeft } =
+export const { setApiToken, setTokenTimeLeft, setExpiresAt, setCurrentTime } =
   authSlice.actions;
 
-export const fetchTokenTimeLeft = () => async (dispatch: any) => {
+export const fetchTokenTimeInfo = () => async (dispatch: any) => {
   try {
     const response = await services.getTokenLifetime();
     dispatch(setTokenTimeLeft(response.time_left));
+    dispatch(setExpiresAt(response.expires_at));
+    dispatch(setCurrentTime(response.current_time));
   } catch (error) {
-    console.error("Erro ao buscar o tempo restante do token:", error);
+    console.error("Erro ao buscar as informações do token:", error);
   }
 };
 
