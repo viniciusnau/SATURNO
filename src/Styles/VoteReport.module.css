@@ -5,11 +5,15 @@
   margin: 5rem 0 0 ;
 }
 
-.downloadContainer {
+.button {
   display: flex;
   justify-content: flex-end;
   width: 80%;
   margin: 0 0 .75rem 0;
+}
+
+.button:hover {
+  cursor: pointer;
 }
 
 .tableContainer {

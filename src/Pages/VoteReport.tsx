@@ -152,7 +152,7 @@ export const VoteReport = () => {
             <option value="2">Resultados Conselho Superior</option>
           </select>
         </div>
-        <div className={styles.downloadContainer}>
+        <div className={styles.button}>
           <BiSolidDownload size={24} onClick={handleDownload} />
         </div>
         <TableContainer component={Paper} className={styles.tableContainer}>
