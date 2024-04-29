@@ -136,7 +136,9 @@ export const VoteReport = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          height: "70vh",
           width: "100%",
+          overflowY: "auto",
         }}
       >
         <div className={styles.filterContainer}>
