@@ -1,31 +1,36 @@
-import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchGoogleTokenLogin } from "../Services/Slices/getGoogleLogin";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../Styles/Callback.module.css";
 
 const Callback: React.FC = () => {
-  const { googleToken } = useParams();
-  const dispatch = useDispatch<any>();
   const navigate = useNavigate();
-  const apiToken = useSelector((state: any) => state.googleTokenLoginSlice);
+  const location = useLocation();
+  const [apiToken, setApiToken] = useState<string | null>(null);
 
   useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const googleToken = queryParams.get("google_token");
+    const token = queryParams.get("jwt_token");
+
     if (googleToken) {
-      dispatch(fetchGoogleTokenLogin({ google_token: googleToken }));
+      sessionStorage.setItem("googleToken", googleToken);
     }
-  }, [dispatch, googleToken]);
+
+    if (token) {
+      sessionStorage.setItem("apiToken", token);
+      setApiToken(token);
+    }
+  }, [location.search]);
 
   useEffect(() => {
-    if (apiToken) {
-      navigate("/saturno/vote");
+    if (apiToken !== null) {
+      navigate("/saturno/vote/");
     }
   }, [apiToken, navigate]);
 
   return (
     <div className={styles.container}>
       <h1>Callback Page</h1>
-      {googleToken && <p>apiToken: {googleToken}</p>}
     </div>
   );
 };
