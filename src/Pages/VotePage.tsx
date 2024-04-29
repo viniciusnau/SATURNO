@@ -146,7 +146,13 @@ const VotePage: React.FC = () => {
             )}
             {isOpenModal && (
                 <Modal
-                    content="sendVote"
+                content={{
+                    sendVote: {
+                        title: "Voto prestes a ser registrado!",
+                        description: `Você tem certeza que deseja finalizar a votação para ${positionCandidades}?`,
+                        button: "Sim",
+                    }
+                }}
                     confirm={handleConfirmVote}
                     setOpenModal={setIsOpenModal}
                     open={isOpenModal}
