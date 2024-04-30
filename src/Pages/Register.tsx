@@ -6,6 +6,7 @@ import Button from "../Components/Button";
 import { IRegister } from "../Types/Types";
 import { fetchRegister } from "../Services/Slices/postRegisterSlice";
 import Snackbar from "../Components/Snackbar";
+import Title from "../Components/Title";
 
 export const Register = () => {
   const dispatch = useDispatch<any>();
@@ -49,9 +50,7 @@ export const Register = () => {
         {error && isDispatched && (
           <Snackbar type="registerError" setShowSnackbar={setIsDispatched} />
         )}
-        <h2 className={styles.title} style={{ color: "initial" }}>
-          Registro de eleitores
-        </h2>
+        <Title>Registrar conta</Title>
         <Input
           className={styles.input}
           fieldType="outlined"
@@ -86,7 +85,7 @@ export const Register = () => {
         />
 
         <Button className={styles.button} onClick={handleSubmit}>
-          Solicitar validação
+          Enviar solicitação
         </Button>
       </div>
     </div>

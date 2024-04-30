@@ -4,6 +4,7 @@ import services from "../Services/services";
 import Button from "../Components/Button";
 import styles from "../Styles/VotePagePdf.module.css";
 import { Padding } from "@mui/icons-material";
+import Title from "../Components/Title";
 
 export const VotePagePdf = () => {
   const handleDownload = async () => {
@@ -27,9 +28,7 @@ export const VotePagePdf = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title} style={{ color: "initial" }}>
-        Comprovante de votação
-      </h2>
+      <Title>Comprovante de votação</Title>
       <div className={styles.buttonContainer}>
         <Button onClick={handleDownload} className={styles.button}>
           Baixar comprovante

@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchElectionsPDFData } from "../Services/Slices/electionsResultPDFDataSlice";
 import styles from "../Styles/VoteReport.module.css";
 import services from "../Services/services";
+import Title from "../Components/Title";
 
 export const VoteReport = () => {
   const dispatch = useDispatch<any>();
@@ -139,6 +140,7 @@ export const VoteReport = () => {
           width: "100%",
         }}
       >
+        <Title>Relatório de votação</Title>
         <div className={styles.filterContainer}>
           <select
             value={selectedFilter}

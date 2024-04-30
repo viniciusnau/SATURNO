@@ -55,7 +55,7 @@ function App() {
                 <ProtectedRoute
                   Component={ElectionsResults}
                   path="/saturno/elections-results/"
-                  // accessRole={["Admin", "Electoral_Commission"]}
+                  accessRole={["Admin", "Electoral_Commission"]}
                 />
               }
             />
@@ -65,7 +65,7 @@ function App() {
                 <ProtectedRoute
                   Component={VoteReport}
                   path="/saturno/vote-report/"
-                  // accessRole={["Admin", "Electoral_Commission"]}
+                  accessRole={["Admin", "Electoral_Commission"]}
                 />
               }
             />

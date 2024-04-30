@@ -11,6 +11,7 @@ import Loading from "../Components/Loading";
 import { handleKeyPress } from "../Components/Helper";
 import Button from "../Components/Button";
 import { Link } from "@mui/material";
+import Title from "../Components/Title";
 
 const Login = () => {
   const dispatch = useDispatch<any>();
@@ -95,9 +96,7 @@ const Login = () => {
         className={styles.loginForm}
         onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
       >
-        <h2 className={styles.title} style={{ color: "initial" }}>
-          Bem vindo(a)
-        </h2>
+        <Title>Entrar no saturno</Title>
         <div className={styles.formGroup}>
           <div className={styles.password}>
             <Input

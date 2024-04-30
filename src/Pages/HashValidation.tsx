@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Snackbar from "../Components/Snackbar";
 import Loading from "../Components/Loading";
 import { handleKeyPress } from "../Components/Helper";
+import Title from "../Components/Title";
 
 const HashValidation = () => {
   const dispatch = useDispatch<any>();
@@ -30,7 +31,7 @@ const HashValidation = () => {
   };
 
   const handleSubmit = async () => {
-    const trimmedHashes = form.hash.replace(/\s/g, '');
+    const trimmedHashes = form.hash.replace(/\s/g, "");
 
     const hashes = trimmedHashes.split("&&");
 
@@ -68,9 +69,7 @@ const HashValidation = () => {
         className={styles.form}
         onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
       >
-        <h2 className={styles.title} style={{ color: "initial" }}>
-          Verificar votos:
-        </h2>
+        <Title>Verificar votos</Title>
         <Input
           type="text"
           className={styles.input}

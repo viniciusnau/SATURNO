@@ -1,0 +1,21 @@
+@import "../colors.css";
+
+.title {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 750px) {
+  .title {
+    font-size: calc(var(--font-size) - 1rem);
+  }
+}
+
+@media (min-width: 751px) {
+  .title {
+    font-size: calc(var(--font-size) + .75rem);
+  }
+}
+
+@media (min-width: 1024px) {
+}

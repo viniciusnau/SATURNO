@@ -8,6 +8,7 @@ import { handleKeyPress } from "../Components/Helper";
 import Snackbar from "../Components/Snackbar";
 import Loading from "../Components/Loading";
 import React from "react";
+import Title from "../Components/Title";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -48,9 +49,7 @@ const ResetPassword = () => {
         className={styles.form}
         onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
       >
-        <h2 className={styles.title} style={{ color: "initial" }}>
-          Redefinir Senha
-        </h2>
+        <Title>Redefinir Senha</Title>
         <Input
           type="email"
           className={styles.input}
