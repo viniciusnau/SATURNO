@@ -12,6 +12,7 @@ import { handleKeyPress } from "../Components/Helper";
 import Button from "../Components/Button";
 import { Link } from "@mui/material";
 import Title from "../Components/Title";
+import { fetchTokenTimeInfo } from "../Services/Slices/authState";
 
 const Login = () => {
   const dispatch = useDispatch<any>();
@@ -67,6 +68,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isDispatched && status === 200) {
+      dispatch(fetchTokenTimeInfo());
       navigate("/saturno/vote/");
     }
   }, [data, isDispatched, navigate]);
