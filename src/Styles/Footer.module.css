@@ -24,6 +24,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
+  padding-top: 0.5rem;
   width: 100%;
   max-height: 5rem;
   box-shadow: 0 -10px 8px -10px var(--light-shadow-color);

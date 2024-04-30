@@ -25,7 +25,7 @@ export const VoteReport = () => {
 
   useEffect(() => {
     const currentDateTime = new Date();
-    const availableDateTime = new Date("2024-06-06T17:00:59");
+    const availableDateTime = new Date("2023-06-06T17:00:59");
     if (currentDateTime <= availableDateTime) {
       setStartTime(false);
     }
@@ -137,7 +137,9 @@ export const VoteReport = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          height: "70vh",
           width: "100%",
+          overflowY: "auto",
         }}
       >
         <Title>Relatório de votação</Title>
@@ -152,7 +154,7 @@ export const VoteReport = () => {
             <option value="2">Resultados Conselho Superior</option>
           </select>
         </div>
-        <div className={styles.downloadContainer}>
+        <div className={styles.button}>
           <BiSolidDownload size={24} onClick={handleDownload} />
         </div>
         <TableContainer component={Paper} className={styles.tableContainer}>
