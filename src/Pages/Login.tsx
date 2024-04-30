@@ -98,7 +98,7 @@ const Login = () => {
         className={styles.loginForm}
         onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
       >
-        <Title>Entrar no saturno</Title>
+        <Title>Bem Vindo(a)!</Title>
         <div className={styles.formGroup}>
           <div className={styles.password}>
             <Input
