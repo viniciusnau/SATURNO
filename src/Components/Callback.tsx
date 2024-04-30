@@ -11,6 +11,7 @@ const Callback: React.FC = () => {
     const queryParams = new URLSearchParams(location.search);
     const googleToken = queryParams.get("google_token");
     const token = queryParams.get("jwt_token");
+    const userId = queryParams.get("user_id");
 
     if (googleToken) {
       sessionStorage.setItem("googleToken", googleToken);
@@ -19,6 +20,9 @@ const Callback: React.FC = () => {
     if (token) {
       sessionStorage.setItem("apiToken", token);
       setApiToken(token);
+    }
+    if (userId) {
+      sessionStorage.setItem("userId", userId);
     }
   }, [location.search]);
 
