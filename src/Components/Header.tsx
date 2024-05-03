@@ -89,7 +89,7 @@ const Header = () => {
                             Votação
                           </span>
                         </li>
-                        {position !== "public defender" && (
+                        {(position === "public defender" || !position) ? null : (
                           <>
                             <li
                               onClick={() => {
@@ -151,7 +151,7 @@ const Header = () => {
                   >
                     Votação
                   </span>
-                  {position !== "public defender" && (
+                  {(position === "public defender" || !position) ? null : (
                     <>
                       <span
                         onClick={() => {

@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { isLoggedIn, logout } from "./Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { PATH } from "../PATH";
+import { fetchRoles } from "../Services/Slices/roles";
 
 export const ProtectedRoute: React.FC<{
   Component: React.FC<any>;
@@ -11,7 +12,12 @@ export const ProtectedRoute: React.FC<{
   accessRole?: string[];
 }> = ({ Component, accessRole, ...rest }) => {
   const dispatch = useDispatch<any>();
-  const { data } = useSelector((state: any) => state.loginSlice);
+  const { roles, loading, error } = useSelector((state: any) => state.rolesSlice);
+
+  useEffect(() => {
+    dispatch(fetchRoles());
+  }, [dispatch]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,15 +40,23 @@ export const ProtectedRoute: React.FC<{
     return () => {
       websocket.close();
     };
-  }, [dispatch]);
+  }, [dispatch, navigate]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching roles.</div>;
+  }
 
   if (isLoggedIn() && !accessRole) {
     return <Component {...rest} />;
   }
-
-  if (isLoggedIn() && accessRole && accessRole.includes(data.role)) {
+  if (isLoggedIn() && accessRole && accessRole.some(role => roles.includes(role))) {
     return <Component {...rest} />;
-  }
+  }  
+
   return <Navigate to="/saturno/login/" />;
 };
 

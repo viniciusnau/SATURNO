@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header";
@@ -22,32 +23,17 @@ function App() {
           <Routes>
             <Route
               path="/saturno/vote/"
-              element={
-                <ProtectedRoute Component={VotePage} path="/saturno/vote" />
-              }
+              element={<ProtectedRoute Component={VotePage} path="/saturno/vote" />}
             />
             <Route
               path="/saturno/vote-pdf/"
-              element={
-                <ProtectedRoute
-                  Component={VotePagePdf}
-                  path="/saturno/vote-pdf/"
-                />
-              }
+              element={<ProtectedRoute Component={VotePagePdf} path="/saturno/vote-pdf/" />}
             />
             <Route path="/saturno/login/" element={<Login />} />
-            <Route
-              path="/saturno/password-reset/"
-              element={<ResetPassword />}
-            />
+            <Route path="/saturno/password-reset/" element={<ResetPassword />} />
             <Route
               path="/saturno/confirm-hash/"
-              element={
-                <ProtectedRoute
-                  Component={HashValidation}
-                  path="/saturno/confirm-hash/"
-                />
-              }
+              element={<ProtectedRoute Component={HashValidation} path="/saturno/confirm-hash/" />}
             />
             <Route
               path="/saturno/elections-results/"
@@ -55,7 +41,7 @@ function App() {
                 <ProtectedRoute
                   Component={ElectionsResults}
                   path="/saturno/elections-results/"
-                  accessRole={["Admin", "Electoral_Commission"]}
+                  accessRole={["electoral commission", "public defender"]}
                 />
               }
             />
@@ -65,14 +51,11 @@ function App() {
                 <ProtectedRoute
                   Component={VoteReport}
                   path="/saturno/vote-report/"
-                  accessRole={["Admin", "Electoral_Commission"]}
+                  accessRole={["electoral commission"]}
                 />
               }
             />
-            <Route
-              path="/saturno/callback/:googleToken"
-              element={<Callback />}
-            />
+            <Route path="/saturno/callback/:googleToken" element={<Callback />} />
             <Route path="/saturno/register/" element={<Register />} />
           </Routes>
           <Footer />
