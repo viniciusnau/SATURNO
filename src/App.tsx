@@ -41,7 +41,7 @@ function App() {
                 <ProtectedRoute
                   Component={ElectionsResults}
                   path="/saturno/elections-results/"
-                  accessRole={["electoral commission", "public defender"]}
+                  accessRole={["electoral commission"]}
                 />
               }
             />
