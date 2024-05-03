@@ -132,42 +132,29 @@ const VotePage: React.FC = () => {
     });
   };
 
-    return (
-        <div className={styles.VotePage}>
-            {allVoted && navigate('/saturno/vote-pdf/')}
-            {Error && <Snackbar type={Error} setShowSnackbar={setError} />}
-            {message && (
-                <Snackbar type={message} setShowSnackbar={setMessage} />
-            )}
-            {isOpenModal && (
-                <Modal
-                content={{
-                    sendVote: {
-                        title: "Voto prestes a ser registrado!",
-                        description: `Você tem certeza que deseja finalizar a votação para ${positionCandidades}?`,
-                        button: "Sim",
-                    }
-                }}
-                    confirm={handleConfirmVote}
-                    setOpenModal={setIsOpenModal}
-                    open={isOpenModal}
-                />
-            )}
-            <Title>Votação Eleitoral - {positionCandidades} </Title>
-            <div className={styles.TableContainer}>
-                <div className={styles.Table}>
-                    <Table image={avatar} row={rows} loading={loading} />
-                </div>
-            </div>
-            <div className={styles.MiniTable}>
-                <MiniTable
-                    columns={columns}
-                    data={responseListCandidates.selectedCandidates}
-                />
-            </div>
-            <Button className={styles.button} onClick={handleSubmitVote}>
-                Finalizar Votação
-            </Button>
+  return (
+    <div className={styles.VotePage}>
+      {allVoted && navigate("/saturno/vote-pdf/")}
+      {Error && <Snackbar type={Error} setShowSnackbar={setError} />}
+      {message && <Snackbar type={message} setShowSnackbar={setMessage} />}
+      {isOpenModal && (
+        <Modal
+          content={{
+            sendVote: {
+              title: "Voto prestes a ser registrado!",
+              description: `Você tem certeza que deseja finalizar a votação para ${positionCandidades}?`,
+              button: "Sim",
+            },
+          }}
+          confirm={handleConfirmVote}
+          setOpenModal={setIsOpenModal}
+          open={isOpenModal}
+        />
+      )}
+      <Title>Votação Eleitoral - {positionCandidades} </Title>
+      <div className={styles.TableContainer}>
+        <div className={styles.Table}>
+          <Table image={avatar} row={rows} loading={loading} />
         </div>
       </div>
       <div className={styles.MiniTable}>

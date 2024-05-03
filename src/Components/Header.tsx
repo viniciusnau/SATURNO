@@ -34,16 +34,15 @@ const Header = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (location.pathname !== "/saturno/login" || "/saturno/register") {
-      console.log(location.pathname);
-      dispatch(fetchmeId());
-    }
-  }, [dispatch, location.pathname]);
+  // useEffect(() => {
+  //   if (location.pathname !== "/saturno/login" || "/saturno/register") {
+  //     dispatch(fetchmeId());
+  //   }
+  // }, [dispatch, location.pathname]);
 
   if (meIdData.data && meIdData.data.length !== 0) {
     position = meIdData.data.position;
-}
+  }
 
   const handleLogout = async () => {
     await dispatch(backendLogout());
@@ -97,7 +96,9 @@ const Header = () => {
                                 navigate("saturno/elections-results/");
                               }}
                             >
-                              <span className={`${styles.route} ${styles.logout}`}>
+                              <span
+                                className={`${styles.route} ${styles.logout}`}
+                              >
                                 Resultado das Eleições
                               </span>
                             </li>
@@ -107,8 +108,10 @@ const Header = () => {
                                 navigate("saturno/vote-report/");
                               }}
                             >
-                              <span className={`${styles.route} ${styles.logout}`}>
-                                Relatórios
+                              <span
+                                className={`${styles.route} ${styles.logout}`}
+                              >
+                                Relatório da votação
                               </span>
                             </li>
                           </>
@@ -165,7 +168,7 @@ const Header = () => {
                         }}
                         className={`${styles.route} ${styles.logout}`}
                       >
-                        Relatórios
+                        Relatório da votação
                       </span>
                     </>
                   )}

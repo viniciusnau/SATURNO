@@ -3,7 +3,6 @@ import { BiSolidDownload } from "react-icons/bi";
 import services from "../Services/services";
 import Button from "../Components/Button";
 import styles from "../Styles/VotePagePdf.module.css";
-import { Padding } from "@mui/icons-material";
 import Title from "../Components/Title";
 
 export const VotePagePdf = () => {

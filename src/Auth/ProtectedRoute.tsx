@@ -11,16 +11,16 @@ export const ProtectedRoute: React.FC<{
   accessRole?: string[];
 }> = ({ Component, accessRole, ...rest }) => {
   const dispatch = useDispatch<any>();
-  const { data } = useSelector((state: any) => state.loginSlice);
   const navigate = useNavigate();
+  const { data } = useSelector((state: any) => state.meId);
 
   useEffect(() => {
     const userId = parseInt(sessionStorage.getItem("userId") || "0", 10);
     const storedToken = sessionStorage.getItem("apiToken") ?? "";
-
     const websocket = new WebSocket(
       `${PATH.websocketBase}/user_session/${userId}/?token=${storedToken}`
     );
+
     function handleWebSocketMessage(event: MessageEvent) {
       const message = JSON.parse(event.data);
 
@@ -40,7 +40,7 @@ export const ProtectedRoute: React.FC<{
     return <Component {...rest} />;
   }
 
-  if (isLoggedIn() && accessRole && accessRole.includes(data.role)) {
+  if (isLoggedIn() && accessRole && accessRole.includes(data.position)) {
     return <Component {...rest} />;
   }
   return <Navigate to="/saturno/login/" />;
