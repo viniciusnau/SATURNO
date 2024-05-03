@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header";
@@ -55,7 +56,7 @@ function App() {
                 <ProtectedRoute
                   Component={ElectionsResults}
                   path="/saturno/elections-results/"
-                  accessRole={["Admin", "electoral comission"]}
+                  accessRole={["electoral commission"]}
                 />
               }
             />
@@ -65,7 +66,7 @@ function App() {
                 <ProtectedRoute
                   Component={VoteReport}
                   path="/saturno/vote-report/"
-                  accessRole={["Admin", "electoral comission"]}
+                  accessRole={["electoral commission"]}
                 />
               }
             />

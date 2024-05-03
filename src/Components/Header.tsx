@@ -88,7 +88,7 @@ const Header = () => {
                             Votação
                           </span>
                         </li>
-                        {position !== "public defender" && (
+                        {position === "public defender" || !position ? null : (
                           <>
                             <li
                               onClick={() => {
@@ -111,7 +111,7 @@ const Header = () => {
                               <span
                                 className={`${styles.route} ${styles.logout}`}
                               >
-                                Relatório da votação
+                                Relatório de votação
                               </span>
                             </li>
                           </>
@@ -150,7 +150,7 @@ const Header = () => {
                   >
                     Votação
                   </span>
-                  {position !== "public defender" && (
+                  {position === "public defender" || !position ? null : (
                     <>
                       <span
                         onClick={() => {
@@ -168,7 +168,7 @@ const Header = () => {
                         }}
                         className={`${styles.route} ${styles.logout}`}
                       >
-                        Relatório da votação
+                        Relatório de votação
                       </span>
                     </>
                   )}

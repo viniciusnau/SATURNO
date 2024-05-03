@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../Styles/Callback.module.css";
+import { useDispatch } from "react-redux";
+import { fetchTokenTimeInfo } from "../Services/Slices/authState";
 
 const Callback: React.FC = () => {
+  const dispatch = useDispatch<any>();
   const navigate = useNavigate();
   const location = useLocation();
   const [apiToken, setApiToken] = useState<string | null>(null);
@@ -11,6 +14,7 @@ const Callback: React.FC = () => {
     const queryParams = new URLSearchParams(location.search);
     const googleToken = queryParams.get("google_token");
     const token = queryParams.get("jwt_token");
+    const userId = queryParams.get("user_id");
 
     if (googleToken) {
       sessionStorage.setItem("googleToken", googleToken);
@@ -20,7 +24,12 @@ const Callback: React.FC = () => {
       sessionStorage.setItem("apiToken", token);
       setApiToken(token);
     }
-  }, [location.search]);
+
+    if (userId) {
+      sessionStorage.setItem("userId", userId);
+      dispatch(fetchTokenTimeInfo());
+    }
+  }, [dispatch, location.search]);
 
   useEffect(() => {
     if (apiToken !== null) {

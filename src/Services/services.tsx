@@ -19,33 +19,26 @@ const services = {
       .catch((err: any) => console.log(err));
   },
 
-  googleTokenLogin: async (googleToken: any) => {
-    const body = {
-      google_token: googleToken,
-    };
-
-    const csrfToken = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("csrftoken"))
-      ?.split("=")[1];
-
+  getRoles: async () => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    if (!apiToken) {
+      console.error("No API token provided.");
+      return null;
+    }
     const headers = {
-      "X-CSRFToken": csrfToken,
+      Authorization: `Bearer ${apiToken}`,
     };
 
     return axios
-      .post(`${PATH.base}/user/google-token-login/`, body, { headers })
+      .get(`${PATH.base}/user/roles-view/`, { headers: headers })
       .then((response) => {
-        sessionStorage.setItem("apiToken", response.data.access_token);
-        sessionStorage.setItem("userId", response.data.user_id);
-        return response;
+        return response.data.roles;
       })
       .catch((error) => {
-        console.error("Error logging in with Google token:", error);
+        console.error("Error fetching roles data: ", error);
         throw error;
       });
   },
-
 
   logout: async () => {
     const apiToken = sessionStorage.getItem("apiToken");

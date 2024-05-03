@@ -8,7 +8,7 @@ interface ITitle {
 
 const Title: React.FC<ITitle> = ({ className, children }) => {
   // Corrected prop name
-  return <h2 className={`${styles.title} ${className}`}>{children}:</h2>; // Wrapped children inside curly braces
+  return <h2 className={`${styles.title} ${className}`}>{children}</h2>; // Wrapped children inside curly braces
 };
 
 export default Title;

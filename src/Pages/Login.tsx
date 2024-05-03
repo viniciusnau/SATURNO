@@ -12,6 +12,7 @@ import { handleKeyPress } from "../Components/Helper";
 import Button from "../Components/Button";
 import { Link } from "@mui/material";
 import Title from "../Components/Title";
+import { fetchTokenTimeInfo } from "../Services/Slices/authState";
 
 const Login = () => {
   const dispatch = useDispatch<any>();
@@ -30,7 +31,7 @@ const Login = () => {
 
   useEffect(() => {
     const currentDateTime = new Date();
-    const deadlineDateTime = new Date("2025-04-20T20:50:59");
+    const deadlineDateTime = new Date("2025-06-06T17:00:00");
     if (currentDateTime >= deadlineDateTime) {
       setLimitTime(true);
     }
@@ -67,6 +68,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isDispatched && status === 200) {
+      dispatch(fetchTokenTimeInfo());
       navigate("/saturno/vote/");
     }
   }, [data, isDispatched, navigate]);
@@ -96,7 +98,7 @@ const Login = () => {
         className={styles.loginForm}
         onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
       >
-        <Title>Entrar no saturno</Title>
+        <Title>Bem Vindo(a)</Title>
         <div className={styles.formGroup}>
           <div className={styles.password}>
             <Input
