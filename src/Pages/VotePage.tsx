@@ -70,7 +70,7 @@ const VotePage: React.FC = () => {
       if (votePosition1 && votePosition1.vote_status === "not voted") {
         maxCount = 3;
         positionId = 1;
-        setPositionCandidates("Defensor(a) Público Geral");
+        setPositionCandidates("Defensor(a) Público(a) Geral");
       } else {
         if (votePosition2 && votePosition2.vote_status === "not voted") {
           maxCount = 5;
@@ -141,9 +141,9 @@ const VotePage: React.FC = () => {
         <Modal
           content={{
             sendVote: {
-              title: "Voto prestes a ser registrado!",
+              title: "Confirmação de voto!",
               description: `Você tem certeza que deseja finalizar a votação para ${positionCandidades}?`,
-              button: "Sim",
+              button: "Confirmar",
             },
           }}
           confirm={handleConfirmVote}
