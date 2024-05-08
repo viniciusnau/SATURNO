@@ -1,34 +1,92 @@
-h2 {
-    margin: .5rem 0;
-  }
+@import '../colors.css';
   
 .container {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--fifth-color);
+  background-color: #fff;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: .75rem;
   box-shadow: 0px 10px 10px -10px var(--shadow-color);
   max-width: 25rem;
-  width: 100%;
-  max-height: 80%;
+  width: 80%;
+  height: 10rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.title, .subtitle {
+  text-align: left;
+  margin: 0;
+}
+
+.title {
+  font-size: 1.12rem;
+  font-family: 'SourceCodePro', monospace;
+  src: local('SourceCodePro'),
+    url('../Fonts/SourceCodePro/SourceCodePro-Medium.ttf') format('truetype')
+  ;
+}
+
+.subtitle {
+  color: var(--subtitle);
+  font-size: 1rem;
+  font-family: 'SourceCodePro', monospace;
+  src: local('SourceCodePro'),
+    url('../Fonts/SourceCodePro/SourceCodePro-Regular.ttf') format('truetype')
+  ;
+}
+
+.description {
+  font-family: 'SourceCodePro', monospace;
+  src: local('SourceCodePro'),
+    url('../Fonts/SourceCodePro/SourceCodePro-Regular.ttf') format('truetype')
+  ;
+  color: var(--description);
 }
 
 .buttonContainer {
-  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
 }
 
 .button {
-  margin: 0 .5rem;
+ border-radius: 6.25rem;
+ border: 1px solid var(--sixth-color);
+ src: local('SourceCodePro'),
+    url('../Fonts/SourceCodePro/SourceCodePro-Regular.ttf') format('truetype')
+  ;
+  background-color: transparent;
+  font-size: .9rem;
+  box-shadow: none;
+}
+
+.confirmButton {
+  background-color: var(--fifth-button-color);
+  color: #fff;
 }
 
 .button:hover {
-  background-color: #CCCCCC;
+  background-color: #f5f5f5;
+}
+
+.confirmButton:hover {
+  background-color: var(--fifth-button-color-hover);
+}
+
+.confirmButton:disabled {
+  background-color: var(--fifth-button-color-disabled);
 }
   
 .container.open {

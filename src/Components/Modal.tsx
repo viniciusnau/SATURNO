@@ -4,6 +4,7 @@ import styles from "../Styles/Modal.module.css";
 
 interface IModalContent {
   title: string;
+  subtitle?: string;
   description: string;
   button: string;
 }
@@ -19,12 +20,7 @@ interface IModal {
   open: boolean;
 }
 
-const Modal: React.FC<IModal> = ({
-  content,
-  confirm,
-  setOpenModal,
-  open,
-}) => {
+const Modal: React.FC<IModal> = ({ content, confirm, setOpenModal, open }) => {
   const handleCancel = () => {
     setOpenModal(false);
   };
@@ -40,13 +36,21 @@ const Modal: React.FC<IModal> = ({
     <>
       {open && <div className={styles.backdrop}></div>}
       <div className={`${styles.container} ${open ? styles.open : ""}`}>
-        <h2>{modalContent.title}</h2>
+        <div className={styles.titleContainer}>
+          <h2 className={styles.title}>{modalContent.title}</h2>
+          {modalContent.subtitle && (
+            <h3 className={styles.subtitle}>{modalContent.subtitle}</h3>
+          )}
+        </div>
+        <p className={styles.description}>{modalContent.description}</p>
         <div className={styles.buttonContainer}>
-          <p>{modalContent.description}</p>
           <Button className={styles.button} onClick={handleCancel}>
             Cancelar
           </Button>
-          <Button className={styles.button} onClick={handleConfirm}>
+          <Button
+            className={`${styles.button} ${styles.confirmButton}`}
+            onClick={handleConfirm}
+          >
             {modalContent.button}
           </Button>
         </div>
