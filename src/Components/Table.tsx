@@ -12,11 +12,6 @@ import luisxvi from "../Assets/luisxvi.jpg"
 import mariaAntonieta from "../Assets/mariaAntonieta.jpg"
 import napo from "../Assets/napo.jpg"
 import pedroAl from "../Assets/pedroAlv.jpeg"
-import raiden from "../Assets/raiden.jpeg";
-import liukang from "../Assets/liukang.jpeg";
-import shang from "../Assets/shang.jpeg";
-import cage from "../Assets/cage.jpeg";
-import kitana from "../Assets/kitana.jpeg";
 import akuma from "../Assets/akuma.jpeg";
 import blanka from "../Assets/blanka.jpeg";
 import chunli from "../Assets/chunli.jpeg";
