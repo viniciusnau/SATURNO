@@ -68,7 +68,11 @@
 }
 
 .info {
+  width: 60%;
   margin: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .candidateImage {
