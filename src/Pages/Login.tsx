@@ -141,7 +141,7 @@ const Login = () => {
         </div>
         <div className={styles.lineContainer}>
           <hr className={styles.line} />
-          <div className={styles.text}>ou</div>
+          <div className={styles.text}>Após registrar-se</div>
           <hr className={styles.line} />
         </div>
 
