@@ -5,7 +5,6 @@ import Button from "./Button";
 import { fetchSelectCandidate } from "../Services/Slices/selectedCandidate";
 import { useDispatch, useSelector } from "react-redux";
 import Snackbar from "./Snackbar";
-import { RiAddCircleLine } from "react-icons/ri";
 import domPedro2 from "../Assets/domPedro2.jpg"
 import joanaD from "../Assets/joanaDarc.jpg"
 import luisxvi from "../Assets/luisxvi.jpg"
@@ -194,7 +193,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
                           <div className={styles.circularImage}>
                             <img
                               src={loadImage(row)}
-                              alt="Foto do Candidato"
+                              alt="Foto do(a) Candidato(a)"
                               style={{
                                 width: "100%",
                                 height: "100%",
@@ -216,18 +215,18 @@ const Table: React.FC<IData> = ({ row, loading }) => {
         </Box>
         <Box className={styles.detailsContainer}>
           <div className={styles.detailscontainer}>
-            <h4> Detalhes do Candidato(a) Selecionado: </h4>
+            <h4> Detalhes do(a) Candidato(a) Selecionado(a): </h4>
           </div>
           <div className={styles.detailsContent}>
             <img
               src={selectedCandidateImage || avatar}
-              alt="Foto do Candidato"
+              alt="Foto do(a) Candidato(a)"
               className={styles.candidateImage}
             />
             <div className={styles.candidateSelect}>
               {selectedCandidate ? (
                 <ul>
-                  <li>{`Candidato: ${selectedCandidate.candidate}`}</li>
+                  <li>{`Candidato(a): ${selectedCandidate.candidate}`}</li>
                   <li>{`Matrícula: ${selectedCandidate.registration}`}</li>
                   <li>{`Nascimento: ${formatDate(
                     selectedCandidate.birth_date
