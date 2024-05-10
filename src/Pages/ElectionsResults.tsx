@@ -6,14 +6,12 @@ import Snackbar from "../Components/Snackbar";
 import styles from "../Styles/ElectionsResults.module.css";
 import avatar from "../Assets/avatar.svg";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import Nubsaibot from "../Assets/Nubsaibot.jpg";
-import subzero from "../Assets/subzero.jpeg";
-import scorpion from "../Assets/scorpion.jpeg";
-import raiden from "../Assets/raiden.jpeg";
-import liukang from "../Assets/liukang.jpeg";
-import shang from "../Assets/shang.jpeg";
-import cage from "../Assets/cage.jpeg";
-import kitana from "../Assets/kitana.jpeg";
+import domPedro2 from "../Assets/domPedro2.jpg"
+import joanaD from "../Assets/joanaDarc.jpg"
+import luisxvi from "../Assets/luisxvi.jpg"
+import mariaAntonieta from "../Assets/mariaAntonieta.jpg"
+import napo from "../Assets/napo.jpg"
+import pedroAl from "../Assets/pedroAlv.jpeg"
 import akuma from "../Assets/kitana.jpeg";
 import blanka from "../Assets/blanka.jpeg";
 import chunli from "../Assets/chunli.jpeg";
@@ -77,21 +75,17 @@ const ElectionsResults = () => {
     setSelectedCandidate(candidate);
     if (candidate) {
       if (candidate.id === 39) {
-        setSelectedCandidateImage(Nubsaibot);
+        setSelectedCandidateImage(domPedro2);
       } else if (candidate.id === 21) {
-        setSelectedCandidateImage(subzero);
+        setSelectedCandidateImage(pedroAl);
       } else if (candidate.id === 22) {
-        setSelectedCandidateImage(scorpion);
+        setSelectedCandidateImage(mariaAntonieta);
       } else if (candidate.id === 23) {
-        setSelectedCandidateImage(raiden);
+        setSelectedCandidateImage(luisxvi);
       } else if (candidate.id === 24) {
-        setSelectedCandidateImage(liukang);
+        setSelectedCandidateImage(napo);
       } else if (candidate.id === 25) {
-        setSelectedCandidateImage(shang);
-      } else if (candidate.id === 27) {
-        setSelectedCandidateImage(cage);
-      } else if (candidate.id === 28) {
-        setSelectedCandidateImage(kitana);
+        setSelectedCandidateImage(joanaD);
       } else if (candidate.id === 6) {
         setSelectedCandidateImage(blanka);
       } else if (candidate.id === 7) {
@@ -131,21 +125,17 @@ const ElectionsResults = () => {
 
   const loadImage = (row: any) => {
     if (row.id === 39) {
-      return Nubsaibot;
+      return domPedro2;
     } else if (row.id === 21) {
-      return subzero;
+      return pedroAl;
     } else if (row.id === 22) {
-      return scorpion;
+      return mariaAntonieta;
     } else if (row.id === 23) {
-      return raiden;
+      return luisxvi;
     } else if (row.id === 24) {
-      return liukang;
+      return napo;
     } else if (row.id === 25) {
-      return shang;
-    } else if (row.id === 27) {
-      return cage;
-    } else if (row.id === 28) {
-      return kitana;
+      return joanaD;
     } else if (row.id === 6) {
       return blanka;
     } else if (row.id === 7) {
