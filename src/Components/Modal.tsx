@@ -44,7 +44,11 @@ const Modal: React.FC<IModal> = ({ content, confirm, setOpenModal, open }) => {
         </div>
         <p className={styles.description}>{modalContent.description}</p>
         <div className={styles.buttonContainer}>
-          <Button className={styles.button} onClick={handleCancel}>
+          <Button
+            className={styles.button}
+            onClick={handleCancel}
+            style={{ color: "initial" }}
+          >
             Cancelar
           </Button>
           <Button

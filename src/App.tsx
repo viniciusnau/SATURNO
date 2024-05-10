@@ -13,6 +13,7 @@ import Callback from "./Components/Callback";
 import ProtectedRoute from "./Auth/ProtectedRoute";
 import { Register } from "./Pages/Register";
 import { VoteReport } from "./Pages/VoteReport";
+import ApproveRegister from "./Pages/ApproveRegister";
 
 function App() {
   return (
@@ -67,6 +68,16 @@ function App() {
                   Component={VoteReport}
                   path="/saturno/vote-report/"
                   accessRole={["electoral commission"]}
+                />
+              }
+            />
+            <Route
+              path="/saturno/approve-register/"
+              element={
+                <ProtectedRoute
+                  Component={ApproveRegister}
+                  path="/saturno/approve-register/"
+                  accessRole={["admin"]}
                 />
               }
             />
