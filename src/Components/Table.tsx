@@ -168,7 +168,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
       {error && <Snackbar type={error} setShowSnackbar={setError} />}
       <Box className={styles.megaBox}>
         <Box className={styles.rowContainer}>
-          <h4> Candidatos </h4>
+          <h4> Candidatos(as) </h4>
           {loading && <Box className={styles.loadingContainer}></Box>}
 
           {!loading && row?.length === 0 && (
