@@ -111,7 +111,7 @@ const Header = () => {
                               <span
                                 className={`${styles.route} ${styles.logout}`}
                               >
-                                Relatório de votação
+                                Relatórios
                               </span>
                             </li>
                           </>
@@ -168,7 +168,7 @@ const Header = () => {
                         }}
                         className={`${styles.route} ${styles.logout}`}
                       >
-                        Relatório de votação
+                        Relatórios
                       </span>
                     </>
                   )}

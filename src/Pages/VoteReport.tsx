@@ -142,7 +142,7 @@ export const VoteReport = () => {
           overflowY: "auto",
         }}
       >
-        <Title>Relatório de votação</Title>
+        <Title>Relatórios</Title>
         <div className={styles.filterContainer}>
           <select
             value={selectedFilter}
