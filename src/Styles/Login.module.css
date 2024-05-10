@@ -22,7 +22,7 @@
     margin-bottom: 1.25rem;
   }
   
-  .google:hover,
+
   .input:hover,
   .date:hover {
     background-color: var(--second-button-color-hover);
@@ -58,7 +58,13 @@
     align-items: center;
     justify-content: center;
     border-radius: 5rem;
+    background-color: var(--second-button-color) !important;
+    color: initial !important;
+    margin: 0 0 1.5rem 0;
+  }
 
+  .google:hover {
+    background-color: var(--second-button-color-hover) !important;
   }
 
   .icon {
@@ -76,7 +82,7 @@
     align-items: center;
     justify-content: space-around;
     width: 20rem;
-    margin: 1rem 0 0.25rem 0;
+    margin: .25rem 0;
     height: 3rem
   }
 
@@ -91,45 +97,64 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1.75rem 0 0 0;
   }
   
   .button {
     height: 2.5rem;
     width: 7.5rem;
-    background-color: var(--first-button-color);
+    /* background-color: var(--first-button-color); */
     box-shadow: 0 10px 10px -10px var(--shadow-color);
     font-size: var(--font-size);
   }
   
   .button:hover {
-    background-color: var(--first-button-color-hover);
+    /* background-color: var(--first-button-color-hover); */
   }
   
   .button:disabled {
-    background-color: var(--first-button-color-disabled);
+    /* background-color: var(--first-button-color-disabled); */
   }
   
   .lineContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0.25rem 0 1.5rem 0;
+    margin: 1rem 0 1.5rem 0;
   }
   
   .line {
     flex-grow: 1;
     height: 0.15rem;
-    width: 6.5rem;
+    width: 4.5rem;
     background-color: var(--second-button-color-focus);
     border: none;
     border-radius: 0.25rem;
   }
   
   .text {
-    margin: 0 1rem;
+    margin: 0 .37rem;
     color: var(--first-text-color-disabled);
     font-size: 1rem;
+    font-family: 'SourceCodePro', monospace;
+  src: local('SourceCodePro'),
+    url('../Fonts/SourceCodePro/SourceCodePro-Medium.ttf') format('truetype')
+  ;
+  }
+
+  .register {
+    border-radius: 6.25rem;
+    border: 1px solid var(--sixth-color);
+    src: local('SourceCodePro'),
+        url('../Fonts/SourceCodePro/SourceCodePro-Medium.ttf') format('truetype')
+      ;
+    background-color: transparent;
+    font-size: .9rem;
+    box-shadow: none;
+    color: initial;
+  }
+
+  .register:hover {
+    background-color: #f5f5f5;
   }
   
   @media (max-width: 750px) {

@@ -139,6 +139,7 @@ const Login = () => {
             Esqueceu a senha?
           </Link>
         </div>
+
         <div className={styles.lineContainer}>
           <hr className={styles.line} />
           <div className={styles.text}>Após registrar-se</div>
@@ -147,7 +148,7 @@ const Login = () => {
 
         <Button className={styles.google} onClick={handleGoogleLogin}>
           <img alt="Ícone do Google" src={icon} className={styles.icon} />
-          <p className={styles.login}>Continuar com google</p>
+          <p className={styles.login}>Acessar com Google</p>
         </Button>
 
         <div className={styles.formButton}>
