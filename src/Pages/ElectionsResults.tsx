@@ -44,7 +44,7 @@ const ElectionsResults = () => {
   );
 
   const positionOptions = {
-    "Defensor Público-Geral": "1",
+    "Defensor(a) Público-Geral": "1",
     "Conselho Superior": "2",
   };
 
@@ -273,7 +273,7 @@ const ElectionsResults = () => {
                                 ></div>
                                 <img
                                   src={loadImage(row)}
-                                  alt="Foto do Candidato"
+                                  alt="Foto do(a) Candidato(a)"
                                 />
                               </div>
                               <div className={styles.info}>
@@ -334,7 +334,7 @@ const ElectionsResults = () => {
                   ? selectedCandidateImage
                   : avatar
               }
-              alt="Foto do Candidato"
+              alt="Foto do(a) Candidato(a)"
               className={styles.candidateImage}
             />
             {selectedCandidate &&

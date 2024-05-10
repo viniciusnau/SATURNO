@@ -34,7 +34,7 @@ export const snackbarConsts = {
 
   candidateDuplicateError: {
     title: "Seleção de voto fora das diretrizes.",
-    description: "Candidato já selecionado!",
+    description: "Candidato(a) já selecionado!",
     color: "#ff6464",
   },
 

@@ -80,7 +80,7 @@ export const VoteReport = () => {
         <TableHead>
           <TableRow>
             <TableCell align="center">Posição</TableCell>
-            <TableCell align="center">Nome do Candidato</TableCell>
+            <TableCell align="center">Nome do(a) Candidato(a)</TableCell>
             <TableCell align="center">Votos</TableCell>
           </TableRow>
         </TableHead>
@@ -90,7 +90,7 @@ export const VoteReport = () => {
         <TableHead>
           <TableRow>
             <TableCell align="center">Matrícula</TableCell>
-            <TableCell align="center">Nome do Eleitor</TableCell>
+            <TableCell align="center">Nome do(a) Eleitor(a)</TableCell>
             <TableCell align="center">Votou DPG?</TableCell>
             <TableCell align="center">Votou Conselho?</TableCell>
           </TableRow>
@@ -142,7 +142,7 @@ export const VoteReport = () => {
           overflowY: "auto",
         }}
       >
-        <Title>Relatório de votação</Title>
+        <Title>Relatórios</Title>
         <div className={styles.filterContainer}>
           <select
             value={selectedFilter}
