@@ -3,7 +3,7 @@ import styles from "../Styles/Header.module.css";
 import image from "../Assets/logo_saturno.png";
 import { HiBars3 } from "react-icons/hi2";
 import { isLoggedIn, logout as frontendLogout } from "../Auth/Auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout as backendLogout } from "../Services/Slices/logoutSlice";
 import AutoLogoutTimer from "./AutoLogoutTimer";
@@ -12,11 +12,13 @@ import { fetchmeId } from "../Services/Slices/meId";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch<any>();
   const [isResponsive, setIsResponsive] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [toggleNav, setToggleNav] = useState<boolean>(true);
   const { data } = useSelector((state: any) => state.meId);
+  let position = "";
   const permissions = ["electoral comission", "admin"];
 
   const handleLogout = async () => {
@@ -40,6 +42,16 @@ const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    if (location.pathname !== "/saturno/login" || "/saturno/register") {
+      dispatch(fetchmeId());
+    }
+  }, [dispatch, location.pathname]);
+
+  if (data && data.length !== 0) {
+    position = data.position;
+  }
 
   return (
     <header className={styles.header}>

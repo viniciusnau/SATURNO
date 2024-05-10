@@ -25,7 +25,6 @@ const VotePage: React.FC = () => {
   const [verifyVote, setVerifyVote] = useState<boolean>(true);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [positionCandidades, setPositionCandidates] = useState<any>("");
-
   const responseDataUser = useSelector((state: any) => state.meId);
 
   const { data, loading, error } = useSelector(
@@ -43,7 +42,8 @@ const VotePage: React.FC = () => {
   const allVoted = responseDataUser?.data?.votes_info?.every(
     (vote: any) => vote.vote_status === "voted"
   );
-
+  console.log("responseDataUser: ", responseDataUser);
+  console.log("positionId: ", positionId);
   const columns = [
     { title: "Nome", property: "candidate" },
     { title: "Matrícula", property: "registration" },
@@ -51,6 +51,10 @@ const VotePage: React.FC = () => {
     { title: "Categoria", property: "category" },
     { title: "Lotação", property: "public_defense" },
   ];
+
+  useEffect(() => {
+    dispatch(fetchmeId()) && setIsDispatched(true);
+  }, [dispatch, verifyVote]);
 
   useEffect(() => {
     if (responseDataUser && responseDataUser?.data?.votes_info) {
