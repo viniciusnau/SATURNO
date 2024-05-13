@@ -20,20 +20,22 @@ const loginSlice = createSlice({
   initialState,
   reducers: {
     getLogin: (state) => {
+      state.data = {};
       state.loading = true;
       state.error = false;
       state.status = 401;
     },
     getLoginSuccess: (state, action) => {
+      state.data = action.payload;
       state.loading = false;
       state.error = false;
       state.status = 200;
-      state.data = action.payload;
     },
-    getLoginFailure: (state) => {
+    getLoginFailure: (state, action) => {
+      state.data = {};
       state.loading = false;
       state.error = true;
-      state.status = 401;
+      state.status = action.payload;
     },
   },
 });
@@ -47,8 +49,9 @@ export const fetchLogin = (body: any) => async (dispatch: any) => {
   dispatch(getLogin());
   try {
     const response = await services.getLogin(body);
-    dispatch(getLoginSuccess(response.data));
-  } catch (err) {
-    dispatch(getLoginFailure());
+    dispatch(getLoginSuccess(response?.data));
+  } catch (err: any) {
+    console.log("err: ", err?.response);
+    dispatch(getLoginFailure(err?.response?.status));
   }
 };

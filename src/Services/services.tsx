@@ -16,7 +16,9 @@ const services = {
         sessionStorage.setItem("userId", response.data.user_id);
         return response;
       })
-      .catch((err: any) => console.log(err));
+      .catch((err: any) => {
+        throw err;
+      });
   },
 
   getRoles: async () => {

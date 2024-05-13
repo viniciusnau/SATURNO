@@ -7,6 +7,7 @@ import { IRegister } from "../Types/Types";
 import { fetchRegister } from "../Services/Slices/postRegisterSlice";
 import Snackbar from "../Components/Snackbar";
 import Title from "../Components/Title";
+import { handleKeyPress } from "../Components/Helper";
 
 export const Register = () => {
   const dispatch = useDispatch<any>();
@@ -43,7 +44,10 @@ export const Register = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.containerData}>
+      <div
+        className={styles.containerData}
+        onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
+      >
         {!loading && !error && data && isDispatched && (
           <Snackbar type="registerSuccess" setShowSnackbar={setIsDispatched} />
         )}
@@ -66,6 +70,7 @@ export const Register = () => {
           name="registration"
           onChange={handleChange}
           value={form.registration}
+          placeholder="9999999-9-99"
         />
         <Input
           className={styles.input}
@@ -74,6 +79,7 @@ export const Register = () => {
           name="email"
           onChange={handleChange}
           value={form.email}
+          placeholder="exemplo@defensoria.sc.gov.br"
         />
         <Input
           className={styles.password}

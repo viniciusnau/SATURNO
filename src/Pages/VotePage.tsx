@@ -42,8 +42,7 @@ const VotePage: React.FC = () => {
   const allVoted = responseDataUser?.data?.votes_info?.every(
     (vote: any) => vote.vote_status === "voted"
   );
-  console.log("responseDataUser: ", responseDataUser);
-  console.log("positionId: ", positionId);
+
   const columns = [
     { title: "Nome", property: "candidate" },
     { title: "Matrícula", property: "registration" },

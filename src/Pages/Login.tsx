@@ -21,7 +21,6 @@ const Login = () => {
     (state: any) => state.loginSlice
   );
   const [isDispatched, setIsDispatched] = useState<boolean>(false);
-  const [hasResponseValue, setHasResponseValue] = useState<boolean>(false);
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -77,22 +76,20 @@ const Login = () => {
     if (isDispatched) {
       setTimeout(() => {
         setIsDispatched(false);
-        setHasResponseValue(false);
       }, 3000);
     }
   }, [isDispatched]);
-
-  useEffect(() => {
-    setHasResponseValue(true);
-  }, [data]);
 
   return (
     <div className={styles.container}>
       {showSnackbar && (
         <Snackbar type="errorLoginExpired" setShowSnackbar={setShowSnackbar} />
       )}
-      {error && isDispatched && (
+      {error && status !== 403 && isDispatched && (
         <Snackbar type="errorLogin" setShowSnackbar={setIsDispatched} />
+      )}
+      {error && status === 403 && isDispatched && (
+        <Snackbar type="unauthorizedLogin" setShowSnackbar={setIsDispatched} />
       )}
       <div
         className={styles.loginForm}

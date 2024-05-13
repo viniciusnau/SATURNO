@@ -68,6 +68,12 @@ export const snackbarConsts = {
     color: "#ff6464",
   },
 
+  unauthorizedLogin: {
+    title: "Conta em análise!",
+    description: "Por favor aguarde aprovação.",
+    color: "#ff6464",
+  },
+
   errorLoginExpired: {
     title: "Erro ao logar no sistema!",
     description: "Não é mais permitido ingresso no saturno.",
