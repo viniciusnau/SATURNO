@@ -14,6 +14,7 @@ import { fetchElectionsPDFData } from '../Services/Slices/electionsResultPDFData
 import styles from '../Styles/VoteReport.module.css';
 import services from '../Services/services';
 import Title from '../Components/Title';
+import { deadline } from '../Components/Consts';
 
 export const VoteReport = () => {
     const dispatch = useDispatch<any>();
@@ -25,8 +26,7 @@ export const VoteReport = () => {
 
     useEffect(() => {
         const currentDateTime = new Date();
-        const availableDateTime = new Date('2024-05-13T07:00:00');
-        if (currentDateTime <= availableDateTime) {
+        if (currentDateTime <= deadline.initial) {
             setStartTime(false);
         }
     }, []);

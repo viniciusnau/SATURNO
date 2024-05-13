@@ -77,8 +77,7 @@ const ElectionsResults = () => {
   useEffect(() => {
     if (timeRemaining > 0) {
       const currentDateTime = new Date();
-      const deadlineDateVoteTime = new Date("2024-05-13T07:00:00");
-      if (currentDateTime >= deadlineDateVoteTime) {
+      if (currentDateTime >= deadline.final) {
         setLimitTimeVote(true);
       }
     }
