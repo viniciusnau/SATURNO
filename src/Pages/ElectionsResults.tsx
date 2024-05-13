@@ -413,7 +413,7 @@ const ElectionsResults = () => {
   ) : (
     <div className={styles.notAvailableMessage}>
                   <div>
-                <Title> A visualização dos resultados das eleicões estará disponível a partir de:</Title>
+                <Title> A visualização dos resultados das eleicões estará disponível em:</Title>
                 <h2 className={styles.clock}>
                     <div className={styles.blocktimer}>
                         <span className={styles['clock-part']}>
