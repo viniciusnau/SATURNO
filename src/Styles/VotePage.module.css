@@ -1,3 +1,44 @@
+.votePageNotTime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.clock {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock-part {
+  padding: 10px;
+  margin: 0 0.40rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock-separator {
+  color: #000000;
+  margin: 0.65rem;
+  padding-bottom: 1.2rem;
+}
+
+.time {
+  font-size: 0.7vw ;
+}
+
+.blocktimer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .votePage {
   display: flex;
   width: 100%;

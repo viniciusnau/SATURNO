@@ -13,6 +13,7 @@ import Button from "../Components/Button";
 import { Link } from "@mui/material";
 import Title from "../Components/Title";
 import { fetchTokenTimeInfo } from "../Services/Slices/authState";
+import { deadline } from "../Components/Consts";
 
 const Login = () => {
   const dispatch = useDispatch<any>();
@@ -27,11 +28,11 @@ const Login = () => {
   });
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   const [limitTime, setLimitTime] = useState<boolean>(false);
+  const isElectoralComission = data?.roles?.includes("electoral commission");
 
   useEffect(() => {
     const currentDateTime = new Date();
-    const deadlineDateTime = new Date("2025-06-06T17:00:00");
-    if (currentDateTime >= deadlineDateTime) {
+    if (currentDateTime >= deadline.finalLogin) {
       setLimitTime(true);
     }
   }, []);
@@ -52,7 +53,7 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
-    if (limitTime) {
+    if (limitTime && isElectoralComission) {
       setShowSnackbar(true);
       return;
     }

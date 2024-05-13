@@ -12,6 +12,12 @@ export const roles = {
   publicDefender: "public defender",
 };
 
+export const deadline = {
+  initial: new Date("2024-05-13T07:00:00"),
+  final: new Date("2024-05-13T07:00:00"),
+  finalLogin: new Date("2024-05-15T16:50:00"),
+};
+
 export const snackbarConsts = {
   success: {
     title: "Requisição feita com sucesso!",

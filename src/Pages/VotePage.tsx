@@ -13,6 +13,7 @@ import MiniTable from "../Components/MiniTable";
 import Snackbar from "../Components/Snackbar";
 import Modal from "../Components/Modal";
 import Title from "../Components/Title";
+import { deadline } from "../Components/Consts";
 
 const VotePage: React.FC = () => {
   const dispatch = useDispatch<any>();
@@ -25,7 +26,21 @@ const VotePage: React.FC = () => {
   const [verifyVote, setVerifyVote] = useState<boolean>(true);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [positionCandidades, setPositionCandidates] = useState<any>("");
+  const columns = [
+    { title: "Nome", property: "candidate" },
+    { title: "Matrícula", property: "registration" },
+    { title: "Antiguidade", property: "seniority" },
+    { title: "Categoria", property: "category" },
+    { title: "Lotação", property: "public_defense" },
+  ];
+
   const responseDataUser = useSelector((state: any) => state.meId);
+
+  const positionId = useSelector((state: any) => state.meId.positionId);
+  const maxCount = useSelector((state: any) => state.meId.maxCount);
+  const allVoted = responseDataUser?.data?.votes_info?.every(
+    (vote: any) => vote.vote_status === "voted"
+  );
 
   const { data, loading, error } = useSelector(
     (state: any) => state.getListCandidates
@@ -37,19 +52,72 @@ const VotePage: React.FC = () => {
     (state: any) => state.selectedCandidate.selectedCandidates
   );
 
-  const positionId = useSelector((state: any) => state.meId.positionId);
-  const maxCount = useSelector((state: any) => state.meId.maxCount);
-  const allVoted = responseDataUser?.data?.votes_info?.every(
-    (vote: any) => vote.vote_status === "voted"
-  );
+  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
+  const [timeRemaining, setTimeRemaining] = useState<number>(0);
 
-  const columns = [
-    { title: "Nome", property: "candidate" },
-    { title: "Matrícula", property: "registration" },
-    { title: "Antiguidade", property: "seniority" },
-    { title: "Categoria", property: "category" },
-    { title: "Lotação", property: "public_defense" },
-  ];
+  const handleSubmitVote = () => {
+    const countSelectedCandidates = responseSelectedCandidates.length;
+    countSelectedCandidates === maxCount
+      ? setIsOpenModal(true)
+      : setError("voteCountError");
+  };
+
+  const handleConfirmVote = () => {
+    responseSelectedCandidates.forEach((candidate: any) => {
+      const voteData = {
+        position: positionId,
+        chosen_person: `${candidate.id}`,
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+      dispatch(fetchPostVote(voteData)) && setVotePage(true);
+      dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+      positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+    });
+  };
+
+  const calculateTimeRemaining = (
+    currentDateTime: Date,
+    deadlineDateTime: Date
+  ): number => {
+    const differenceMs = deadlineDateTime.getTime() - currentDateTime.getTime();
+    return Math.max(Math.floor(differenceMs / 1000), 0);
+  };
+
+  useEffect(() => {
+    const currentDateTime = new Date();
+    const remainingTimeInSeconds = calculateTimeRemaining(
+      currentDateTime,
+      deadline.initial
+    );
+    setTimeRemaining(remainingTimeInSeconds);
+
+    if (currentDateTime <= deadline.initial) {
+      setLimitTimeVote(true);
+      const intervalId = setInterval(() => {
+        const newTimeRemaining = calculateTimeRemaining(
+          new Date(),
+          deadline.initial
+        );
+        setTimeRemaining(newTimeRemaining);
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (timeRemaining > 0) {
+      const currentDateTime = new Date();
+      if (currentDateTime <= deadline.initial) {
+        setLimitTimeVote(true);
+      }
+    }
+  }, [timeRemaining]);
+
+  useEffect(() => {
+    if (timeRemaining <= 0) {
+      setLimitTimeVote(false);
+    }
+  }, [timeRemaining]);
 
   useEffect(() => {
     dispatch(fetchmeId()) && setIsDispatched(true);
@@ -111,27 +179,35 @@ const VotePage: React.FC = () => {
       setIsDispatched(true);
   }, [votePage]);
 
-  const handleSubmitVote = () => {
-    const countSelectedCandidates = responseSelectedCandidates.length;
-    countSelectedCandidates === maxCount
-      ? setIsOpenModal(true)
-      : setError("voteCountError");
-  };
-
-  const handleConfirmVote = () => {
-    responseSelectedCandidates.forEach((candidate: any) => {
-      const voteData = {
-        position: positionId,
-        chosen_person: `${candidate.id}`,
-        voting_person: `${responseDataUser.data.person_id}`,
-      };
-      dispatch(fetchPostVote(voteData)) && setVotePage(true);
-      dispatch(removeAllCandidates()) && setMessage("voteSuccess");
-      positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
-    });
-  };
-
-  return (
+  return limitTimeVote ? (
+    <div className={styles.votePageNotTime}>
+      <div>
+        <Title>O SATURNO estará disponível para votação em:</Title>
+        <h2 className={styles.clock}>
+          <div className={styles.blocktimer}>
+            <span className={styles["clock-part"]}>
+              {String(Math.floor(timeRemaining / 3600)).padStart(2, "0")}
+            </span>
+            <span className={styles.time}>Horas</span>
+          </div>
+          <span className={styles["clock-separator"]}>:</span>
+          <div className={styles.blocktimer}>
+            <span className={styles["clock-part"]}>
+              {String(Math.floor((timeRemaining % 3600) / 60)).padStart(2, "0")}
+            </span>
+            <span className={styles.time}>Minutos</span>
+          </div>
+          <span className={styles["clock-separator"]}>:</span>
+          <div className={styles.blocktimer}>
+            <span className={styles["clock-part"]}>
+              {String(timeRemaining % 60).padStart(2, "0")}
+            </span>
+            <span className={styles.time}>Segundos</span>
+          </div>
+        </h2>
+      </div>
+    </div>
+  ) : (
     <div className={styles.VotePage}>
       {allVoted && navigate("/saturno/vote-pdf/")}
       {Error && <Snackbar type={Error} setShowSnackbar={setError} />}

@@ -3,12 +3,13 @@ import styles from "../Styles/Header.module.css";
 import image from "../Assets/logo_saturno.png";
 import { HiBars3 } from "react-icons/hi2";
 import { isLoggedIn, logout as frontendLogout } from "../Auth/Auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout as backendLogout } from "../Services/Slices/logoutSlice";
 import AutoLogoutTimer from "./AutoLogoutTimer";
 import { useSelector } from "react-redux";
 import { fetchmeId } from "../Services/Slices/meId";
+import { deadline } from "./Consts";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,6 +21,25 @@ const Header = () => {
   const { data } = useSelector((state: any) => state.meId);
   let position = "";
   const permissions = ["electoral comission", "admin"];
+  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
+
+  useEffect(() => {
+    const currentDateTime = new Date();
+    if (currentDateTime <= deadline.initial) {
+      setLimitTimeVote(true);
+    }
+  }, [limitTimeVote]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentDateTime = new Date();
+      if (currentDateTime > deadline.initial) {
+        setLimitTimeVote(false);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [limitTimeVote]);
 
   const handleLogout = async () => {
     await dispatch(backendLogout());
@@ -53,7 +73,59 @@ const Header = () => {
     position = data.position;
   }
 
-  return (
+  return limitTimeVote ? (
+    <header className={styles.header}>
+      <div className={styles.greenContainer} />
+      <div className={styles.container}>
+        <img
+          src={image}
+          className={styles.logo}
+          alt="Logo"
+          onClick={() => navigate("/saturno/vote/")}
+        />
+        {isLoggedIn() && (
+          <div className={styles.navigation}>
+            <span
+              onClick={() => navigate("/saturno/vote/")}
+              className={`${styles.route} ${styles.logout}`}
+            >
+              Votação
+            </span>
+
+            {permissions.includes(data?.position) && (
+              <>
+                <span
+                  onClick={() => {
+                    setToggleNav(!toggleNav);
+                    navigate("saturno/elections-results/");
+                  }}
+                  className={`${styles.route} ${styles.logout}`}
+                >
+                  Resultado das Eleições
+                </span>
+                <span
+                  onClick={() => {
+                    setToggleNav(!toggleNav);
+                    navigate("saturno/vote-report/");
+                  }}
+                  className={`${styles.route} ${styles.logout}`}
+                >
+                  Relatórios
+                </span>
+              </>
+            )}
+            <span
+              onClick={handleLogout}
+              className={`${styles.route} ${styles.logout}`}
+            >
+              Sair
+            </span>
+          </div>
+        )}
+      </div>
+      {isLoggedIn() && <AutoLogoutTimer />}
+    </header>
+  ) : (
     <header className={styles.header}>
       <div className={styles.greenContainer} />
       <div className={styles.container}>
@@ -94,30 +166,24 @@ const Header = () => {
                         </li>
                         {permissions.includes(data?.position) && (
                           <>
-                            <li
+                            <span
                               onClick={() => {
                                 setToggleNav(!toggleNav);
                                 navigate("saturno/elections-results/");
                               }}
+                              className={`${styles.route} ${styles.logout}`}
                             >
-                              <span
-                                className={`${styles.route} ${styles.logout}`}
-                              >
-                                Resultado das Eleições
-                              </span>
-                            </li>
-                            <li
+                              Resultado das Eleições
+                            </span>
+                            <span
                               onClick={() => {
                                 setToggleNav(!toggleNav);
                                 navigate("saturno/vote-report/");
                               }}
+                              className={`${styles.route} ${styles.logout}`}
                             >
-                              <span
-                                className={`${styles.route} ${styles.logout}`}
-                              >
-                                Relatórios
-                              </span>
-                            </li>
+                              Relatórios
+                            </span>
                           </>
                         )}
                         <li
@@ -154,7 +220,7 @@ const Header = () => {
                   >
                     Votação
                   </span>
-                  {permissions.includes(data?.position) && (
+                  {position === "public defender" || !position ? null : (
                     <>
                       <span
                         onClick={() => {
