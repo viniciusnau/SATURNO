@@ -45,14 +45,6 @@ export const ProtectedRoute: React.FC<{
     };
   }, [dispatch, navigate]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error fetching roles.</div>;
-  }
-
   if (isLoggedIn() && !accessRole) {
     return <Component {...rest} />;
   }

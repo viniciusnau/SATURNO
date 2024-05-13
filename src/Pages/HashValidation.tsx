@@ -49,14 +49,6 @@ const HashValidation = () => {
     setShowSnackbar(true);
   };
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowSnackbar(false);
-    }, 5000);
-
-    return () => clearTimeout(timeout);
-  }, [showSnackbar]);
-
   return (
     <div className={styles.container}>
       {showSnackbar && (

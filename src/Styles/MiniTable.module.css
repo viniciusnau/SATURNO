@@ -85,19 +85,11 @@
 .deleteButton {
   height: 2.5rem;
   width: 3rem;
-  background-color: var(--first-button-color);
   box-shadow: 0 10px 10px -10px var(--shadow-color);
   font-size: var(--font-size);
   border-radius: 20rem;
 }
 
-.deleteButton:hover {
-  background-color: var(--first-button-color-hover);
-}
-
-.deleteButton:disabled {
-  background-color: var(--first-button-color-disabled);
-}
 .tableRow:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }

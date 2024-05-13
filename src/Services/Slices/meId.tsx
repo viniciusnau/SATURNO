@@ -57,7 +57,7 @@ export const {
 export default meId.reducer;
 
 export const fetchmeId =
-  (body?: any) =>
+  () =>
   async (
     dispatch: (arg0: {
       payload: any;

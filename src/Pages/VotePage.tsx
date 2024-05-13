@@ -48,7 +48,7 @@ const VotePage: React.FC = () => {
 
     useEffect(() => {
         const currentDateTime = new Date();
-        const deadlineDateVoteTime = new Date('2024-05-10T18:31:00');
+        const deadlineDateVoteTime = new Date('2024-05-13T09:45:00');
         const remainingTimeInSeconds = calculateTimeRemaining(
             currentDateTime,
             deadlineDateVoteTime
@@ -80,7 +80,7 @@ const VotePage: React.FC = () => {
     useEffect(() => {
         if (timeRemaining > 0) {
             const currentDateTime = new Date();
-            const deadlineDateVoteTime = new Date('2024-05-10T18:31:00');
+            const deadlineDateVoteTime = new Date('2024-05-13T09:45:00');
             if (currentDateTime <= deadlineDateVoteTime) {
                 setLimitTimeVote(true);
             }

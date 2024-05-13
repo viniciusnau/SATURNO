@@ -16,8 +16,11 @@
 
   .container:hover {
     background-color: var(--fifth-button-color-hover);
+    color: var(--second-text-color-hover);
   }
 
   .container:disabled {
     background-color: var(--fifth-button-color-disabled);
-  }
+    cursor: var(--cursor-not-allowed);
+    color: var(--second-text-color-disabled);
+  }   

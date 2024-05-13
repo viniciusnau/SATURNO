@@ -3,12 +3,11 @@ import styles from "../Styles/Title.module.css";
 
 interface ITitle {
   children: ReactNode;
-  className?: string; // Corrected prop name
+  className?: string;
 }
 
 const Title: React.FC<ITitle> = ({ className, children }) => {
-  // Corrected prop name
-  return <h2 className={`${styles.title} ${className}`}>{children}</h2>; // Wrapped children inside curly braces
+  return <h2 className={`${styles.title} ${className}`}>{children}</h2>;
 };
 
 export default Title;

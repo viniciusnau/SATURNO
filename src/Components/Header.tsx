@@ -25,7 +25,7 @@ const Header = () => {
 
     useEffect(() => {
         const currentDateTime = new Date();
-        const deadlineDateVoteTime = new Date('2024-05-10T18:31:00');
+        const deadlineDateVoteTime = new Date('2024-05-13T09:45:00');
         if (currentDateTime <= deadlineDateVoteTime) {
             setLimitTimeVote(true);
         }
@@ -34,7 +34,7 @@ const Header = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             const currentDateTime = new Date();
-            const deadlineDateVoteTime = new Date('2024-05-10T18:31:00');
+            const deadlineDateVoteTime = new Date('2024-05-13T09:45:00');
             if (currentDateTime > deadlineDateVoteTime) {
                 setLimitTimeVote(false);
             }
@@ -56,20 +56,45 @@ const Header = () => {
         };
     }, []);
 
-    // useEffect(() => {
-    //   if (location.pathname !== "/saturno/login" || "/saturno/register") {
-    //     dispatch(fetchmeId());
-    //   }
-    // }, [dispatch, location.pathname]);
+    useEffect(() => {
+      if (location.pathname !== "/saturno/login" || "/saturno/register") {
+        dispatch(fetchmeId());
+      }
+    }, [dispatch, location.pathname]);
 
     if (meIdData.data && meIdData.data.length !== 0) {
         position = meIdData.data.position;
     }
 
     const handleLogout = async () => {
-        await dispatch(backendLogout());
-        frontendLogout(navigate);
+      await dispatch(backendLogout());
+      frontendLogout(navigate);
     };
+
+    useEffect(() => {
+      dispatch(fetchmeId());
+    }, []);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setIsResponsive(window.innerWidth <= 940);
+      };
+      window.addEventListener("resize", handleResize);
+      handleResize();
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+
+    useEffect(() => {
+      if (location.pathname !== "/saturno/login" || "/saturno/register") {
+        dispatch(fetchmeId());
+      }
+    }, [dispatch, location.pathname]);
+  
+    if (data && data.length !== 0) {
+      position = data.position;
+    }
 
     return limitTimeVote ? (
         <header className={styles.header}>
@@ -88,14 +113,6 @@ const Header = () => {
                     >
                         Votação
                     </span>
-                    {isLoggedIn() && (
-                        <span
-                            onClick={handleLogout}
-                            className={`${styles.route} ${styles.logout}`}
-                        >
-                            Sair
-                        </span>
-                    )}
                 </div>
             </div>
             {isLoggedIn() && <AutoLogoutTimer />}

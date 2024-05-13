@@ -102,17 +102,7 @@
   .button {
     height: 2.5rem;
     width: 7.5rem;
-    /* background-color: var(--first-button-color); */
-    box-shadow: 0 10px 10px -10px var(--shadow-color);
     font-size: var(--font-size);
-  }
-  
-  .button:hover {
-    /* background-color: var(--first-button-color-hover); */
-  }
-  
-  .button:disabled {
-    /* background-color: var(--first-button-color-disabled); */
   }
   
   .lineContainer {
