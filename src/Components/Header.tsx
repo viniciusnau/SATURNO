@@ -25,7 +25,7 @@ const Header = () => {
 
     useEffect(() => {
         const currentDateTime = new Date();
-        const deadlineDateVoteTime = new Date('2024-05-13T09:45:00');
+        const deadlineDateVoteTime = new Date('2024-05-15T12:00:00');
         if (currentDateTime <= deadlineDateVoteTime) {
             setLimitTimeVote(true);
         }
@@ -34,7 +34,7 @@ const Header = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             const currentDateTime = new Date();
-            const deadlineDateVoteTime = new Date('2024-05-13T09:45:00');
+            const deadlineDateVoteTime = new Date('2024-05-15T12:00:00');
             if (currentDateTime > deadlineDateVoteTime) {
                 setLimitTimeVote(false);
             }
