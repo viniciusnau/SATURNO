@@ -46,7 +46,7 @@ const ElectionsResults = () => {
 
   useEffect(() => {
       const currentDateTime = new Date();
-      const deadlineDateVoteTime = new Date('2024-05-15T17:00:59');
+      const deadlineDateVoteTime = new Date('2024-05-13T07:00:00');
       const remainingTimeInSeconds = calculateTimeRemaining(
           currentDateTime,
           deadlineDateVoteTime
@@ -78,7 +78,7 @@ const ElectionsResults = () => {
   useEffect(() => {
       if (timeRemaining > 0) {
           const currentDateTime = new Date();
-          const deadlineDateVoteTime = new Date('2024-05-15T17:00:59');
+          const deadlineDateVoteTime = new Date('2024-05-13T07:00:00');
           if (currentDateTime >= deadlineDateVoteTime) {
               setLimitTimeVote(true);
           }
@@ -109,7 +109,7 @@ const ElectionsResults = () => {
 
   useEffect(() => {
     const currentDateTime = new Date();
-    const availableDateTime = new Date("2024-05-15T17:00:59");
+    const availableDateTime = new Date("2024-05-13T07:00:00");
     if (currentDateTime <= availableDateTime) {
       setStartTime(false);
     }
