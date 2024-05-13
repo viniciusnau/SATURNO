@@ -25,7 +25,7 @@ export const VoteReport = () => {
 
   useEffect(() => {
     const currentDateTime = new Date();
-    const availableDateTime = new Date("2023-06-06T17:00:59");
+    const availableDateTime = new Date("2023-05-15T17:00:59");
     if (currentDateTime <= availableDateTime) {
       setStartTime(false);
     }

@@ -17,11 +17,10 @@ const Header = () => {
     const [isResponsive, setIsResponsive] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [toggleNav, setToggleNav] = useState<boolean>(true);
-    const { data } = useSelector((state: any) => state.loginSlice);
-    const meIdData = useSelector((state: any) => state.meId);
-    const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
-
+    const { data } = useSelector((state: any) => state.meId);
     let position = '';
+    const permissions = ['electoral comission', 'admin'];
+    const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
 
     useEffect(() => {
         const currentDateTime = new Date();
@@ -43,6 +42,15 @@ const Header = () => {
         return () => clearInterval(interval);
     }, [limitTimeVote]);
 
+    const handleLogout = async () => {
+        await dispatch(backendLogout());
+        frontendLogout(navigate);
+    };
+
+    useEffect(() => {
+        dispatch(fetchmeId());
+    }, []);
+
     useEffect(() => {
         const handleResize = () => {
             setIsResponsive(window.innerWidth <= 940);
@@ -57,43 +65,13 @@ const Header = () => {
     }, []);
 
     useEffect(() => {
-      if (location.pathname !== "/saturno/login" || "/saturno/register") {
-        dispatch(fetchmeId());
-      }
+        if (location.pathname !== '/saturno/login' || '/saturno/register') {
+            dispatch(fetchmeId());
+        }
     }, [dispatch, location.pathname]);
 
-    if (meIdData.data && meIdData.data.length !== 0) {
-        position = meIdData.data.position;
-    }
-
-    const handleLogout = async () => {
-      await dispatch(backendLogout());
-      frontendLogout(navigate);
-    };
-
-    useEffect(() => {
-      dispatch(fetchmeId());
-    }, []);
-
-    useEffect(() => {
-      const handleResize = () => {
-        setIsResponsive(window.innerWidth <= 940);
-      };
-      window.addEventListener("resize", handleResize);
-      handleResize();
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
-
-    useEffect(() => {
-      if (location.pathname !== "/saturno/login" || "/saturno/register") {
-        dispatch(fetchmeId());
-      }
-    }, [dispatch, location.pathname]);
-  
     if (data && data.length !== 0) {
-      position = data.position;
+        position = data.position;
     }
 
     return limitTimeVote ? (
@@ -106,14 +84,45 @@ const Header = () => {
                     alt="Logo"
                     onClick={() => navigate('/saturno/vote/')}
                 />
-                <div className={styles.navigation}>
-                    <span
-                        onClick={() => navigate('/saturno/vote/')}
-                        className={`${styles.route} ${styles.logout}`}
-                    >
-                        Votação
-                    </span>
-                </div>
+                {isLoggedIn() && (
+                    <div className={styles.navigation}>
+                        <span
+                            onClick={() => navigate('/saturno/vote/')}
+                            className={`${styles.route} ${styles.logout}`}
+                        >
+                            Votação
+                        </span>
+
+                        {permissions.includes(data?.position) && (
+                            <>
+                                <span
+                                    onClick={() => {
+                                        setToggleNav(!toggleNav);
+                                        navigate('saturno/elections-results/');
+                                    }}
+                                    className={`${styles.route} ${styles.logout}`}
+                                >
+                                    Resultado das Eleições
+                                </span>
+                                <span
+                                    onClick={() => {
+                                        setToggleNav(!toggleNav);
+                                        navigate('saturno/vote-report/');
+                                    }}
+                                    className={`${styles.route} ${styles.logout}`}
+                                >
+                                    Relatórios
+                                </span>
+                            </>
+                        )}
+                        <span
+                            onClick={handleLogout}
+                            className={`${styles.route} ${styles.logout}`}
+                        >
+                            Sair
+                        </span>
+                    </div>
+                )}
             </div>
             {isLoggedIn() && <AutoLogoutTimer />}
         </header>
@@ -168,11 +177,11 @@ const Header = () => {
                                                         Votação
                                                     </span>
                                                 </li>
-                                                {position ===
-                                                    'public defender' ||
-                                                !position ? null : (
+                                                {permissions.includes(
+                                                    data?.position
+                                                ) && (
                                                     <>
-                                                        <li
+                                                        <span
                                                             onClick={() => {
                                                                 setToggleNav(
                                                                     !toggleNav
@@ -181,15 +190,12 @@ const Header = () => {
                                                                     'saturno/elections-results/'
                                                                 );
                                                             }}
+                                                            className={`${styles.route} ${styles.logout}`}
                                                         >
-                                                            <span
-                                                                className={`${styles.route} ${styles.logout}`}
-                                                            >
-                                                                Resultado das
-                                                                Eleições
-                                                            </span>
-                                                        </li>
-                                                        <li
+                                                            Resultado das
+                                                            Eleições
+                                                        </span>
+                                                        <span
                                                             onClick={() => {
                                                                 setToggleNav(
                                                                     !toggleNav
@@ -198,13 +204,10 @@ const Header = () => {
                                                                     'saturno/vote-report/'
                                                                 );
                                                             }}
+                                                            className={`${styles.route} ${styles.logout}`}
                                                         >
-                                                            <span
-                                                                className={`${styles.route} ${styles.logout}`}
-                                                            >
-                                                                Relatórios
-                                                            </span>
-                                                        </li>
+                                                            Relatórios
+                                                        </span>
                                                     </>
                                                 )}
                                                 <li

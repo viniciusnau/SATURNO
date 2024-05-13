@@ -41,6 +41,56 @@ const ElectionsResults = () => {
     (state: any) => state.electionsResultSlice
   );
 
+  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
+  const [timeRemaining, setTimeRemaining] = useState<number>(0);
+
+  useEffect(() => {
+      const currentDateTime = new Date();
+      const deadlineDateVoteTime = new Date('2024-05-15T17:00:59');
+      const remainingTimeInSeconds = calculateTimeRemaining(
+          currentDateTime,
+          deadlineDateVoteTime
+      );
+      setTimeRemaining(remainingTimeInSeconds);
+
+      if (currentDateTime >= deadlineDateVoteTime) {
+          setLimitTimeVote(true);
+          const intervalId = setInterval(() => {
+              const newTimeRemaining = calculateTimeRemaining(
+                  new Date(),
+                  deadlineDateVoteTime
+              );
+              setTimeRemaining(newTimeRemaining);
+          }, 1000);
+          return () => clearInterval(intervalId);
+      }
+  }, []);
+
+  const calculateTimeRemaining = (
+      currentDateTime: Date,
+      deadlineDateTime: Date
+  ): number => {
+      const differenceMs =
+          deadlineDateTime.getTime() - currentDateTime.getTime();
+      return Math.max(Math.floor(differenceMs / 1000), 0);
+  };
+
+  useEffect(() => {
+      if (timeRemaining > 0) {
+          const currentDateTime = new Date();
+          const deadlineDateVoteTime = new Date('2024-05-15T17:00:59');
+          if (currentDateTime >= deadlineDateVoteTime) {
+              setLimitTimeVote(true);
+          }
+      }
+  }, [timeRemaining]);
+
+  useEffect(() => {
+      if (timeRemaining <= 0) {
+          setLimitTimeVote(false);
+      }
+  }, [timeRemaining]);
+
   const positionOptions = {
     "Defensor(a) Público-Geral": "1",
     "Conselho Superior": "2",
@@ -59,7 +109,7 @@ const ElectionsResults = () => {
 
   useEffect(() => {
     const currentDateTime = new Date();
-    const availableDateTime = new Date("2024-04-04T17:00:59");
+    const availableDateTime = new Date("2024-05-15T17:00:59");
     if (currentDateTime <= availableDateTime) {
       setStartTime(false);
     }
@@ -362,8 +412,36 @@ const ElectionsResults = () => {
     </div>
   ) : (
     <div className={styles.notAvailableMessage}>
-      A visualização dos resultados estará disponível a partir de 06/06/2024
-      17:00.
+                  <div>
+                <Title> A visualização dos resultados das eleicões estará disponível a partir de:</Title>
+                <h2 className={styles.clock}>
+                    <div className={styles.blocktimer}>
+                        <span className={styles['clock-part']}>
+                            {String(Math.floor(timeRemaining / 3600)).padStart(
+                                2,
+                                '0'
+                            )}
+                        </span>
+                        <span className={styles.time}>Horas</span>
+                    </div>
+                    <span className={styles['clock-separator']}>:</span>
+                    <div className={styles.blocktimer}>
+                        <span className={styles['clock-part']}>
+                            {String(
+                                Math.floor((timeRemaining % 3600) / 60)
+                            ).padStart(2, '0')}
+                        </span>
+                        <span className={styles.time}>Minutos</span>
+                    </div>
+                    <span className={styles['clock-separator']}>:</span>
+                    <div className={styles.blocktimer}>
+                        <span className={styles['clock-part']}>
+                            {String(timeRemaining % 60).padStart(2, '0')}
+                        </span>
+                        <span className={styles.time}>Segundos</span>
+                    </div>
+                </h2>
+            </div>
     </div>
   );
 };
