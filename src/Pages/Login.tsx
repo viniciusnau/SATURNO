@@ -102,10 +102,11 @@ const Login = () => {
             <Input
               className={styles.input}
               fieldType="outlined"
-              label="Usuário"
+              label="Email"
               name="username"
               onChange={handleChange}
               value={form.username}
+              placeholder="exemplo@defensoria.sc.gov.br"
             />
           </div>
         </div>
@@ -118,6 +119,7 @@ const Login = () => {
               name="password"
               onChange={handleChange}
               value={form.password}
+              placeholder="********"
             />
           </div>
         </div>

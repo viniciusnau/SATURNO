@@ -12,7 +12,6 @@ import { handleKeyPress } from "../Components/Helper";
 export const Register = () => {
   const dispatch = useDispatch<any>();
   const [form, setForm] = useState<IRegister>({
-    name: "",
     registration: "",
     email: "",
     password: "",
@@ -58,29 +57,21 @@ export const Register = () => {
         <Input
           className={styles.input}
           fieldType="outlined"
-          label="Usuário"
-          name="name"
-          onChange={handleChange}
-          value={form.name}
-        />
-        <Input
-          className={styles.input}
-          fieldType="outlined"
-          label="Matricula"
-          name="registration"
-          onChange={handleChange}
-          value={form.registration}
-          placeholder="9999999-9-99"
-        />
-        <Input
-          className={styles.input}
-          fieldType="outlined"
           label="Email"
           name="email"
           onChange={handleChange}
           value={form.email}
           placeholder="exemplo@defensoria.sc.gov.br"
-        />
+          />
+        <Input
+          className={styles.input}
+          fieldType="outlined"
+          label="CPF"
+          name="registration"
+          onChange={handleChange}
+          value={form.registration}
+          placeholder="000.000.000-00"
+          />
         <Input
           className={styles.password}
           fieldType="password"
@@ -88,6 +79,7 @@ export const Register = () => {
           name="password"
           onChange={handleChange}
           value={form.password}
+          placeholder="********"
         />
 
         <Button className={styles.button} onClick={handleSubmit}>

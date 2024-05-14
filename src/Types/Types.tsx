@@ -16,7 +16,6 @@ export interface IRegisterState {
   error: boolean;
 }
 export interface IRegister {
-  name: string;
   registration: string;
   email: string;
   password: string;

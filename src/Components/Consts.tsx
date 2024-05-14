@@ -13,9 +13,9 @@ export const roles = {
 };
 
 export const deadline = {
-  initial: new Date("2024-05-15T08:00:00"),
-  final: new Date("2024-05-15T17:00:59"),
-  finalLogin: new Date("2024-05-15T16:50:00"),
+  initial: new Date("2024-05-13T08:00:00"),
+  final: new Date("2024-05-13T17:00:59"),
+  finalLogin: new Date("2024-05-13T16:50:00"),
 };
 
 export const snackbarConsts = {
@@ -106,7 +106,7 @@ export const snackbarConsts = {
 
   registerSuccess: {
     title: "Registro de eleitor",
-    description: "Solicitação enviada com sucesso!.",
+    description: "Solicitação enviada com sucesso, favor aguardar aprovação!.",
     color: "#9fc54d",
   },
 
