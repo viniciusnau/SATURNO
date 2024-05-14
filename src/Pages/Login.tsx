@@ -33,7 +33,7 @@ const Login = () => {
 
   useEffect(() => {
     const currentDateTime = new Date();
-    if (currentDateTime >= deadline.finalLogin) {
+    if (currentDateTime >= deadline.finalLoginTime) {
       setLimitTime(true);
     }
   }, []);

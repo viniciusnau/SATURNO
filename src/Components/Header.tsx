@@ -25,7 +25,7 @@ const Header = () => {
 
   useEffect(() => {
     const currentDateTime = new Date();
-    if (currentDateTime <= deadline.initial) {
+    if (currentDateTime <= deadline.initialVote) {
       setLimitTimeVote(true);
     }
   }, [limitTimeVote]);
@@ -33,7 +33,7 @@ const Header = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const currentDateTime = new Date();
-      if (currentDateTime > deadline.initial) {
+      if (currentDateTime > deadline.initialVote) {
         setLimitTimeVote(false);
       }
     }, 1000);
