@@ -74,19 +74,27 @@ const ElectionsResults = () => {
   };
 
   useEffect(() => {
-    if (timeRemaining > 0) {
-      const currentDateTime = new Date();
-      if (currentDateTime <= deadline.finalVote) {
-        setFinalVoteTime(false);
-      }
-    }
-  }, [timeRemaining]);
-
-  useEffect(() => {
-    if (timeRemaining <= 0) {
+    const currentDateTime = new Date();
+    const remainingTimeInSeconds = calculateTimeRemaining(
+      currentDateTime,
+      deadline.finalVote
+    );
+    setTimeRemaining(remainingTimeInSeconds);
+  
+    if (remainingTimeInSeconds <= 0) {
       setFinalVoteTime(true);
+    } else {
+      const intervalId = setInterval(() => {
+        const newTimeRemaining = calculateTimeRemaining(
+          new Date(),
+          deadline.finalVote
+        );
+        setTimeRemaining(newTimeRemaining);
+      }, 1000);
+      return () => clearInterval(intervalId);
     }
-  }, [timeRemaining]);
+  }, []);
+  
 
   const positionOptions = {
     "Defensor(a) Público-Geral": "1",
