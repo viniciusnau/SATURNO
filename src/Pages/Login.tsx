@@ -29,9 +29,6 @@ const Login = () => {
     });
     const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
     const [finalVoteTime, setFinalVoteTime] = useState<boolean>(false);
-    const NotElectoralComission = data?.roles?.includes(
-        " electoral commission "
-    ) ? false : true;
 
     useEffect(() => {
         const currentDateTime = new Date();
@@ -67,14 +64,10 @@ const Login = () => {
     };
 
     const handleSubmit = () => {
-        // console.log(NotElectoralComission);
-        // console.log(data?.roles);
-        // if (finalVoteTime && NotElectoralComission) {
-        //     console.log('foiii');
-        //     setShowSnackbar(true);
-        //     return;
-        // }
-        
+        if (finalVoteTime) {
+            setShowSnackbar(true);
+            return;
+        }
         const formatted = { ...form, username: form.email };
         dispatch(fetchLogin(formatted));
         setIsDispatched(true);
