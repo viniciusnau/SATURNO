@@ -102,6 +102,10 @@
   list-style-type: none;
 }
 
+.clearButton {
+  margin: 0 0 .75rem 0;
+}
+
 .button {
   height: 2rem;
   width: 8.5rem;
