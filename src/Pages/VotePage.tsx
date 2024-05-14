@@ -26,7 +26,7 @@ const VotePage: React.FC = () => {
   const [verifyVote, setVerifyVote] = useState<boolean>(true);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [positionCandidades, setPositionCandidates] = useState<any>("");
-  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
+  const [initialVoteTime, setInitialVoteTime] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
   const columns = [
     { title: "Nome", property: "candidate" },
@@ -215,16 +215,16 @@ const VotePage: React.FC = () => {
     const currentDateTime = new Date();
     const remainingTimeInSeconds = calculateTimeRemaining(
       currentDateTime,
-      deadline.initial
+      deadline.initialVote
     );
     setTimeRemaining(remainingTimeInSeconds);
 
-    if (currentDateTime <= deadline.initial) {
-      setLimitTimeVote(true);
+    if (currentDateTime <= deadline.initialVote) {
+      setInitialVoteTime(false);
       const intervalId = setInterval(() => {
         const newTimeRemaining = calculateTimeRemaining(
           new Date(),
-          deadline.initial
+          deadline.initialVote
         );
         setTimeRemaining(newTimeRemaining);
       }, 1000);
@@ -235,15 +235,15 @@ const VotePage: React.FC = () => {
   useEffect(() => {
     if (timeRemaining > 0) {
       const currentDateTime = new Date();
-      if (currentDateTime <= deadline.initial) {
-        setLimitTimeVote(true);
+      if (currentDateTime <= deadline.initialVote) {
+        setInitialVoteTime(false);
       }
     }
   }, [timeRemaining]);
 
   useEffect(() => {
     if (timeRemaining <= 0) {
-      setLimitTimeVote(false);
+      setInitialVoteTime(false);
     }
   }, [timeRemaining]);
 
@@ -296,7 +296,7 @@ const VotePage: React.FC = () => {
       setIsDispatched(true);
   }, [votePage]);
 
-  return !limitTimeVote ? (
+  return initialVoteTime ? (
     <div className={styles.votePageNotTime}>
       <div>
         <Title>O SATURNO estará disponível para votação em:</Title>

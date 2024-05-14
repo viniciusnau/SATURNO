@@ -29,7 +29,6 @@ import { deadline } from "../Components/Consts";
 
 const ElectionsResults = () => {
   const dispatch = useDispatch<any>();
-  const [startTime, setStartTime] = useState<boolean>(true);
   const [selectedPosition, setSelectedPosition] = useState<string>("1");
   const [totalVotes, setTotalVotes] = useState<number>(0);
   const [blankVotes, setBlankVotes] = useState<number>(0);
@@ -42,23 +41,23 @@ const ElectionsResults = () => {
     (state: any) => state.electionsResultSlice
   );
 
-  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
+  const [finalVoteTime, setFinalVoteTime] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
 
   useEffect(() => {
     const currentDateTime = new Date();
     const remainingTimeInSeconds = calculateTimeRemaining(
       currentDateTime,
-      deadline.final
+      deadline.finalVote
     );
     setTimeRemaining(remainingTimeInSeconds);
 
-    if (currentDateTime >= deadline.final) {
-      setLimitTimeVote(true);
+    if (currentDateTime >= deadline.finalVote) {
+      setFinalVoteTime(true);
       const intervalId = setInterval(() => {
         const newTimeRemaining = calculateTimeRemaining(
           new Date(),
-          deadline.final
+          deadline.finalVote
         );
         setTimeRemaining(newTimeRemaining);
       }, 1000);
@@ -77,15 +76,15 @@ const ElectionsResults = () => {
   useEffect(() => {
     if (timeRemaining > 0) {
       const currentDateTime = new Date();
-      if (currentDateTime >= deadline.final) {
-        setLimitTimeVote(true);
+      if (currentDateTime <= deadline.finalVote) {
+        setFinalVoteTime(false);
       }
     }
   }, [timeRemaining]);
 
   useEffect(() => {
     if (timeRemaining <= 0) {
-      setLimitTimeVote(false);
+      setFinalVoteTime(true);
     }
   }, [timeRemaining]);
 
@@ -104,13 +103,6 @@ const ElectionsResults = () => {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
-
-  useEffect(() => {
-    const currentDateTime = new Date();
-    if (currentDateTime <= deadline.final) {
-      setStartTime(false);
-    }
-  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPosition(event.target.value);
@@ -244,7 +236,7 @@ const ElectionsResults = () => {
     }
   }, [data]);
 
-  return startTime ? (
+  return finalVoteTime ? (
     <div className={styles.container}>
       <div className={styles.upperContainer}>
         <div className={styles.nullVotesLegend}>
