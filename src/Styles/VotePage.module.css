@@ -67,9 +67,9 @@
 
 .button {
     height: 3.5rem;
-    width: 10.5rem;
+    width: 11.24rem;
     box-shadow: 0 10px 10px -10px var(--shadow-color);
     font-size: var(--font-size);
-    margin: 1.5rem 0 0 0;
+    margin: 1.5rem 1rem 0 1rem;
   }
   
