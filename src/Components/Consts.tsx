@@ -15,7 +15,7 @@ export const roles = {
 export const deadline = {
   initial: new Date("2024-05-13T08:00:00"),
   final: new Date("2024-05-13T17:00:59"),
-  finalLogin: new Date("2024-05-13T16:50:00"),
+  finalLogin: new Date("2024-05-15T16:50:00"),
 };
 
 export const snackbarConsts = {

@@ -103,15 +103,15 @@ const Login = () => {
               className={styles.input}
               fieldType="outlined"
               label="Email"
-              name="username"
+              name="email"
               onChange={handleChange}
-              value={form.username}
+              value={form.email}
               placeholder="exemplo@defensoria.sc.gov.br"
             />
           </div>
         </div>
         <div className={styles.formGroup}>
-          <div className={styles.password}>
+          <div className={styles.password}> 
             <Input
               className={styles.input}
               fieldType="password"

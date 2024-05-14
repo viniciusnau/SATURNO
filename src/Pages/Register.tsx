@@ -13,7 +13,7 @@ export const Register = () => {
   const dispatch = useDispatch<any>();
   const [form, setForm] = useState<IRegister>({
     registration: "",
-    email: "",
+    name: "",
     password: "",
   });
   const [isDispatched, setIsDispatched] = useState<boolean>(false);
@@ -22,7 +22,7 @@ export const Register = () => {
   );
 
   const handleSubmit = () => {
-    const formatted = { ...form, is_public_defender: true };
+    const formatted = { ...form, is_public_defender: true, email: form.name };
     dispatch(fetchRegister(formatted));
     setIsDispatched(true);
   };
@@ -58,9 +58,9 @@ export const Register = () => {
           className={styles.input}
           fieldType="outlined"
           label="Email"
-          name="email"
+          name="name"
           onChange={handleChange}
-          value={form.email}
+          value={form.name}
           placeholder="exemplo@defensoria.sc.gov.br"
           />
         <Input
