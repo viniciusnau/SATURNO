@@ -38,7 +38,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
   const [selectedCandidateImage, setSelectedCandidateImage] = useState<
     string | null
-  >(null); // State to track selected candidate's image
+  >(null); 
   const [error, setError] = useState<any>(null);
   const responseSelectedCandidates = useSelector(
     (state: any) => state.selectedCandidate.selectedCandidates
@@ -162,6 +162,14 @@ const Table: React.FC<IData> = ({ row, loading }) => {
       return avatar;
     }
   };
+const handleClearButton = () => {
+  const nullCandidate = { id: '', registration:'', seniority:'', category:'', public_defense:''};
+  setSelectedCandidate(nullCandidate);
+  for(var i = 0; i <maxCountCandidates - responseSelectedCandidates.length; i++) {
+    dispatch(fetchSelectCandidate(nullCandidate));
+  }
+};
+
 
   return (
     <div>
@@ -213,6 +221,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
             </>
           )}
         </Box>
+
         <Box className={styles.detailsContainer}>
           <div className={styles.detailscontainer}>
             <h4> Detalhes do(a) Candidato(a) Selecionado(a): </h4>

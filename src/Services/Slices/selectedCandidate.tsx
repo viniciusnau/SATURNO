@@ -9,7 +9,7 @@ const getCandidatesSlice = createSlice({
     name: 'getListCandidates',
     initialState,
     reducers: {
-        selectCandidate(state, action: PayloadAction<Candidate>) {
+        selectCandidate(state, action: PayloadAction<any>) {
             state.selectedCandidates.push(action.payload);
         },
         removeCandidate(state, action: PayloadAction<number>) {

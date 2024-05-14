@@ -26,6 +26,8 @@ const VotePage: React.FC = () => {
   const [verifyVote, setVerifyVote] = useState<boolean>(true);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [positionCandidades, setPositionCandidates] = useState<any>("");
+  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
+  const [timeRemaining, setTimeRemaining] = useState<number>(0);
   const columns = [
     { title: "Nome", property: "candidate" },
     { title: "Matrícula", property: "registration" },
@@ -52,17 +54,134 @@ const VotePage: React.FC = () => {
     (state: any) => state.selectedCandidate.selectedCandidates
   );
 
-  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
-  const [timeRemaining, setTimeRemaining] = useState<number>(0);
-
   const handleSubmitVote = () => {
     const countSelectedCandidates = responseSelectedCandidates.length;
-    countSelectedCandidates === maxCount
+    countSelectedCandidates >= 1
       ? setIsOpenModal(true)
       : setError("voteCountError");
   };
 
+  const handleSubmitNullVote = () => {
+    setIsOpenModal(true)
+  };
+
   const handleConfirmVote = () => {
+    let candidates: any;
+    if (responseSelectedCandidates.length === 0) {
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+  
+      for (let i = 0; i < (positionId === 1 ? 3 : 5); i++) {
+        dispatch(fetchPostVote(emptyVoteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      }
+  
+      return;
+    }
+
+    const maxCount = positionId === 1 ? 3 : 5;
+    const remainingVotes = maxCount - responseSelectedCandidates.length;
+
+    if (remainingVotes === 1) {
+      let candidates = [...responseSelectedCandidates]
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+      candidates = candidates.concat([emptyVoteData]);
+
+      candidates.forEach((candidate: any) => {
+        const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
+        const voteData = {
+          position: positionId,
+          chosen_person: `${chosenPersonId}`,
+          voting_person: `${responseDataUser.data.person_id}`,
+        };
+        dispatch(fetchPostVote(voteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      });
+
+      return;
+    }
+
+    if (remainingVotes === 2) {
+      let candidates = [...responseSelectedCandidates]
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+      candidates = candidates.concat([emptyVoteData, emptyVoteData]);
+
+      candidates.forEach((candidate: any) => {
+        const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
+        const voteData = {
+          position: positionId,
+          chosen_person: `${chosenPersonId}`,
+          voting_person: `${responseDataUser.data.person_id}`,
+        };
+        dispatch(fetchPostVote(voteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      });
+
+      return;
+    }
+
+    if (remainingVotes === 3) {
+      let candidates = [...responseSelectedCandidates]
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+      candidates = candidates.concat([emptyVoteData, emptyVoteData, emptyVoteData]);
+
+      candidates.forEach((candidate: any) => {
+        const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
+        const voteData = {
+          position: positionId,
+          chosen_person: `${chosenPersonId}`,
+          voting_person: `${responseDataUser.data.person_id}`,
+        };
+        dispatch(fetchPostVote(voteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      });
+
+      return;
+    }
+
+    if (remainingVotes === 4) {
+      let candidates = [...responseSelectedCandidates]
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+      candidates = candidates.concat([emptyVoteData, emptyVoteData, emptyVoteData, emptyVoteData]);
+
+      candidates.forEach((candidate: any) => {
+        const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
+        const voteData = {
+          position: positionId,
+          chosen_person: `${chosenPersonId}`,
+          voting_person: `${responseDataUser.data.person_id}`,
+        };
+        dispatch(fetchPostVote(voteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      });
+
+      return;
+    }
+
     responseSelectedCandidates.forEach((candidate: any) => {
       const voteData = {
         position: positionId,
@@ -73,7 +192,8 @@ const VotePage: React.FC = () => {
       dispatch(removeAllCandidates()) && setMessage("voteSuccess");
       positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
     });
-  };
+  };  
+  
 
   const calculateTimeRemaining = (
     currentDateTime: Date,
@@ -157,18 +277,7 @@ const VotePage: React.FC = () => {
 
   useEffect(() => {
     if (isDispatched && !loading && !error) {
-      const blankVoteRow = {
-        id: "",
-        candidate: "Voto Nulo",
-        registration: "-",
-        birth_date: "-",
-        start_date: "-",
-        seniority: "-",
-        category: "-",
-        public_defense: "-",
-      };
-
-      const updatedRows = [blankVoteRow, ...data];
+      const updatedRows = data;
       setRows(updatedRows);
     }
   }, [isDispatched, loading, error, data]);
@@ -179,7 +288,7 @@ const VotePage: React.FC = () => {
       setIsDispatched(true);
   }, [votePage]);
 
-  return limitTimeVote ? (
+  return !limitTimeVote ? (
     <div className={styles.votePageNotTime}>
       <div>
         <Title>O SATURNO estará disponível para votação em:</Title>
@@ -229,7 +338,8 @@ const VotePage: React.FC = () => {
       <Title>Votação Eleitoral - {positionCandidades} </Title>
       <div className={styles.TableContainer}>
         <div className={styles.Table}>
-          <Table image={avatar} row={rows} loading={loading} />
+          <Table image={avatar} row={rows} loading={loading}
+          />
         </div>
       </div>
       <div className={styles.MiniTable}>
@@ -240,6 +350,9 @@ const VotePage: React.FC = () => {
       </div>
       <Button className={styles.button} onClick={handleSubmitVote}>
         Finalizar Votação
+      </Button>
+      <Button className={styles.button} onClick={handleSubmitNullVote}>
+        Votar Nulo
       </Button>
     </div>
   );
