@@ -18,7 +18,6 @@ export interface IRegisterState {
 export interface IRegister {
   name: string;
   registration: string;
-  email: string;
   password: string;
 }
 

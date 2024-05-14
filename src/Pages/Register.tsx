@@ -12,9 +12,8 @@ import { handleKeyPress } from "../Components/Helper";
 export const Register = () => {
   const dispatch = useDispatch<any>();
   const [form, setForm] = useState<IRegister>({
-    name: "",
     registration: "",
-    email: "",
+    name: "",
     password: "",
   });
   const [isDispatched, setIsDispatched] = useState<boolean>(false);
@@ -23,7 +22,7 @@ export const Register = () => {
   );
 
   const handleSubmit = () => {
-    const formatted = { ...form, is_public_defender: true };
+    const formatted = { ...form, is_public_defender: true, email: form.name };
     dispatch(fetchRegister(formatted));
     setIsDispatched(true);
   };
@@ -58,29 +57,21 @@ export const Register = () => {
         <Input
           className={styles.input}
           fieldType="outlined"
-          label="Usuário"
-          name="name"
-          onChange={handleChange}
-          value={form.name}
-        />
-        <Input
-          className={styles.input}
-          fieldType="outlined"
-          label="Matricula"
+          label="CPF"
           name="registration"
           onChange={handleChange}
           value={form.registration}
-          placeholder="9999999-9-99"
-        />
+          placeholder="000.000.000-00"
+          />
         <Input
           className={styles.input}
           fieldType="outlined"
           label="Email"
-          name="email"
+          name="name"
           onChange={handleChange}
-          value={form.email}
+          value={form.name}
           placeholder="exemplo@defensoria.sc.gov.br"
-        />
+          />
         <Input
           className={styles.password}
           fieldType="password"
@@ -88,6 +79,7 @@ export const Register = () => {
           name="password"
           onChange={handleChange}
           value={form.password}
+          placeholder="********"
         />
 
         <Button className={styles.button} onClick={handleSubmit}>

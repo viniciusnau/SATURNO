@@ -23,6 +23,7 @@ const Login = () => {
   );
   const [isDispatched, setIsDispatched] = useState<boolean>(false);
   const [form, setForm] = useState({
+    email: "",
     username: "",
     password: "",
   });
@@ -57,13 +58,22 @@ const Login = () => {
       setShowSnackbar(true);
       return;
     }
-
-    dispatch(fetchLogin(form));
+    const formatted = {...form, username: form.email}
+    dispatch(fetchLogin(formatted));
     setIsDispatched(true);
-    setForm({
-      username: "",
-      password: "",
-    });
+        <div className={styles.formGroup}>
+          <div className={styles.password}>
+            <Input
+              className={styles.input}
+              fieldType="outlined"
+              label="Email"
+              name="email"
+              onChange={handleChange}
+              value={form.email}
+              placeholder="exemplo@defensoria.sc.gov.br"
+            />
+          </div>
+        </div>
   };
 
   useEffect(() => {
@@ -102,10 +112,11 @@ const Login = () => {
             <Input
               className={styles.input}
               fieldType="outlined"
-              label="Usuário"
-              name="username"
+              label="Email"
+              name="email"
               onChange={handleChange}
-              value={form.username}
+              value={form.email}
+              placeholder="exemplo@defensoria.sc.gov.br"
             />
           </div>
         </div>
@@ -118,6 +129,7 @@ const Login = () => {
               name="password"
               onChange={handleChange}
               value={form.password}
+              placeholder="********"
             />
           </div>
         </div>

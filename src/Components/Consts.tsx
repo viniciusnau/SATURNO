@@ -106,7 +106,7 @@ export const snackbarConsts = {
 
   registerSuccess: {
     title: "Registro de eleitor",
-    description: "Solicitação enviada com sucesso!.",
+    description: "Solicitação enviada com sucesso, favor aguardar aprovação!.",
     color: "#9fc54d",
   },
 
