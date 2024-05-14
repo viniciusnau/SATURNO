@@ -26,6 +26,8 @@ const VotePage: React.FC = () => {
   const [verifyVote, setVerifyVote] = useState<boolean>(true);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [positionCandidades, setPositionCandidates] = useState<any>("");
+  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
+  const [timeRemaining, setTimeRemaining] = useState<number>(0);
   const columns = [
     { title: "Nome", property: "candidate" },
     { title: "Matrícula", property: "registration" },
@@ -51,9 +53,7 @@ const VotePage: React.FC = () => {
   const responseSelectedCandidates = useSelector(
     (state: any) => state.selectedCandidate.selectedCandidates
   );
-
-  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
-  const [timeRemaining, setTimeRemaining] = useState<number>(0);
+  console.log('responseSelectedCandidates: ',responseSelectedCandidates)
 
   const handleSubmitVote = () => {
     const countSelectedCandidates = responseSelectedCandidates.length;
@@ -62,8 +62,6 @@ const VotePage: React.FC = () => {
       : setError("voteCountError");
   };
 
-  console.log(responseSelectedCandidates.selectedCandidates);
-
   const handleConfirmVote = () => {
     responseSelectedCandidates.forEach((candidate: any) => {
       const voteData = {
@@ -71,10 +69,10 @@ const VotePage: React.FC = () => {
         chosen_person: `${candidate.id}`,
         voting_person: `${responseDataUser.data.person_id}`,
       };
-      console.log(voteData)
-      // dispatch(fetchPostVote(voteData)) && setVotePage(true);
-      // dispatch(removeAllCandidates()) && setMessage("voteSuccess");
-      // positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      const formatted = Array(maxCount).fill(voteData)
+      dispatch(fetchPostVote(voteData)) && setVotePage(true);
+      dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+      positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
     });
   };
 
@@ -171,7 +169,7 @@ const VotePage: React.FC = () => {
       setIsDispatched(true);
   }, [votePage]);
 
-  return limitTimeVote ? (
+  return !limitTimeVote ? (
     <div className={styles.votePageNotTime}>
       <div>
         <Title>O SATURNO estará disponível para votação em:</Title>
@@ -221,7 +219,8 @@ const VotePage: React.FC = () => {
       <Title>Votação Eleitoral - {positionCandidades} </Title>
       <div className={styles.TableContainer}>
         <div className={styles.Table}>
-          <Table image={avatar} row={rows} loading={loading} />
+          <Table image={avatar} row={rows} loading={loading}
+          />
         </div>
       </div>
       <div className={styles.MiniTable}>

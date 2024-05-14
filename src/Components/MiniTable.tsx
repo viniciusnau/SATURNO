@@ -105,8 +105,8 @@ const MiniTable: React.FC<TableProps> = ({
                                                         >
                                                             {neverNull(
                                                                 row[
-                                                                    column
-                                                                        .property
+                                                                column
+                                                                    .property
                                                                 ]
                                                             )}
                                                         </div>

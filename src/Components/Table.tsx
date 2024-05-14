@@ -162,15 +162,14 @@ const Table: React.FC<IData> = ({ row, loading }) => {
       return avatar;
     }
   };
+const handleClearButton = () => {
+  const nullCandidate = { id: '', registration:'', seniority:'', category:'', public_defense:''};
+  setSelectedCandidate(nullCandidate);
+  for(var i = 0; i <maxCountCandidates - responseSelectedCandidates.length; i++) {
+    dispatch(fetchSelectCandidate(nullCandidate));
+  }
+};
 
-  const handleClearButton = () => {
-    const nullCandidate = { candidate: {id: null }};
-    const nullCandidates = Array(maxCountCandidates).fill(nullCandidate);
-    setSelectedCandidate(nullCandidate);
-    dispatch(fetchSelectCandidate(nullCandidates));
-  };
-
-  console.log(responseSelectedCandidates)
 
   return (
     <div>
@@ -227,7 +226,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
           className={styles.clearButton}
           onClick={handleClearButton}
         >
-          Nulo
+          Votar Nulo
         </Button>
 
         <Box className={styles.detailsContainer}>
