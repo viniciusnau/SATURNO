@@ -26,7 +26,7 @@ export const VoteReport = () => {
 
     useEffect(() => {
         const currentDateTime = new Date();
-        if (currentDateTime >= deadline.finalVote) {
+        if (currentDateTime <= deadline.finalVote) {
             setFinalVoteTime(true);
         }
     }, []);
