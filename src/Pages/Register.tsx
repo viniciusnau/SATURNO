@@ -57,20 +57,20 @@ export const Register = () => {
         <Input
           className={styles.input}
           fieldType="outlined"
-          label="Email"
-          name="name"
-          onChange={handleChange}
-          value={form.name}
-          placeholder="exemplo@defensoria.sc.gov.br"
-          />
-        <Input
-          className={styles.input}
-          fieldType="outlined"
           label="CPF"
           name="registration"
           onChange={handleChange}
           value={form.registration}
           placeholder="000.000.000-00"
+          />
+        <Input
+          className={styles.input}
+          fieldType="outlined"
+          label="Email"
+          name="name"
+          onChange={handleChange}
+          value={form.name}
+          placeholder="exemplo@defensoria.sc.gov.br"
           />
         <Input
           className={styles.password}
