@@ -62,7 +62,7 @@ const VotePage: React.FC = () => {
   };
 
   const handleSubmitNullVote = () => {
-    setIsOpenModal(true)
+    setIsOpenModal(true);
   };
 
   const handleConfirmVote = () => {
@@ -73,13 +73,13 @@ const VotePage: React.FC = () => {
         chosen_person: "",
         voting_person: `${responseDataUser.data.person_id}`,
       };
-  
+
       for (let i = 0; i < (positionId === 1 ? 3 : 5); i++) {
         dispatch(fetchPostVote(emptyVoteData)) && setVotePage(true);
         dispatch(removeAllCandidates()) && setMessage("voteSuccess");
         positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
       }
-  
+
       return;
     }
 
@@ -87,7 +87,7 @@ const VotePage: React.FC = () => {
     const remainingVotes = maxCount - responseSelectedCandidates.length;
 
     if (remainingVotes === 1) {
-      let candidates = [...responseSelectedCandidates]
+      let candidates = [...responseSelectedCandidates];
       const emptyVoteData = {
         position: positionId,
         chosen_person: "",
@@ -111,7 +111,7 @@ const VotePage: React.FC = () => {
     }
 
     if (remainingVotes === 2) {
-      let candidates = [...responseSelectedCandidates]
+      let candidates = [...responseSelectedCandidates];
       const emptyVoteData = {
         position: positionId,
         chosen_person: "",
@@ -135,13 +135,17 @@ const VotePage: React.FC = () => {
     }
 
     if (remainingVotes === 3) {
-      let candidates = [...responseSelectedCandidates]
+      let candidates = [...responseSelectedCandidates];
       const emptyVoteData = {
         position: positionId,
         chosen_person: "",
         voting_person: `${responseDataUser.data.person_id}`,
       };
-      candidates = candidates.concat([emptyVoteData, emptyVoteData, emptyVoteData]);
+      candidates = candidates.concat([
+        emptyVoteData,
+        emptyVoteData,
+        emptyVoteData,
+      ]);
 
       candidates.forEach((candidate: any) => {
         const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
@@ -159,13 +163,18 @@ const VotePage: React.FC = () => {
     }
 
     if (remainingVotes === 4) {
-      let candidates = [...responseSelectedCandidates]
+      let candidates = [...responseSelectedCandidates];
       const emptyVoteData = {
         position: positionId,
         chosen_person: "",
         voting_person: `${responseDataUser.data.person_id}`,
       };
-      candidates = candidates.concat([emptyVoteData, emptyVoteData, emptyVoteData, emptyVoteData]);
+      candidates = candidates.concat([
+        emptyVoteData,
+        emptyVoteData,
+        emptyVoteData,
+        emptyVoteData,
+      ]);
 
       candidates.forEach((candidate: any) => {
         const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
@@ -192,8 +201,7 @@ const VotePage: React.FC = () => {
       dispatch(removeAllCandidates()) && setMessage("voteSuccess");
       positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
     });
-  };  
-  
+  };
 
   const calculateTimeRemaining = (
     currentDateTime: Date,
@@ -338,8 +346,7 @@ const VotePage: React.FC = () => {
       <Title>Votação Eleitoral - {positionCandidades} </Title>
       <div className={styles.TableContainer}>
         <div className={styles.Table}>
-          <Table image={avatar} row={rows} loading={loading}
-          />
+          <Table image={avatar} row={rows} loading={loading} />
         </div>
       </div>
       <div className={styles.MiniTable}>
