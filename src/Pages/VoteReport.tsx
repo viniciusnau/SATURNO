@@ -93,9 +93,9 @@ export const VoteReport = () => {
             return (
                 <TableHead>
                     <TableRow>
-                        <TableCell align="center">Matrícula</TableCell>
+                        <TableCell align="center">CPF</TableCell>
                         <TableCell align="center">
-                            Nome do(a) Eleitor(a)
+                            Email
                         </TableCell>
                         <TableCell align="center">Votou DPG?</TableCell>
                         <TableCell align="center">Votou Conselho?</TableCell>
