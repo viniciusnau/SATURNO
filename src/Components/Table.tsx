@@ -222,7 +222,6 @@ const handleClearButton = () => {
           )}
         </Box>
 
-
         <Box className={styles.detailsContainer}>
           <div className={styles.detailscontainer}>
             <h4> Detalhes do(a) Candidato(a) Selecionado(a): </h4>
@@ -266,12 +265,6 @@ const handleClearButton = () => {
           </div>
         </Box>
       </Box>
-      <Button
-          className={styles.clearButton}
-          onClick={handleClearButton}
-        >
-          Votar Nulo
-        </Button>
     </div>
   );
 };

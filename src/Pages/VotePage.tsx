@@ -53,28 +53,45 @@ const VotePage: React.FC = () => {
   const responseSelectedCandidates = useSelector(
     (state: any) => state.selectedCandidate.selectedCandidates
   );
-  console.log('responseSelectedCandidates: ',responseSelectedCandidates)
 
   const handleSubmitVote = () => {
-    const countSelectedCandidates = responseSelectedCandidates.length;
-    countSelectedCandidates === maxCount
-      ? setIsOpenModal(true)
-      : setError("voteCountError");
+    setIsOpenModal(true)
+  };
+
+  const handleSubmitNullVote = () => {
+    setIsOpenModal(true)
   };
 
   const handleConfirmVote = () => {
+    if (responseSelectedCandidates.length === 0) {
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+  
+      for (let i = 0; i < (positionId === 1 ? 3 : 5); i++) {
+        dispatch(fetchPostVote(emptyVoteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      }
+  
+      return;
+    }
+  
     responseSelectedCandidates.forEach((candidate: any) => {
       const voteData = {
         position: positionId,
         chosen_person: `${candidate.id}`,
         voting_person: `${responseDataUser.data.person_id}`,
       };
-      const formatted = Array(maxCount).fill(voteData)
+      const formatted = Array(maxCount).fill(voteData);
       dispatch(fetchPostVote(voteData)) && setVotePage(true);
       dispatch(removeAllCandidates()) && setMessage("voteSuccess");
       positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
     });
-  };
+  };  
+  
 
   const calculateTimeRemaining = (
     currentDateTime: Date,
@@ -231,6 +248,9 @@ const VotePage: React.FC = () => {
       </div>
       <Button className={styles.button} onClick={handleSubmitVote}>
         Finalizar Votação
+      </Button>
+      <Button className={styles.button} onClick={handleSubmitNullVote}>
+        Votar Nulo
       </Button>
     </div>
   );
