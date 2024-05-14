@@ -55,7 +55,10 @@ const VotePage: React.FC = () => {
   );
 
   const handleSubmitVote = () => {
-    setIsOpenModal(true)
+    const countSelectedCandidates = responseSelectedCandidates.length;
+    countSelectedCandidates >= 1
+      ? setIsOpenModal(true)
+      : setError("voteCountError");
   };
 
   const handleSubmitNullVote = () => {
@@ -63,6 +66,7 @@ const VotePage: React.FC = () => {
   };
 
   const handleConfirmVote = () => {
+    let candidates: any;
     if (responseSelectedCandidates.length === 0) {
       const emptyVoteData = {
         position: positionId,
@@ -78,14 +82,112 @@ const VotePage: React.FC = () => {
   
       return;
     }
-  
+
+    const maxCount = positionId === 1 ? 3 : 5;
+    const remainingVotes = maxCount - responseSelectedCandidates.length;
+
+    if (remainingVotes === 1) {
+      let candidates = [...responseSelectedCandidates]
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+      candidates = candidates.concat([emptyVoteData]);
+
+      candidates.forEach((candidate: any) => {
+        const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
+        const voteData = {
+          position: positionId,
+          chosen_person: `${chosenPersonId}`,
+          voting_person: `${responseDataUser.data.person_id}`,
+        };
+        dispatch(fetchPostVote(voteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      });
+
+      return;
+    }
+
+    if (remainingVotes === 2) {
+      let candidates = [...responseSelectedCandidates]
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+      candidates = candidates.concat([emptyVoteData, emptyVoteData]);
+
+      candidates.forEach((candidate: any) => {
+        const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
+        const voteData = {
+          position: positionId,
+          chosen_person: `${chosenPersonId}`,
+          voting_person: `${responseDataUser.data.person_id}`,
+        };
+        dispatch(fetchPostVote(voteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      });
+
+      return;
+    }
+
+    if (remainingVotes === 3) {
+      let candidates = [...responseSelectedCandidates]
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+      candidates = candidates.concat([emptyVoteData, emptyVoteData, emptyVoteData]);
+
+      candidates.forEach((candidate: any) => {
+        const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
+        const voteData = {
+          position: positionId,
+          chosen_person: `${chosenPersonId}`,
+          voting_person: `${responseDataUser.data.person_id}`,
+        };
+        dispatch(fetchPostVote(voteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      });
+
+      return;
+    }
+
+    if (remainingVotes === 4) {
+      let candidates = [...responseSelectedCandidates]
+      const emptyVoteData = {
+        position: positionId,
+        chosen_person: "",
+        voting_person: `${responseDataUser.data.person_id}`,
+      };
+      candidates = candidates.concat([emptyVoteData, emptyVoteData, emptyVoteData, emptyVoteData]);
+
+      candidates.forEach((candidate: any) => {
+        const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
+        const voteData = {
+          position: positionId,
+          chosen_person: `${chosenPersonId}`,
+          voting_person: `${responseDataUser.data.person_id}`,
+        };
+        dispatch(fetchPostVote(voteData)) && setVotePage(true);
+        dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+        positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      });
+
+      return;
+    }
+
     responseSelectedCandidates.forEach((candidate: any) => {
       const voteData = {
         position: positionId,
         chosen_person: `${candidate.id}`,
         voting_person: `${responseDataUser.data.person_id}`,
       };
-      const formatted = Array(maxCount).fill(voteData);
       dispatch(fetchPostVote(voteData)) && setVotePage(true);
       dispatch(removeAllCandidates()) && setMessage("voteSuccess");
       positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");

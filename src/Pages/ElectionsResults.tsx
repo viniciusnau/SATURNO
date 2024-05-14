@@ -249,7 +249,7 @@ const ElectionsResults = () => {
       <div className={styles.upperContainer}>
         <div className={styles.nullVotesLegend}>
           <Title>
-            Eleitores com votos nulos:{" "}
+            Eleitores que não utilizaram o número máximo de votos:{" "}
             {((blankVotes / totalPeople) * 100).toFixed(2)}% ({blankVotes})
           </Title>
         </div>
