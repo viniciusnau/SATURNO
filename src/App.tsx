@@ -73,6 +73,10 @@ function App() {
             />
             <Route
               path="/saturno/approve-register/"
+              element={<ApproveRegister />}
+            />
+            {/* <Route
+              path="/saturno/approve-register/"
               element={
                 <ProtectedRoute
                   Component={ApproveRegister}
@@ -80,7 +84,7 @@ function App() {
                   accessRole={["admin"]}
                 />
               }
-            />
+            /> */}
             <Route
               path="/saturno/callback/:googleToken"
               element={<Callback />}

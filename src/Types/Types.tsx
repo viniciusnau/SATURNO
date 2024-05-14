@@ -32,6 +32,12 @@ export interface IListCandidatesState {
   error: boolean;
 }
 
+export interface IApproveRegisterState {
+  data: any[];
+  loading: boolean;
+  error: boolean;
+}
+
 export interface Candidate {
   id: string;
   name: string;
