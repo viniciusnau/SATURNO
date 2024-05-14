@@ -62,6 +62,8 @@ const VotePage: React.FC = () => {
       : setError("voteCountError");
   };
 
+  console.log(responseSelectedCandidates.selectedCandidates);
+
   const handleConfirmVote = () => {
     responseSelectedCandidates.forEach((candidate: any) => {
       const voteData = {
@@ -69,9 +71,10 @@ const VotePage: React.FC = () => {
         chosen_person: `${candidate.id}`,
         voting_person: `${responseDataUser.data.person_id}`,
       };
-      dispatch(fetchPostVote(voteData)) && setVotePage(true);
-      dispatch(removeAllCandidates()) && setMessage("voteSuccess");
-      positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
+      console.log(voteData)
+      // dispatch(fetchPostVote(voteData)) && setVotePage(true);
+      // dispatch(removeAllCandidates()) && setMessage("voteSuccess");
+      // positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
     });
   };
 
@@ -157,18 +160,7 @@ const VotePage: React.FC = () => {
 
   useEffect(() => {
     if (isDispatched && !loading && !error) {
-      const blankVoteRow = {
-        id: "",
-        candidate: "Voto Nulo",
-        registration: "-",
-        birth_date: "-",
-        start_date: "-",
-        seniority: "-",
-        category: "-",
-        public_defense: "-",
-      };
-
-      const updatedRows = [blankVoteRow, ...data];
+      const updatedRows = data;
       setRows(updatedRows);
     }
   }, [isDispatched, loading, error, data]);

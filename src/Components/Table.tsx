@@ -38,7 +38,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
   const [selectedCandidateImage, setSelectedCandidateImage] = useState<
     string | null
-  >(null); // State to track selected candidate's image
+  >(null); 
   const [error, setError] = useState<any>(null);
   const responseSelectedCandidates = useSelector(
     (state: any) => state.selectedCandidate.selectedCandidates
@@ -163,6 +163,15 @@ const Table: React.FC<IData> = ({ row, loading }) => {
     }
   };
 
+  const handleClearButton = () => {
+    const nullCandidate = { candidate: {id: null }};
+    const nullCandidates = Array(maxCountCandidates).fill(nullCandidate);
+    setSelectedCandidate(nullCandidate);
+    dispatch(fetchSelectCandidate(nullCandidates));
+  };
+
+  console.log(responseSelectedCandidates)
+
   return (
     <div>
       {error && <Snackbar type={error} setShowSnackbar={setError} />}
@@ -213,6 +222,14 @@ const Table: React.FC<IData> = ({ row, loading }) => {
             </>
           )}
         </Box>
+
+        <Button
+          className={styles.clearButton}
+          onClick={handleClearButton}
+        >
+          Nulo
+        </Button>
+
         <Box className={styles.detailsContainer}>
           <div className={styles.detailscontainer}>
             <h4> Detalhes do(a) Candidato(a) Selecionado(a): </h4>
