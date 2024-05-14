@@ -76,7 +76,7 @@ const ElectionsResults = () => {
   useEffect(() => {
     if (timeRemaining > 0) {
       const currentDateTime = new Date();
-      if (currentDateTime >= deadline.finalVote) {
+      if (currentDateTime <= deadline.finalVote) {
         setFinalVoteTime(false);
       }
     }
