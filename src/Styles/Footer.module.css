@@ -1,23 +1,5 @@
 @import "../colors.css";
 
-.footer::-webkit-scrollbar {
-  width: 0.4rem;
-  background-color: transparent;
-}
-
-.footer::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-.footer::-webkit-scrollbar-thumb {
-  background-color: #ddd;
-  border-radius: 0.2rem;
-}
-
-.footer::-webkit-scrollbar-thumb:hover {
-  background-color: #bbb;
-}
-
 .footer {
   justify-content: space-between;
   background-color: #f1f1f1;

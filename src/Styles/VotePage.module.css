@@ -50,7 +50,9 @@
 }
 
 .Table {
-  width: 43.5%;
+  width: 50%;
+  min-width: 40%;
+  max-width: 50%;
 }
 
 .TableContainer {

@@ -9,15 +9,17 @@
 
 .megaBox {
   display: flex;
-  margin: 1rem;
-  justify-content: center;
+  margin: 1.25rem 0;
+  justify-content: space-between;
   height: 23rem;
 }
 
 .circularImage {
-  width: 4.5em;
-  height: 4.5em;
-  border: 0.35rem solid #ccc;
+  width: 4.5rem;
+  height: 4.5rem;
+  min-width: 4.5rem;
+  min-height: 4.5rem;
+  border: 0.25rem solid #ccc;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -28,22 +30,18 @@
 }
 
 .detailsContainer {
-  font-size: 0.8vw;
-  width: 60%;
-  margin: 1rem 0 1rem 1rem;
-  border: 1px solid #ccc;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border-radius: 2rem;
   overflow-y: auto;
+  font-size: 0.8rem;
+  min-width: 15rem;
+  border-radius: .35rem;
+  border: .15rem solid #ccc;
+  margin: 0 0 0 3rem;
 }
 
-.detailsContainer:hover {
-  background-color: #f0f0f0;
-}
 
 .rowContainer .candidateInfo:hover {
   background-color: #f0f0f0;
@@ -51,12 +49,10 @@
 }
 
 .rowContainer {
-  border-radius: 1.5rem;
+  border-radius: .35rem;
   overflow-y: scroll;
-  padding: 0 0.5rem;
-  width: 40%;
-  border: 1px solid #ccc;
-  margin: 1rem 1rem 1rem 0;
+  min-width: 10rem;
+  border: .15rem solid #ccc;
 }
 
 .candidateInfo {
@@ -109,7 +105,7 @@
 .button {
   height: 2rem;
   width: 8.5rem;
-  box-shadow: 0 10px 10px -10px var(--shadow-color);
+  box-shadow: var(--shadow-color);
   font-size: var(--font-size);
   margin: auto;
 }

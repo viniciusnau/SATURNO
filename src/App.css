@@ -9,6 +9,24 @@
   body {
     margin: 0;
   }
+
+  *::-webkit-scrollbar {
+    width: 0.45rem;
+    background-color: transparent;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 0.2rem;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #bbb;
+  }
   
   .App {
     display: flex;
