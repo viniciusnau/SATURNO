@@ -53,6 +53,9 @@ export const Register = () => {
         {error && isDispatched && (
           <Snackbar type="registerError" setShowSnackbar={setIsDispatched} />
         )}
+        {error?.response?.data?.error === "User with this email already exists." && isDispatched && (
+          <Snackbar type="unauthorizedLogin" setShowSnackbar={setIsDispatched} />
+        )}
         <Title>Registrar conta</Title>
         <Input
           className={styles.input}
