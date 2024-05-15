@@ -90,10 +90,15 @@ const ElectionsResults = () => {
           deadline.finalVote
         );
         setTimeRemaining(newTimeRemaining);
+        if (newTimeRemaining <= 0) {
+          setFinalVoteTime(true);
+          clearInterval(intervalId);
+        }
       }, 1000);
       return () => clearInterval(intervalId);
     }
   }, []);
+  
   
 
   const positionOptions = {
