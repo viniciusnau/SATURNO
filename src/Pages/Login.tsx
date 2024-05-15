@@ -165,15 +165,6 @@ const Login = () => {
                     <hr className={styles.line} />
                 </div>
 
-                <Button className={styles.google} onClick={handleGoogleLogin}>
-                    <img
-                        alt="Ícone do Google"
-                        src={icon}
-                        className={styles.icon}
-                    />
-                    <p className={styles.login}>Acessar com Google</p>
-                </Button>
-
                 <div className={styles.formButton}>
                     <Button className={styles.button} onClick={handleSubmit}>
                         {loading ? (

@@ -296,7 +296,7 @@ const VotePage: React.FC = () => {
       setIsDispatched(true);
   }, [votePage]);
 
-  return !initialVoteTime ? (
+  return initialVoteTime ? (
     <div className={styles.votePageNotTime}>
       <div>
         <Title>O SATURNO estará disponível para votação em:</Title>
