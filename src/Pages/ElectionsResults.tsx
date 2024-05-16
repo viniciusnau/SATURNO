@@ -176,41 +176,41 @@ const ElectionsResults = () => {
   };
 
   const loadImage = (row: any) => {
-    if (row.id === 39) {
+    if (row.id === 4) {
       return domPedro2;
-    } else if (row.id === 21) {
+    } else if (row.id === 5) {
       return pedroAl;
-    } else if (row.id === 22) {
-      return mariaAntonieta;
-    } else if (row.id === 23) {
-      return luisxvi;
-    } else if (row.id === 24) {
-      return napo;
-    } else if (row.id === 25) {
-      return joanaD;
     } else if (row.id === 6) {
-      return juri;
+      return mariaAntonieta;
     } else if (row.id === 7) {
-      return chunli;
+      return luisxvi;
+    } else if (row.id === 8) {
+      return napo;
     } else if (row.id === 9) {
-      return luke;
+      return joanaD;
     } else if (row.id === 10) {
-      return jp;
+      return juri;
     } else if (row.id === 11) {
-      return kimberly;
+      return chunli;
     } else if (row.id === 12) {
-      return kimberly;
+      return luke;
     } else if (row.id === 13) {
       return jp;
     } else if (row.id === 14) {
-      return cammy;
+      return kimberly;
     } else if (row.id === 15) {
-      return ken;
+      return kimberly;
     } else if (row.id === 16) {
-      return juri;
+      return jp;
+    } else if (row.id === 17) {
+      return cammy;
     } else if (row.id === 18) {
-      return chunli;
+      return ken;
     } else if (row.id === 19) {
+      return juri;
+    } else if (row.id === 20) {
+      return chunli;
+    } else if (row.id === 21) {
       return luke;
     } else if (row.id === null) {
       return avatar;
