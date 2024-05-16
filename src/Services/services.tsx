@@ -240,7 +240,9 @@ const services = {
       .then((data: any) => {
         return data;
       })
-      .catch((err: any) => console.log("err", err));
+      .catch((err: any) => {
+        throw err;
+      });
   },
   // pdf: 1 - public defenser, 2: conselho, 0: eleitores
   downloadElectionsResultPDF: async (positionId: any) => {

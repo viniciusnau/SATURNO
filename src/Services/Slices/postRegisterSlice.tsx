@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import services from "../services";
 import { IPositionId, IRegister, IRegisterState } from "../../Types/Types";
+import { AnyCnameRecord } from "dns";
 
 const initialState: IRegisterState = {
   data: [],
@@ -12,20 +13,20 @@ const RegisterSlice = createSlice({
   name: "register",
   initialState,
   reducers: {
-    postRegister: (state: IRegisterState) => {
+    postRegister: (state: any) => {
       state.loading = true;
       state.error = false;
       state.data = [];
     },
-    postRegisterSuccess: (state: IRegisterState, action: any) => {
+    postRegisterSuccess: (state: any, action: any) => {
       state.loading = false;
       state.error = false;
       state.data = action.payload;
     },
 
-    postRegisterFailure: (state: IRegisterState) => {
+    postRegisterFailure: (state: any, action: any) => {
       state.loading = false;
-      state.error = true;
+      state.error = action.payload.response;
       state.data = [];
     },
   },
@@ -50,8 +51,10 @@ export const fetchRegister =
     dispatch(postRegister());
     try {
       const response = await services.postRegister(data);
+      console.log(response)
       dispatch(postRegisterSuccess(response.data));
-    } catch (err) {
-      dispatch(postRegisterFailure());
+    } catch (err: any) {
+      console.log(err?.response?.data?.error)
+      dispatch(postRegisterFailure(err?.response?.data?.error));
     }
   };

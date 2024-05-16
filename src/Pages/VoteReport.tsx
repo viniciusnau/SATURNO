@@ -22,12 +22,12 @@ export const VoteReport = () => {
     const { data, error, loading } = useSelector(
         (state: any) => state.electionsPDFDataSlice
     );
-    const [startTime, setStartTime] = useState<boolean>(true);
+    const [finalVoteTime, setFinalVoteTime] = useState<boolean>(false);
 
     useEffect(() => {
         const currentDateTime = new Date();
-        if (currentDateTime <= deadline.initial) {
-            setStartTime(false);
+        if (currentDateTime >= deadline.finalVote) {
+            setFinalVoteTime(true);
         }
     }, []);
 
@@ -157,7 +157,7 @@ export const VoteReport = () => {
                     <select
                         value={selectedFilter}
                         onChange={handleFilterChange}
-                        disabled={!startTime}
+                        disabled={!finalVoteTime}
                     >
                         <option value="0">Relação dos inscritos</option>
                         <option value="1">

@@ -5,12 +5,12 @@ import Button from "./Button";
 import { fetchSelectCandidate } from "../Services/Slices/selectedCandidate";
 import { useDispatch, useSelector } from "react-redux";
 import Snackbar from "./Snackbar";
-import domPedro2 from "../Assets/domPedro2.jpg"
-import joanaD from "../Assets/joanaDarc.jpg"
-import luisxvi from "../Assets/luisxvi.jpg"
-import mariaAntonieta from "../Assets/mariaAntonieta.jpg"
-import napo from "../Assets/napo.jpg"
-import pedroAl from "../Assets/pedroAlv.jpeg"
+import domPedro2 from "../Assets/domPedro2.jpg";
+import joanaD from "../Assets/joanaDarc.jpg";
+import luisxvi from "../Assets/luisxvi.jpg";
+import mariaAntonieta from "../Assets/mariaAntonieta.jpg";
+import napo from "../Assets/napo.jpg";
+import pedroAl from "../Assets/pedroAlv.jpeg";
 import akuma from "../Assets/akuma.jpeg";
 import blanka from "../Assets/blanka.jpeg";
 import chunli from "../Assets/chunli.jpeg";
@@ -38,7 +38,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
   const [selectedCandidateImage, setSelectedCandidateImage] = useState<
     string | null
-  >(null); 
+  >(null);
   const [error, setError] = useState<any>(null);
   const responseSelectedCandidates = useSelector(
     (state: any) => state.selectedCandidate.selectedCandidates
@@ -162,21 +162,30 @@ const Table: React.FC<IData> = ({ row, loading }) => {
       return avatar;
     }
   };
-const handleClearButton = () => {
-  const nullCandidate = { id: '', registration:'', seniority:'', category:'', public_defense:''};
-  setSelectedCandidate(nullCandidate);
-  for(var i = 0; i <maxCountCandidates - responseSelectedCandidates.length; i++) {
-    dispatch(fetchSelectCandidate(nullCandidate));
-  }
-};
-
+  const handleClearButton = () => {
+    const nullCandidate = {
+      id: "",
+      registration: "",
+      seniority: "",
+      category: "",
+      public_defense: "",
+    };
+    setSelectedCandidate(nullCandidate);
+    for (
+      var i = 0;
+      i < maxCountCandidates - responseSelectedCandidates.length;
+      i++
+    ) {
+      dispatch(fetchSelectCandidate(nullCandidate));
+    }
+  };
 
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       {error && <Snackbar type={error} setShowSnackbar={setError} />}
       <Box className={styles.megaBox}>
         <Box className={styles.rowContainer}>
-          <h4> Candidatos(as) </h4>
+          <h3> Candidatos(as) </h3>
           {loading && <Box className={styles.loadingContainer}></Box>}
 
           {!loading && row?.length === 0 && (
@@ -223,9 +232,7 @@ const handleClearButton = () => {
         </Box>
 
         <Box className={styles.detailsContainer}>
-          <div className={styles.detailscontainer}>
-            <h4> Detalhes do(a) Candidato(a) Selecionado(a): </h4>
-          </div>
+          <h3> Detalhes do(a) Candidato(a) Selecionado(a): </h3>
           <div className={styles.detailsContent}>
             <img
               src={selectedCandidateImage || avatar}
@@ -235,17 +242,27 @@ const handleClearButton = () => {
             <div className={styles.candidateSelect}>
               {selectedCandidate ? (
                 <ul>
-                  <li>{`Candidato(a): ${selectedCandidate.candidate}`}</li>
-                  <li>{`Matrícula: ${selectedCandidate.registration}`}</li>
-                  <li>{`Nascimento: ${formatDate(
+                  <li
+                    style={{ fontSize: ".9rem" }}
+                  >{`Candidato(a): ${selectedCandidate.candidate}`}</li>
+                  <li
+                    style={{ fontSize: ".9rem" }}
+                  >{`Matrícula: ${selectedCandidate.registration}`}</li>
+                  <li style={{ fontSize: ".9rem" }}>{`Nascimento: ${formatDate(
                     selectedCandidate.birth_date
                   )}`}</li>
-                  <li>{`Posse: ${formatDate(
+                  <li style={{ fontSize: ".9rem" }}>{`Posse: ${formatDate(
                     selectedCandidate.start_date
                   )}`}</li>
-                  <li>{`Lotação: ${selectedCandidate.public_defense}`}</li>
-                  <li>{`Antiguidade: ${selectedCandidate.seniority}`}</li>
-                  <li>{`Categoria: ${selectedCandidate.category}`}</li>
+                  <li
+                    style={{ fontSize: ".9rem" }}
+                  >{`Lotação: ${selectedCandidate.public_defense}`}</li>
+                  <li
+                    style={{ fontSize: ".9rem" }}
+                  >{`Antiguidade: ${selectedCandidate.seniority}`}</li>
+                  <li
+                    style={{ fontSize: ".9rem" }}
+                  >{`Categoria: ${selectedCandidate.category}`}</li>
                 </ul>
               ) : (
                 <div className={styles.noCandidate}>

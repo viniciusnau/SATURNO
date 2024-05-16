@@ -26,7 +26,7 @@ const VotePage: React.FC = () => {
   const [verifyVote, setVerifyVote] = useState<boolean>(true);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [positionCandidades, setPositionCandidates] = useState<any>("");
-  const [limitTimeVote, setLimitTimeVote] = useState<boolean>(false);
+  const [initialVoteTime, setInitialVoteTime] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
   const columns = [
     { title: "Nome", property: "candidate" },
@@ -62,7 +62,7 @@ const VotePage: React.FC = () => {
   };
 
   const handleSubmitNullVote = () => {
-    setIsOpenModal(true)
+    setIsOpenModal(true);
   };
 
   const handleConfirmVote = () => {
@@ -73,13 +73,13 @@ const VotePage: React.FC = () => {
         chosen_person: "",
         voting_person: `${responseDataUser.data.person_id}`,
       };
-  
+
       for (let i = 0; i < (positionId === 1 ? 3 : 5); i++) {
         dispatch(fetchPostVote(emptyVoteData)) && setVotePage(true);
         dispatch(removeAllCandidates()) && setMessage("voteSuccess");
         positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
       }
-  
+
       return;
     }
 
@@ -87,7 +87,7 @@ const VotePage: React.FC = () => {
     const remainingVotes = maxCount - responseSelectedCandidates.length;
 
     if (remainingVotes === 1) {
-      let candidates = [...responseSelectedCandidates]
+      let candidates = [...responseSelectedCandidates];
       const emptyVoteData = {
         position: positionId,
         chosen_person: "",
@@ -111,7 +111,7 @@ const VotePage: React.FC = () => {
     }
 
     if (remainingVotes === 2) {
-      let candidates = [...responseSelectedCandidates]
+      let candidates = [...responseSelectedCandidates];
       const emptyVoteData = {
         position: positionId,
         chosen_person: "",
@@ -135,13 +135,17 @@ const VotePage: React.FC = () => {
     }
 
     if (remainingVotes === 3) {
-      let candidates = [...responseSelectedCandidates]
+      let candidates = [...responseSelectedCandidates];
       const emptyVoteData = {
         position: positionId,
         chosen_person: "",
         voting_person: `${responseDataUser.data.person_id}`,
       };
-      candidates = candidates.concat([emptyVoteData, emptyVoteData, emptyVoteData]);
+      candidates = candidates.concat([
+        emptyVoteData,
+        emptyVoteData,
+        emptyVoteData,
+      ]);
 
       candidates.forEach((candidate: any) => {
         const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
@@ -159,13 +163,18 @@ const VotePage: React.FC = () => {
     }
 
     if (remainingVotes === 4) {
-      let candidates = [...responseSelectedCandidates]
+      let candidates = [...responseSelectedCandidates];
       const emptyVoteData = {
         position: positionId,
         chosen_person: "",
         voting_person: `${responseDataUser.data.person_id}`,
       };
-      candidates = candidates.concat([emptyVoteData, emptyVoteData, emptyVoteData, emptyVoteData]);
+      candidates = candidates.concat([
+        emptyVoteData,
+        emptyVoteData,
+        emptyVoteData,
+        emptyVoteData,
+      ]);
 
       candidates.forEach((candidate: any) => {
         const chosenPersonId = candidate.id !== undefined ? candidate.id : "";
@@ -192,8 +201,7 @@ const VotePage: React.FC = () => {
       dispatch(removeAllCandidates()) && setMessage("voteSuccess");
       positionId === 1 ? setVerifyVote(true) : navigate("/saturno/vote-pdf/");
     });
-  };  
-  
+  };
 
   const calculateTimeRemaining = (
     currentDateTime: Date,
@@ -207,16 +215,16 @@ const VotePage: React.FC = () => {
     const currentDateTime = new Date();
     const remainingTimeInSeconds = calculateTimeRemaining(
       currentDateTime,
-      deadline.initial
+      deadline.initialVote
     );
     setTimeRemaining(remainingTimeInSeconds);
 
-    if (currentDateTime <= deadline.initial) {
-      setLimitTimeVote(true);
+    if (currentDateTime <= deadline.initialVote) {
+      setInitialVoteTime(false);
       const intervalId = setInterval(() => {
         const newTimeRemaining = calculateTimeRemaining(
           new Date(),
-          deadline.initial
+          deadline.initialVote
         );
         setTimeRemaining(newTimeRemaining);
       }, 1000);
@@ -227,15 +235,15 @@ const VotePage: React.FC = () => {
   useEffect(() => {
     if (timeRemaining > 0) {
       const currentDateTime = new Date();
-      if (currentDateTime <= deadline.initial) {
-        setLimitTimeVote(true);
+      if (currentDateTime <= deadline.initialVote) {
+        setInitialVoteTime(true);
       }
     }
   }, [timeRemaining]);
 
   useEffect(() => {
     if (timeRemaining <= 0) {
-      setLimitTimeVote(false);
+      setInitialVoteTime(false);
     }
   }, [timeRemaining]);
 
@@ -288,7 +296,7 @@ const VotePage: React.FC = () => {
       setIsDispatched(true);
   }, [votePage]);
 
-  return !limitTimeVote ? (
+  return initialVoteTime ? (
     <div className={styles.votePageNotTime}>
       <div>
         <Title>O SATURNO estará disponível para votação em:</Title>
@@ -338,8 +346,7 @@ const VotePage: React.FC = () => {
       <Title>Votação Eleitoral - {positionCandidades} </Title>
       <div className={styles.TableContainer}>
         <div className={styles.Table}>
-          <Table image={avatar} row={rows} loading={loading}
-          />
+          <Table image={avatar} row={rows} loading={loading} />
         </div>
       </div>
       <div className={styles.MiniTable}>
@@ -348,11 +355,11 @@ const VotePage: React.FC = () => {
           data={responseListCandidates.selectedCandidates}
         />
       </div>
-      <Button className={styles.button} onClick={handleSubmitVote}>
-        Finalizar Votação
-      </Button>
       <Button className={styles.button} onClick={handleSubmitNullVote}>
         Votar Nulo
+      </Button>
+      <Button className={styles.button} onClick={handleSubmitVote}>
+        Finalizar Votação
       </Button>
     </div>
   );

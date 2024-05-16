@@ -12,8 +12,8 @@ export interface IVoteState {
 
 export interface IRegisterState {
   data: any[];
-  loading: boolean;
-  error: boolean;
+  loading: any;
+  error: any;
 }
 export interface IRegister {
   name: string;
