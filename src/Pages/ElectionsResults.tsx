@@ -80,7 +80,7 @@ const ElectionsResults = () => {
       deadline.finalVote
     );
     setTimeRemaining(remainingTimeInSeconds);
-  
+
     if (remainingTimeInSeconds <= 0) {
       setFinalVoteTime(true);
     } else {
@@ -98,8 +98,6 @@ const ElectionsResults = () => {
       return () => clearInterval(intervalId);
     }
   }, []);
-  
-  
 
   const positionOptions = {
     "Defensor(a) Público-Geral": "1",
@@ -359,7 +357,7 @@ const ElectionsResults = () => {
         <Box className={styles.detailsContainer}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <p className={styles.title}>
-              Detalhes do Candidato(a) Selecionado:
+              Detalhes do(a) Candidato(a) Selecionado:
             </p>
             {selectedCandidate && (
               <AiOutlineCloseCircle
@@ -417,7 +415,7 @@ const ElectionsResults = () => {
       <div>
         <Title>
           {" "}
-          A visualização dos resultados das eleicões estará disponível em:
+          A visualização dos resultados das eleições estará disponível em:
         </Title>
         <h2 className={styles.clock}>
           <div className={styles.blocktimer}>

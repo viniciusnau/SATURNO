@@ -40,6 +40,7 @@
   border-radius: .35rem;
   border: .15rem solid #ccc;
   margin: 0 0 0 3rem;
+  overflow-x: hidden;
 }
 
 
@@ -50,7 +51,7 @@
 
 .rowContainer {
   border-radius: .35rem;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   min-width: 10rem;
   border: .15rem solid #ccc;
 }
@@ -84,8 +85,8 @@
 }
 
 .candidateSelect {
- align-items: center; 
- margin: 0 .75rem 0 0;
+  align-items: center;
+  margin: 0 .75rem 0 0;
 }
 
 .detailsContainer ul {

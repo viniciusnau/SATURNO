@@ -355,12 +355,14 @@ const VotePage: React.FC = () => {
           data={responseListCandidates.selectedCandidates}
         />
       </div>
-      <Button className={styles.button} onClick={handleSubmitNullVote}>
-        Votar Nulo
-      </Button>
-      <Button className={styles.button} onClick={handleSubmitVote}>
-        Finalizar Votação
-      </Button>
+      <div className={styles.buttonContainer}>
+        <Button className={styles.button} onClick={handleSubmitNullVote}>
+          Votar Nulo
+        </Button>
+        <Button className={styles.button} onClick={handleSubmitVote}>
+          Finalizar Votação
+        </Button>
+      </div>
     </div>
   );
 };
