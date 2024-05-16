@@ -72,15 +72,15 @@ const Table: React.FC<IData> = ({ row, loading }) => {
       } else if (candidate.id === 9) {
         setSelectedCandidateImage(joanaD);
       } else if (candidate.id === 10) {
-        setSelectedCandidateImage(blanka);
+        setSelectedCandidateImage(juri);
       } else if (candidate.id === 11) {
-        setSelectedCandidateImage(akuma);
+        setSelectedCandidateImage(chunli);
       } else if (candidate.id === 12) {
-        setSelectedCandidateImage(ryu);
+        setSelectedCandidateImage(luke);
       } else if (candidate.id === 13) {
-        setSelectedCandidateImage(guile);
+        setSelectedCandidateImage(jp);
       } else if (candidate.id === 14) {
-        setSelectedCandidateImage(manon);
+        setSelectedCandidateImage(kimberly);
       } else if (candidate.id === 15) {
         setSelectedCandidateImage(kimberly);
       } else if (candidate.id === 16) {
@@ -133,15 +133,15 @@ const Table: React.FC<IData> = ({ row, loading }) => {
     } else if (row.id === 9) {
       return joanaD;
     } else if (row.id === 10) {
-      return blanka;
+      return juri;
     } else if (row.id === 11) {
-      return akuma;
+      return chunli;
     } else if (row.id === 12) {
-      return ryu;
+      return luke;
     } else if (row.id === 13) {
-      return guile;
+      return jp;
     } else if (row.id === 14) {
-      return manon;
+      return kimberly;
     } else if (row.id === 15) {
       return kimberly;
     } else if (row.id === 16) {

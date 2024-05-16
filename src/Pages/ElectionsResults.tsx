@@ -139,15 +139,15 @@ const ElectionsResults = () => {
       } else if (candidate.id === 9) {
         setSelectedCandidateImage(joanaD);
       } else if (candidate.id === 10) {
-        setSelectedCandidateImage(blanka);
+        setSelectedCandidateImage(juri);
       } else if (candidate.id === 11) {
-        setSelectedCandidateImage(akuma);
+        setSelectedCandidateImage(chunli);
       } else if (candidate.id === 12) {
-        setSelectedCandidateImage(ryu);
+        setSelectedCandidateImage(luke);
       } else if (candidate.id === 13) {
-        setSelectedCandidateImage(guile);
+        setSelectedCandidateImage(jp);
       } else if (candidate.id === 14) {
-        setSelectedCandidateImage(manon);
+        setSelectedCandidateImage(kimberly);
       } else if (candidate.id === 15) {
         setSelectedCandidateImage(kimberly);
       } else if (candidate.id === 16) {
@@ -189,15 +189,15 @@ const ElectionsResults = () => {
     } else if (row.id === 25) {
       return joanaD;
     } else if (row.id === 6) {
-      return blanka;
+      return juri;
     } else if (row.id === 7) {
-      return akuma;
+      return chunli;
     } else if (row.id === 9) {
-      return ryu;
+      return luke;
     } else if (row.id === 10) {
-      return guile;
+      return jp;
     } else if (row.id === 11) {
-      return manon;
+      return kimberly;
     } else if (row.id === 12) {
       return kimberly;
     } else if (row.id === 13) {
