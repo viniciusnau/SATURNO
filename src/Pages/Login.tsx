@@ -151,6 +151,13 @@ const Login = () => {
                 </div>
                 <div className={styles.linkContainer}>
                     <Link
+                        href="/saturno/register/"
+                        underline="hover"
+                        className={styles.link}
+                    >
+                        Registre-se
+                    </Link>
+                    <Link
                         href="/saturno/password-reset/"
                         underline="hover"
                         className={styles.link}
