@@ -126,41 +126,41 @@ const ElectionsResults = () => {
     const candidate = data.find((candidate: any) => candidate.id === rowId);
     setSelectedCandidate(candidate);
     if (candidate) {
-      if (candidate.id === 39) {
+      if (candidate.id === 4) {
         setSelectedCandidateImage(domPedro2);
-      } else if (candidate.id === 21) {
+      } else if (candidate.id === 5) {
         setSelectedCandidateImage(pedroAl);
-      } else if (candidate.id === 22) {
-        setSelectedCandidateImage(mariaAntonieta);
-      } else if (candidate.id === 23) {
-        setSelectedCandidateImage(luisxvi);
-      } else if (candidate.id === 24) {
-        setSelectedCandidateImage(napo);
-      } else if (candidate.id === 25) {
-        setSelectedCandidateImage(joanaD);
       } else if (candidate.id === 6) {
-        setSelectedCandidateImage(blanka);
+        setSelectedCandidateImage(mariaAntonieta);
       } else if (candidate.id === 7) {
-        setSelectedCandidateImage(akuma);
+        setSelectedCandidateImage(luisxvi);
+      } else if (candidate.id === 8) {
+        setSelectedCandidateImage(napo);
       } else if (candidate.id === 9) {
-        setSelectedCandidateImage(ryu);
+        setSelectedCandidateImage(joanaD);
       } else if (candidate.id === 10) {
-        setSelectedCandidateImage(guile);
+        setSelectedCandidateImage(blanka);
       } else if (candidate.id === 11) {
-        setSelectedCandidateImage(manon);
+        setSelectedCandidateImage(akuma);
       } else if (candidate.id === 12) {
-        setSelectedCandidateImage(kimberly);
+        setSelectedCandidateImage(ryu);
       } else if (candidate.id === 13) {
-        setSelectedCandidateImage(jp);
+        setSelectedCandidateImage(guile);
       } else if (candidate.id === 14) {
-        setSelectedCandidateImage(cammy);
+        setSelectedCandidateImage(manon);
       } else if (candidate.id === 15) {
-        setSelectedCandidateImage(ken);
+        setSelectedCandidateImage(kimberly);
       } else if (candidate.id === 16) {
-        setSelectedCandidateImage(juri);
+        setSelectedCandidateImage(jp);
+      } else if (candidate.id === 17) {
+        setSelectedCandidateImage(cammy);
       } else if (candidate.id === 18) {
-        setSelectedCandidateImage(chunli);
+        setSelectedCandidateImage(ken);
       } else if (candidate.id === 19) {
+        setSelectedCandidateImage(juri);
+      } else if (candidate.id === 20) {
+        setSelectedCandidateImage(chunli);
+      } else if (candidate.id === 21) {
         setSelectedCandidateImage(luke);
       } else if (candidate.id === null) {
         setSelectedCandidateImage(avatar);
