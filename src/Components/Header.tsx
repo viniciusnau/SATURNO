@@ -112,18 +112,15 @@ const Header = () => {
                                 >
                                     Relatórios
                                 </span>
-                                <li
+                                <span
                                     onClick={() => {
                                         setToggleNav(!toggleNav);
                                         navigate('saturno/confirm-hash/');
                                     }}
+                                    className={`${styles.route} ${styles.logout}`}
                                 >
-                                    <span
-                                        className={`${styles.route} ${styles.logout}`}
-                                    >
-                                        Validação de voto
-                                    </span>
-                                </li>
+                                    Validação de voto
+                                </span>
                             </>
                         )}
                         <span
