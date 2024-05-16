@@ -25,6 +25,7 @@ const VotePage: React.FC = () => {
   const [message, setMessage] = useState<any>(null);
   const [verifyVote, setVerifyVote] = useState<boolean>(true);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [modalNullVotes, setModalNullVotes] = useState<boolean>(false);
   const [positionCandidades, setPositionCandidates] = useState<any>("");
   const [initialVoteTime, setInitialVoteTime] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
@@ -62,7 +63,13 @@ const VotePage: React.FC = () => {
   };
 
   const handleSubmitNullVote = () => {
+    setModalNullVotes(true);
     setIsOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpenModal(false);
+    setModalNullVotes(false);
   };
 
   const handleConfirmVote = () => {
@@ -236,7 +243,7 @@ const VotePage: React.FC = () => {
     if (timeRemaining > 0) {
       const currentDateTime = new Date();
       if (currentDateTime <= deadline.initialVote) {
-        setInitialVoteTime(true);
+        setInitialVoteTime(false);
       }
     }
   }, [timeRemaining]);
@@ -291,8 +298,8 @@ const VotePage: React.FC = () => {
   }, [isDispatched, loading, error, data]);
 
   useEffect(() => {
-    votePage &&
-      dispatch(fetchListCandidates({ position_id: positionId })) &&
+    votePage && setModalNullVotes(false);
+    dispatch(fetchListCandidates({ position_id: positionId })) &&
       setIsDispatched(true);
   }, [votePage]);
 
@@ -332,14 +339,20 @@ const VotePage: React.FC = () => {
       {isOpenModal && (
         <Modal
           content={{
-            sendVote: {
-              title: "Confirmação de voto!",
-              description: `Você tem certeza que deseja finalizar a votação para ${positionCandidades}?`,
-              button: "Confirmar",
-            },
+            sendVote: modalNullVotes
+              ? {
+                  title: "Confirmação de voto nulo!",
+                  description: `todos os votos serão anulados para ${positionCandidades}, deseja continuar?`,
+                  button: "Confirmar",
+                }
+              : {
+                  title: "Confirmação de voto!",
+                  description: `Você tem certeza que deseja finalizar a votação para ${positionCandidades}?`,
+                  button: "Confirmar",
+                },
           }}
           confirm={handleConfirmVote}
-          setOpenModal={setIsOpenModal}
+          setOpenModal={handleCloseModal}
           open={isOpenModal}
         />
       )}
@@ -355,14 +368,12 @@ const VotePage: React.FC = () => {
           data={responseListCandidates.selectedCandidates}
         />
       </div>
-      <div className={styles.buttonContainer}>
-        <Button className={styles.button} onClick={handleSubmitNullVote}>
-          Votar Nulo
-        </Button>
-        <Button className={styles.button} onClick={handleSubmitVote}>
-          Finalizar Votação
-        </Button>
-      </div>
+      <Button className={styles.button} onClick={handleSubmitVote}>
+        Finalizar Votação
+      </Button>
+      <Button className={styles.button} onClick={handleSubmitNullVote}>
+        Votar Nulo
+      </Button>
     </div>
   );
 };

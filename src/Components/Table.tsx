@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import styles from "../Styles/Table.module.css";
 import Button from "./Button";
@@ -162,6 +162,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
       return avatar;
     }
   };
+
   const handleClearButton = () => {
     const nullCandidate = {
       id: "",
@@ -179,6 +180,13 @@ const Table: React.FC<IData> = ({ row, loading }) => {
       dispatch(fetchSelectCandidate(nullCandidate));
     }
   };
+
+  useEffect(() => {
+    if (responseSelectedCandidates.length === 0) {
+      setSelectedCandidate(null);
+      setSelectedCandidateImage(null);
+    }
+  }, [responseSelectedCandidates]);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
