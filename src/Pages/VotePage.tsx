@@ -312,7 +312,8 @@ const VotePage: React.FC = () => {
     }, [positionId, dispatch]);
 
     useEffect(() => {
-        if (isDispatched && !loading && !error) {
+        if (isDispatched && !loading && !error && data.length > 0) {
+            console.log(data);
             const updatedRows = data;
             setRows(updatedRows);
         }

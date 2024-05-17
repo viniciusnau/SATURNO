@@ -49,9 +49,14 @@ const Login = () => {
     }, [finalVoteTime]);
 
     const handleGoogleLogin = () => {
+        if (finalVoteTime) {
+            setShowSnackbar(true);
+            return;
+        }
         const googleLoginUrl = `${PATH.base}/user/google-redirect`;
         window.location.href = googleLoginUrl;
     };
+    
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
         const { name, value } = e.target;
