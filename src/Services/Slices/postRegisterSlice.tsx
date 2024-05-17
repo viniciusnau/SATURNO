@@ -1,33 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import services from "../services";
-import { IPositionId, IRegister, IRegisterState } from "../../Types/Types";
-import { AnyCnameRecord } from "dns";
+import { IRegister, IRegisterState } from "../../Types/Types";
 
 const initialState: IRegisterState = {
   data: [],
   loading: false,
   error: false,
+  errorCode: null,
 };
 
 const RegisterSlice = createSlice({
   name: "register",
   initialState,
   reducers: {
-    postRegister: (state: any) => {
+    postRegister: (state: IRegisterState) => {
       state.loading = true;
       state.error = false;
       state.data = [];
+      state.errorCode = null; 
     },
-    postRegisterSuccess: (state: any, action: any) => {
+    postRegisterSuccess: (state: IRegisterState, action: PayloadAction<any>) => {
       state.loading = false;
       state.error = false;
       state.data = action.payload;
+      state.errorCode = null;
     },
-
-    postRegisterFailure: (state: any, action: any) => {
+    postRegisterFailure: (state: IRegisterState, action: PayloadAction<number | null>) => {
       state.loading = false;
-      state.error = action.payload.response;
+      state.error = true;
       state.data = [];
+      state.errorCode = action.payload;
     },
   },
 });
@@ -51,10 +53,12 @@ export const fetchRegister =
     dispatch(postRegister());
     try {
       const response = await services.postRegister(data);
-      console.log(response)
       dispatch(postRegisterSuccess(response.data));
     } catch (err: any) {
-      console.log(err?.response?.data?.error)
-      dispatch(postRegisterFailure(err?.response?.data?.error));
+      if (err.response && err.response.status === 409) {
+        dispatch(postRegisterFailure(409));
+      } else {
+        dispatch(postRegisterFailure(err.response ? err.response.status : null));
+      }
     }
   };
