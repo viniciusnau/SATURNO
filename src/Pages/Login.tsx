@@ -108,13 +108,13 @@ const Login = () => {
 
     return (
         <div className={styles.container}>
-            {showSnackbar && (
+            {error && status === 409 && (
                 <Snackbar
                     type="errorLoginExpired"
                     setShowSnackbar={setShowSnackbar}
                 />
             )}
-            {error && status !== 403 && isDispatched && (
+            {error && status !== 403 && error && status !== 409 && isDispatched && (
                 <Snackbar type="errorLogin" setShowSnackbar={setIsDispatched} />
             )}
             {error && status === 403 && isDispatched && (
