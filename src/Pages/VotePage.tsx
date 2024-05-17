@@ -313,7 +313,6 @@ const VotePage: React.FC = () => {
 
     useEffect(() => {
         if (isDispatched && !loading && !error && data.length > 0) {
-            console.log(data);
             const updatedRows = data;
             setRows(updatedRows);
         }
