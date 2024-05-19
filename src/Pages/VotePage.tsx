@@ -29,6 +29,7 @@ const VotePage: React.FC = () => {
     const [positionCandidades, setPositionCandidates] = useState<any>('');
     const [initialVoteTime, setInitialVoteTime] = useState<boolean>(false);
     const [timeRemaining, setTimeRemaining] = useState<number>(0);
+    const [finalVoteEnded, setFinalVoteEnded] = useState<boolean>(false);
     const columns = [
         { title: 'Nome', property: 'candidate' },
         { title: 'Matrícula', property: 'registration' },
@@ -323,6 +324,22 @@ const VotePage: React.FC = () => {
         dispatch(fetchListCandidates({ position_id: positionId })) &&
             setIsDispatched(true);
     }, [votePage]);
+
+    useEffect(() => {
+        const finalVoteTimeInterval = setInterval(() => {
+            const currentDateTime = new Date();
+            if (currentDateTime >= deadline.finalVote) {
+                setFinalVoteEnded(true);
+                clearInterval(finalVoteTimeInterval);
+            }
+        }, 10);
+
+        return () => clearInterval(finalVoteTimeInterval);
+    }, []);
+
+    if (finalVoteEnded) {
+        navigate('/saturno/vote-pdf/')
+    }
 
     return initialVoteTime ? (
         <div className={styles.votePageNotTime}>

@@ -118,7 +118,7 @@ const Header = () => {
                                     }}
                                     className={`${styles.route} ${styles.logout}`}
                                 >
-                                    Validação de voto
+                                    Validação de Voto
                                 </span>
                             </>
                         )}
@@ -230,7 +230,7 @@ const Header = () => {
                                                     <span
                                                         className={`${styles.route} ${styles.logout}`}
                                                     >
-                                                        Validação de voto
+                                                        Validação de Voto
                                                     </span>
                                                 </li>
                                                 <li onClick={handleLogout}>
