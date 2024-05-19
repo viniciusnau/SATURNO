@@ -147,7 +147,7 @@ const ElectionsResults = () => {
       } else if (candidate.id === 13) {
         setSelectedCandidateImage(jp);
       } else if (candidate.id === 14) {
-        setSelectedCandidateImage(kimberly);
+        setSelectedCandidateImage(ken);
       } else if (candidate.id === 15) {
         setSelectedCandidateImage(kimberly);
       } else if (candidate.id === 16) {
@@ -197,7 +197,7 @@ const ElectionsResults = () => {
     } else if (row.id === 13) {
       return jp;
     } else if (row.id === 14) {
-      return kimberly;
+      return ken;
     } else if (row.id === 15) {
       return kimberly;
     } else if (row.id === 16) {
