@@ -413,7 +413,7 @@ const VotePage: React.FC = () => {
                     data={responseListCandidates.selectedCandidates}
                 />
             </div>
-            <Button className={styles.button} onClick={handleSubmitNullVote}>
+            <Button className={styles.button} onClick={handleSubmitNullVote} disabled={responseSelectedCandidates.length > 0}>
                 Votar Nulo
             </Button>
             <Button className={styles.button} onClick={handleSubmitVote}>
