@@ -47,7 +47,7 @@ export const ProtectedRoute: React.FC<{
   }, [navigate]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div> </div>;
   }
 
   if (isLoggedIn() && !accessRole) {
@@ -68,7 +68,7 @@ export const ProtectedRoute: React.FC<{
     return <Navigate to="/saturno/login/" />;
   }
 
-  return <div>Loading...</div>;
+  return <div> </div>;
 };
 
 export default ProtectedRoute;
