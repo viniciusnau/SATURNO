@@ -15,9 +15,9 @@ export const roles = {
 export const deadline = {
   //Situacao ficticia em que pode votar e ver dados de votos ao mesmo tempo:
 
-  initialVote: new Date("2024-05-15T08:00:00"), //tempo inicial de votacao
-  finalVote: new Date("2024-05-15T17:00:59"), //tempo final de votacao
-  finalLoginTime: new Date("2025-06-06T16:50:00"), // tempo final de login
+  initialVote: new Date("2024-05-19T14:00:00"), //tempo inicial de votacao
+  finalVote: new Date("2024-05-19T14:30:59"), //tempo final de votacao
+  finalLoginTime: new Date("2025-05-19T14:20:00"), // tempo final de login
 
   //Situacao REAL de votacao em que tempo de votacao nao mostra resultados das eleicoes e dados de votos, Mudar paginas: !
   //VoteReport linha 29 >=, ElectionsResult linha 79 <=
