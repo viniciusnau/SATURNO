@@ -81,7 +81,13 @@ export const snackbarConsts = {
 
   unauthorizedLogin: {
     title: "Conta em análise!",
-    description: "Por favor aguarde aprovação.",
+    description: "Por favor, aguarde aprovação.",
+    color: "#9fc54d",
+  },
+
+  accountIsActive: {
+    title: "Conta já ativa!",
+    description: "Você já pode entrar no sistema.",
     color: "#9fc54d",
   },
 
