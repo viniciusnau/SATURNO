@@ -82,12 +82,12 @@ export const snackbarConsts = {
   unauthorizedLogin: {
     title: "Conta em análise!",
     description: "Por favor aguarde aprovação.",
-    color: "#ff6464",
+    color: "#9fc54d",
   },
 
   errorLoginExpired: {
     title: "Erro ao logar no sistema!",
-    description: "Não é mais permitido ingresso no saturno.",
+    description: "Não é mais permitido ingresso no SATURNO.",
     color: "#ff6464",
   },
 
@@ -111,7 +111,7 @@ export const snackbarConsts = {
 
   registerSuccess: {
     title: "Registro de eleitor",
-    description: "Solicitação enviada com sucesso, favor aguardar aprovação!.",
+    description: "Solicitação enviada com sucesso, favor aguardar aprovação!",
     color: "#9fc54d",
   },
 

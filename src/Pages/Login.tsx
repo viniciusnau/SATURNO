@@ -49,10 +49,6 @@ const Login = () => {
     }, [finalVoteTime]);
 
     const handleGoogleLogin = () => {
-        if (finalVoteTime) {
-            setShowSnackbar(true);
-            return;
-        }
         const googleLoginUrl = `${PATH.base}/user/google-redirect`;
         window.location.href = googleLoginUrl;
     };
@@ -69,10 +65,6 @@ const Login = () => {
     };
 
     const handleSubmit = () => {
-        if (finalVoteTime) {
-            setShowSnackbar(true);
-            return;
-        }
         const formatted = { ...form, username: form.email };
         dispatch(fetchLogin(formatted));
         setIsDispatched(true);
