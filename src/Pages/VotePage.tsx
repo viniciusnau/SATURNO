@@ -260,7 +260,7 @@ const VotePage: React.FC = () => {
         if (timeRemaining > 0) {
             const currentDateTime = new Date();
             if (currentDateTime <= deadline.initialVote) {
-                setInitialVoteTime(false);
+                setInitialVoteTime(true);
             }
         }
     }, [timeRemaining]);
