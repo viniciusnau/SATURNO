@@ -81,7 +81,6 @@ const Header = () => {
                     src={image}
                     className={styles.logo}
                     alt="Logo"
-                    onClick={() => navigate('/saturno/vote/')}
                 />
                 {isLoggedIn() && (
                     <div className={styles.navigation}>

@@ -31,7 +31,6 @@
 .logo {
   height: 9.1rem;
   width: 28rem;
-  cursor: var(--cursor-pointer);
   margin: 0 0 0 1rem;
   z-index: 1;
 }
