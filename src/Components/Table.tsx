@@ -76,7 +76,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
       } else if (candidate.id === 11) {
         setSelectedCandidateImage(chunli);
       } else if (candidate.id === 12) {
-        setSelectedCandidateImage(luke);
+        setSelectedCandidateImage(cammy);
       } else if (candidate.id === 13) {
         setSelectedCandidateImage(jp);
       } else if (candidate.id === 14) {
@@ -137,7 +137,7 @@ const Table: React.FC<IData> = ({ row, loading }) => {
     } else if (row.id === 11) {
       return chunli;
     } else if (row.id === 12) {
-      return luke;
+      return cammy;
     } else if (row.id === 13) {
       return jp;
     } else if (row.id === 14) {
