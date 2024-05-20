@@ -53,7 +53,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: 750px) {
+/* @media (max-width: 750px) {
   .footer {
     overflow-y: scroll;
     z-index: 10;
@@ -95,7 +95,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1360px) {
 
   .description,
   .copyright {
@@ -110,4 +110,56 @@
   .description {
     margin-top: 0;
   }
+} */
+
+@media screen and (orientation: landscape) {
+  .footer {
+    background-color: white;
+    font-size: 14px;
+    bottom: 0;
+    box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
+    justify-content: space-between;
+    left: 0;
+    max-height: none;
+    overflow-y: hidden;
+    padding-top: .5rem;
+    position: relative;
+    width: 100%;
+    margin-top: 200px;
+  }
+
+  .App {
+    height: auto;
+  }
+
+}
+
+@media screen and (orientation: portrait) {
+  .footer {
+    background-color: white;
+    font-size: 14px;
+    bottom: 0;
+    box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
+    justify-content: space-between;
+    left: 0;
+    max-height: none;
+    overflow-y: hidden;
+    padding-top: .5rem;
+    position: fixed;
+    width: 100%;
+  }
+}
+
+
+.copyright {
+  align-items: baseline !important;
+}
+
+.title {
+  margin-bottom: 30px !important;
+  margin-top: 50px !important;
+}
+
+.button {
+  margin-bottom: 15px !important;
 }
