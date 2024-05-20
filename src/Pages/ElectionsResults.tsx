@@ -253,7 +253,10 @@ const ElectionsResults = () => {
         <div className={styles.nullVotesLegend}>
           <Title>
             Eleitores que não utilizaram o número máximo de votos:{" "}
-            {((blankVotes / totalPeople) * 100).toFixed(2)}% ({blankVotes})
+            {blankVotes && totalPeople
+              ? ((blankVotes / totalPeople) * 100).toFixed(2)
+              : "0"}
+            % ({blankVotes})
           </Title>
         </div>
         <Box className={styles.progressBarContainer}>
@@ -270,7 +273,11 @@ const ElectionsResults = () => {
       </div>
       <Box className={styles.megaBox}>
         <Box className={styles.listContainer}>
-          <select value={selectedPosition} onChange={handleChange}>
+          <select
+            value={selectedPosition}
+            onChange={handleChange}
+            className={styles.select}
+          >
             {Object.entries(positionOptions).map(([label, value]) => (
               <option key={value} value={value}>
                 {label}

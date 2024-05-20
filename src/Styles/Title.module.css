@@ -5,21 +5,23 @@
   margin-bottom: 1.25rem;
   font-family: 'SourceCodePro', monospace;
   src: local('SourceCodePro'),
-    url('../Fonts/SourceCodePro/SourceCodePro-Medium.ttf') format('truetype')
-  ;
+    url('../Fonts/SourceCodePro/SourceCodePro-Medium.ttf') format('truetype');
 }
 
 @media (max-width: 750px) {
   .title {
-    font-size: calc(var(--font-size) - 1rem);
+    font-size: calc(var(--font-size) + .25rem);
   }
 }
 
 @media (min-width: 751px) {
   .title {
-    font-size: calc(var(--font-size) + .75rem);
+    font-size: calc(var(--font-size) + .5rem);
   }
 }
 
 @media (min-width: 1024px) {
+  .title {
+    font-size: calc(var(--font-size) + .65rem);
+  }
 }

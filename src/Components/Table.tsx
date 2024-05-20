@@ -163,24 +163,6 @@ const Table: React.FC<IData> = ({ row, loading }) => {
     }
   };
 
-  const handleClearButton = () => {
-    const nullCandidate = {
-      id: "",
-      registration: "",
-      seniority: "",
-      category: "",
-      public_defense: "",
-    };
-    setSelectedCandidate(nullCandidate);
-    for (
-      var i = 0;
-      i < maxCountCandidates - responseSelectedCandidates.length;
-      i++
-    ) {
-      dispatch(fetchSelectCandidate(nullCandidate));
-    }
-  };
-
   useEffect(() => {
     if (responseSelectedCandidates.length === 0) {
       setSelectedCandidate(null);
@@ -193,14 +175,14 @@ const Table: React.FC<IData> = ({ row, loading }) => {
       {error && <Snackbar type={error} setShowSnackbar={setError} />}
       <Box className={styles.megaBox}>
         <Box className={styles.rowContainer}>
-          <h3> Candidatos(as) </h3>
+          <h3 style={{ fontSize: "1.1rem" }}> Candidatos(as) </h3>
           {loading && <Box className={styles.loadingContainer}></Box>}
 
           {!loading && row?.length === 0 && (
             <div className={styles.noResults}>Nenhum resultado encontrado</div>
           )}
 
-          {row && row?.length > 0 && (
+          {row && (
             <>
               <div>
                 {row?.map((row: any, index: number) => (
@@ -240,36 +222,36 @@ const Table: React.FC<IData> = ({ row, loading }) => {
         </Box>
 
         <Box className={styles.detailsContainer}>
-          <h3> Detalhes do(a) Candidato(a) Selecionado(a): </h3>
+          <h3 style={{ fontSize: "1.1rem" }}> Detalhes do(a) Candidato(a): </h3>
           <div className={styles.detailsContent}>
             <img
               src={selectedCandidateImage || avatar}
               alt="Foto do(a) Candidato(a)"
-              className={styles.candidateImage}
+              className={styles.image}
             />
             <div className={styles.candidateSelect}>
               {selectedCandidate ? (
-                <ul>
+                <ul style={{ padding: "0" }}>
                   <li
-                    style={{ fontSize: ".9rem" }}
+                    className={styles.listItem}
                   >{`Candidato(a): ${selectedCandidate.candidate}`}</li>
                   <li
-                    style={{ fontSize: ".9rem" }}
+                    className={styles.listItem}
                   >{`Matrícula: ${selectedCandidate.registration}`}</li>
-                  <li style={{ fontSize: ".9rem" }}>{`Nascimento: ${formatDate(
+                  <li className={styles.listItem}>{`Nascimento: ${formatDate(
                     selectedCandidate.birth_date
                   )}`}</li>
-                  <li style={{ fontSize: ".9rem" }}>{`Posse: ${formatDate(
+                  <li className={styles.listItem}>{`Posse: ${formatDate(
                     selectedCandidate.start_date
                   )}`}</li>
                   <li
-                    style={{ fontSize: ".9rem" }}
+                    className={styles.listItem}
                   >{`Lotação: ${selectedCandidate.public_defense}`}</li>
                   <li
-                    style={{ fontSize: ".9rem" }}
+                    className={styles.listItem}
                   >{`Antiguidade: ${selectedCandidate.seniority}`}</li>
                   <li
-                    style={{ fontSize: ".9rem" }}
+                    className={styles.listItem}
                   >{`Categoria: ${selectedCandidate.category}`}</li>
                 </ul>
               ) : (
