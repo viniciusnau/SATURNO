@@ -126,7 +126,7 @@ export const snackbarConsts = {
   },
 
   fileContentError: {
-    title: "Erro na Validação da Hash",
+    title: "Erro na validação da Hash",
     description: "Erro ao carregar comprovante, tente novamente mais tarde.",
     color: "#ff6464",
   },
