@@ -1,5 +1,5 @@
 :root {
-  --font-size: 1.2em;
+  --font-size: 1em;
   --cursor-pointer: pointer;
   --cursor-not-allowed: not-allowed;
   --cursor-default: default;
@@ -31,7 +31,6 @@ body {
 .App {
   display: flex;
   height: auto;
-  min-height: 80vh;
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
