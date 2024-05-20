@@ -361,20 +361,20 @@ const VotePage: React.FC = () => {
         <div className={styles.Table}>
           <Table image={avatar} row={rows} loading={loading} />
         </div>
-      </div>
-      <div className={styles.MiniTable}>
-        <MiniTable
-          columns={columns}
-          data={responseListCandidates.selectedCandidates}
-        />
-      </div>
-      <div className={styles.buttonContainer}>
-        <Button className={styles.button} onClick={handleSubmitVote}>
-          Finalizar Votação
-        </Button>
-        <Button className={styles.button} onClick={handleSubmitNullVote}>
-          Votar Nulo
-        </Button>
+        <div className={styles.MiniTable}>
+          <MiniTable
+            columns={columns}
+            data={responseListCandidates.selectedCandidates}
+          />
+        </div>
+        <div className={styles.buttonContainer}>
+          <Button className={styles.button} onClick={handleSubmitVote}>
+            Finalizar Votação
+          </Button>
+          <Button className={styles.button} onClick={handleSubmitNullVote}>
+            Votar Nulo
+          </Button>
+        </div>
       </div>
     </div>
   );

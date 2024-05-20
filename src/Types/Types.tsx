@@ -12,9 +12,11 @@ export interface IVoteState {
 
 export interface IRegisterState {
   data: any[];
-  loading: any;
-  error: any;
+  loading: boolean;
+  error: boolean;
+  errorCode: number | null;
 }
+
 export interface IRegister {
   name: string;
   registration: string;

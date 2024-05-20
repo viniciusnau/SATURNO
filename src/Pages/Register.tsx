@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "../Styles/Register.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from '../Services/StoreConfig';
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import { IRegister } from "../Types/Types";
@@ -17,9 +18,10 @@ export const Register = () => {
     password: "",
   });
   const [isDispatched, setIsDispatched] = useState<boolean>(false);
-  const { data, error, loading } = useSelector(
+  const { data, loading } = useSelector(
     (state: any) => state.RegisterSlice
   );
+  const { error, errorCode } = useSelector((state: RootState) => state.RegisterSlice);
 
   const handleSubmit = () => {
     const formatted = { ...form, is_public_defender: true, email: form.name };
@@ -50,10 +52,10 @@ export const Register = () => {
         {!loading && !error && data && isDispatched && (
           <Snackbar type="registerSuccess" setShowSnackbar={setIsDispatched} />
         )}
-        {error && isDispatched && (
+        {error && errorCode !== 409 && isDispatched && (
           <Snackbar type="registerError" setShowSnackbar={setIsDispatched} />
         )}
-        {error?.response?.data?.error === "User with this email already exists." && isDispatched && (
+        {error && errorCode === 409 && isDispatched && (
           <Snackbar type="unauthorizedLogin" setShowSnackbar={setIsDispatched} />
         )}
         <Title>Registrar conta</Title>
