@@ -114,18 +114,17 @@
 
 @media screen and (orientation: landscape) {
   .footer {
-    background-color: white;
+    position: fixed;
+    justify-content: space-between;
+    width: 100%;
     font-size: 14px;
     bottom: 0;
-    box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
-    justify-content: space-between;
     left: 0;
+    background-color: white;
+    box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
     max-height: none;
     overflow-y: hidden;
     padding-top: .5rem;
-    position: relative;
-    width: 100%;
-    margin-top: 200px;
   }
 
   .App {
@@ -136,17 +135,17 @@
 
 @media screen and (orientation: portrait) {
   .footer {
-    background-color: white;
-    font-size: 14px;
-    bottom: 0;
-    box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
+    position: fixed;
     justify-content: space-between;
+    width: 100%;
+    font-size: 14px;
+    background-color: white;
+    bottom: 0;
     left: 0;
+    box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
     max-height: none;
     overflow-y: hidden;
     padding-top: .5rem;
-    position: fixed;
-    width: 100%;
   }
 }
 

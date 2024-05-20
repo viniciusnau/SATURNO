@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "../Styles/Register.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from '../Services/StoreConfig';
+import { RootState } from "../Services/StoreConfig";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import { IRegister } from "../Types/Types";
@@ -18,15 +18,16 @@ export const Register = () => {
     password: "",
   });
   const [isDispatched, setIsDispatched] = useState<boolean>(false);
-  const { data, loading } = useSelector(
-    (state: any) => state.RegisterSlice
+  const { data, loading } = useSelector((state: any) => state.RegisterSlice);
+  const { error, errorCode } = useSelector(
+    (state: RootState) => state.RegisterSlice
   );
-  const { error, errorCode } = useSelector((state: RootState) => state.RegisterSlice);
 
   const handleSubmit = () => {
     const formatted = { ...form, is_public_defender: true, email: form.name };
     dispatch(fetchRegister(formatted));
     setIsDispatched(true);
+    handleClearFields();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
@@ -36,6 +37,14 @@ export const Register = () => {
         ...prev,
         [name]: value,
       };
+    });
+  };
+
+  const handleClearFields = () => {
+    setForm({
+      registration: "",
+      name: "",
+      password: "",
     });
   };
 
@@ -56,7 +65,10 @@ export const Register = () => {
           <Snackbar type="registerError" setShowSnackbar={setIsDispatched} />
         )}
         {error && errorCode === 409 && isDispatched && (
-          <Snackbar type="unauthorizedLogin" setShowSnackbar={setIsDispatched} />
+          <Snackbar
+            type="unauthorizedLogin"
+            setShowSnackbar={setIsDispatched}
+          />
         )}
         {error && errorCode === 406 && isDispatched && (
           <Snackbar type="accountIsActive" setShowSnackbar={setIsDispatched} />
@@ -70,7 +82,7 @@ export const Register = () => {
           onChange={handleChange}
           value={form.registration}
           placeholder="000.000.000-00"
-          />
+        />
         <Input
           className={styles.input}
           fieldType="outlined"
@@ -79,7 +91,7 @@ export const Register = () => {
           onChange={handleChange}
           value={form.name}
           placeholder="exemplo@defensoria.sc.gov.br"
-          />
+        />
         <Input
           className={styles.password}
           fieldType="password"
