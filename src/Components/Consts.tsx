@@ -13,8 +13,6 @@ export const roles = {
 };
 
 export const deadline = {
-  //Situacao ficticia em que pode votar e ver dados de votos ao mesmo tempo:
-
   initialVote: new Date("2024-05-20T08:00:00"), //tempo inicial de votacao
   finalVote: new Date("2024-05-20T17:00:59"), //tempo final de votacao
   finalLoginTime: new Date("2025-05-20T16:50:00"), // tempo final de login
@@ -128,12 +126,12 @@ export const snackbarConsts = {
   },
 
   fileContentError: {
-    title: "Erro na Validação da Hash",
+    title: "Erro na validação da Hash",
     description: "Erro ao carregar comprovante, tente novamente mais tarde.",
     color: "#ff6464",
   },
   validationError: {
-    title: "Erro no Comprovante de validação",
+    title: "Erro no comprovante de validação",
     description:
       "A hash fornecida não é válida ou não corresponde a nenhum voto registrado.",
     color: "#ff6464",
