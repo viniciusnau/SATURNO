@@ -27,7 +27,8 @@ export const VotePagePdf = () => {
 
   return (
     <div className={styles.container}>
-      <Title>Comprovante de votação</Title>
+      <Title>Votação concluída!</Title>
+      <Title>Baixe o comprovante de votação</Title>
       <div className={styles.buttonContainer}>
         <Button onClick={handleDownload} className={styles.button}>
           Baixar comprovante

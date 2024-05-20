@@ -58,20 +58,24 @@
     overflow-y: scroll;
     z-index: 10;
   }
+
   .description,
   .copyright {
     font-size: var(--font-size)-0.12rem;
   }
+
   .copyright {
     align-items: flex-start;
   }
 }
 
 @media (min-width: 751px) {
+
   .description,
   .copyright {
     font-size: var(--font-size)-0.12rem;
   }
+
   .copyright {
     padding: 0 0 0 0;
     align-items: flex-start;
@@ -79,25 +83,30 @@
 }
 
 @media (min-width: 1024px) {
+
   .description,
   .copyright {
     font-size: var(--font-size)-0.25rem;
   }
+
   .copyright {
     padding: 0;
     align-items: flex-end;
   }
 }
 
-@media (min-width: 1361px) {
+@media (min-width: 1024px) {
+
   .description,
   .copyright {
     font-size: var(--font-size)-0.25rem;
   }
+
   .copyright {
     padding-bottom: 0.5rem;
     align-items: flex-end;
   }
+
   .description {
     margin-top: 0;
   }

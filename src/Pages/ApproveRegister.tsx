@@ -33,7 +33,7 @@ const ApproveRegister = () => {
   const renderRows = () => {
     return data.result_data.map((row: any, index: number) => (
       <TableRow key={index}>
-        <TableCell align="center">{row.position}</TableCell>
+        <TableCell align="center">{row.position}°</TableCell>
         <TableCell align="center">{row.name}</TableCell>
         <TableCell align="center">{row.vote_count}</TableCell>
       </TableRow>

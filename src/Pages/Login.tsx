@@ -49,10 +49,6 @@ const Login = () => {
     }, [finalVoteTime]);
 
     const handleGoogleLogin = () => {
-        if (finalVoteTime) {
-            setShowSnackbar(true);
-            return;
-        }
         const googleLoginUrl = `${PATH.base}/user/google-redirect`;
         window.location.href = googleLoginUrl;
     };
@@ -69,10 +65,6 @@ const Login = () => {
     };
 
     const handleSubmit = () => {
-        if (finalVoteTime) {
-            setShowSnackbar(true);
-            return;
-        }
         const formatted = { ...form, username: form.email };
         dispatch(fetchLogin(formatted));
         setIsDispatched(true);
@@ -108,13 +100,13 @@ const Login = () => {
 
     return (
         <div className={styles.container}>
-            {showSnackbar && (
+            {error && status === 409 && (
                 <Snackbar
                     type="errorLoginExpired"
                     setShowSnackbar={setShowSnackbar}
                 />
             )}
-            {error && status !== 403 && isDispatched && (
+            {error && status !== 403 && error && status !== 409 && isDispatched && (
                 <Snackbar type="errorLogin" setShowSnackbar={setIsDispatched} />
             )}
             {error && status === 403 && isDispatched && (
@@ -155,6 +147,13 @@ const Login = () => {
                     </div>
                 </div>
                 <div className={styles.linkContainer}>
+                    <Link
+                        href="/saturno/register/"
+                        underline="hover"
+                        className={styles.link}
+                    >
+                        Registre-se
+                    </Link>
                     <Link
                         href="/saturno/password-reset/"
                         underline="hover"

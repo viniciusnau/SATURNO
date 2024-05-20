@@ -29,6 +29,7 @@ const VotePage: React.FC = () => {
   const [positionCandidades, setPositionCandidates] = useState<any>("");
   const [initialVoteTime, setInitialVoteTime] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
+  const [finalVoteEnded, setFinalVoteEnded] = useState<boolean>(false);
   const columns = [
     { title: "Nome", property: "candidate" },
     { title: "Matrícula", property: "registration" },
@@ -286,9 +287,13 @@ const VotePage: React.FC = () => {
   }, [responseDataUser, dispatch]);
 
   useEffect(() => {
-    dispatch(fetchListCandidates({ position_id: positionId })) &&
-      setIsDispatched(true);
-  }, [positionId, dispatch]);
+    if (timeRemaining > 0) {
+      const currentDateTime = new Date();
+      if (currentDateTime <= deadline.initialVote) {
+        setInitialVoteTime(true);
+      }
+    }
+  }, [timeRemaining]);
 
   useEffect(() => {
     if (isDispatched && !loading && !error) {
@@ -302,6 +307,40 @@ const VotePage: React.FC = () => {
     dispatch(fetchListCandidates({ position_id: positionId })) &&
       setIsDispatched(true);
   }, [votePage]);
+
+  useEffect(() => {
+    dispatch(fetchListCandidates({ position_id: positionId })) &&
+      setIsDispatched(true);
+  }, [positionId, dispatch]);
+
+  useEffect(() => {
+    if (isDispatched && !loading && !error && data.length > 0) {
+      const updatedRows = data;
+      setRows(updatedRows);
+    }
+  }, [isDispatched, loading, error, data]);
+
+  useEffect(() => {
+    votePage && setModalNullVotes(false);
+    dispatch(fetchListCandidates({ position_id: positionId })) &&
+      setIsDispatched(true);
+  }, [votePage]);
+
+  useEffect(() => {
+    const finalVoteTimeInterval = setInterval(() => {
+      const currentDateTime = new Date();
+      if (currentDateTime >= deadline.finalVote) {
+        setFinalVoteEnded(true);
+        clearInterval(finalVoteTimeInterval);
+      }
+    }, 10);
+
+    return () => clearInterval(finalVoteTimeInterval);
+  }, []);
+
+  if (finalVoteEnded) {
+    navigate("/saturno/vote-pdf/");
+  }
 
   return initialVoteTime ? (
     <div className={styles.votePageNotTime}>
@@ -368,14 +407,16 @@ const VotePage: React.FC = () => {
           data={responseListCandidates.selectedCandidates}
         />
       </div>
-      <div className={styles.buttonContainer}>
-        <Button className={styles.button} onClick={handleSubmitVote}>
-          Finalizar Votação
-        </Button>
-        <Button className={styles.button} onClick={handleSubmitNullVote}>
-          Votar Nulo
-        </Button>
-      </div>
+      <Button
+        className={styles.button}
+        onClick={handleSubmitNullVote}
+        disabled={responseSelectedCandidates.length > 0}
+      >
+        Votar Nulo
+      </Button>
+      <Button className={styles.button} onClick={handleSubmitVote}>
+        Finalizar Votação
+      </Button>
     </div>
   );
 };

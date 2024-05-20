@@ -58,6 +58,9 @@ export const Register = () => {
         {error && errorCode === 409 && isDispatched && (
           <Snackbar type="unauthorizedLogin" setShowSnackbar={setIsDispatched} />
         )}
+        {error && errorCode === 406 && isDispatched && (
+          <Snackbar type="accountIsActive" setShowSnackbar={setIsDispatched} />
+        )}
         <Title>Registrar conta</Title>
         <Input
           className={styles.input}

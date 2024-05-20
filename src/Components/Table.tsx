@@ -59,41 +59,41 @@ const Table: React.FC<IData> = ({ row, loading }) => {
   const handleCandidateClick = (rowId: any) => {
     const candidate = row?.find((candidate: any) => candidate.id === rowId);
     if (candidate) {
-      if (candidate.id === 39) {
+      if (candidate.id === 4) {
         setSelectedCandidateImage(domPedro2);
-      } else if (candidate.id === 21) {
+      } else if (candidate.id === 5) {
         setSelectedCandidateImage(pedroAl);
-      } else if (candidate.id === 22) {
-        setSelectedCandidateImage(mariaAntonieta);
-      } else if (candidate.id === 23) {
-        setSelectedCandidateImage(luisxvi);
-      } else if (candidate.id === 24) {
-        setSelectedCandidateImage(napo);
-      } else if (candidate.id === 25) {
-        setSelectedCandidateImage(joanaD);
       } else if (candidate.id === 6) {
-        setSelectedCandidateImage(blanka);
+        setSelectedCandidateImage(mariaAntonieta);
       } else if (candidate.id === 7) {
-        setSelectedCandidateImage(akuma);
+        setSelectedCandidateImage(luisxvi);
+      } else if (candidate.id === 8) {
+        setSelectedCandidateImage(napo);
       } else if (candidate.id === 9) {
-        setSelectedCandidateImage(ryu);
+        setSelectedCandidateImage(joanaD);
       } else if (candidate.id === 10) {
-        setSelectedCandidateImage(guile);
+        setSelectedCandidateImage(juri);
       } else if (candidate.id === 11) {
-        setSelectedCandidateImage(manon);
+        setSelectedCandidateImage(chunli);
       } else if (candidate.id === 12) {
-        setSelectedCandidateImage(kimberly);
+        setSelectedCandidateImage(cammy);
       } else if (candidate.id === 13) {
         setSelectedCandidateImage(jp);
       } else if (candidate.id === 14) {
-        setSelectedCandidateImage(cammy);
-      } else if (candidate.id === 15) {
         setSelectedCandidateImage(ken);
+      } else if (candidate.id === 15) {
+        setSelectedCandidateImage(kimberly);
       } else if (candidate.id === 16) {
-        setSelectedCandidateImage(juri);
+        setSelectedCandidateImage(jp);
+      } else if (candidate.id === 17) {
+        setSelectedCandidateImage(cammy);
       } else if (candidate.id === 18) {
-        setSelectedCandidateImage(chunli);
+        setSelectedCandidateImage(ken);
       } else if (candidate.id === 19) {
+        setSelectedCandidateImage(juri);
+      } else if (candidate.id === 20) {
+        setSelectedCandidateImage(chunli);
+      } else if (candidate.id === 21) {
         setSelectedCandidateImage(luke);
       } else {
         setSelectedCandidateImage(avatar);
@@ -120,41 +120,41 @@ const Table: React.FC<IData> = ({ row, loading }) => {
   };
 
   const loadImage = (row: any) => {
-    if (row.id === 39) {
+    if (row.id === 4) {
       return domPedro2;
-    } else if (row.id === 21) {
+    } else if (row.id === 5) {
       return pedroAl;
-    } else if (row.id === 22) {
-      return mariaAntonieta;
-    } else if (row.id === 23) {
-      return luisxvi;
-    } else if (row.id === 24) {
-      return napo;
-    } else if (row.id === 25) {
-      return joanaD;
     } else if (row.id === 6) {
-      return blanka;
+      return mariaAntonieta;
     } else if (row.id === 7) {
-      return akuma;
+      return luisxvi;
+    } else if (row.id === 8) {
+      return napo;
     } else if (row.id === 9) {
-      return ryu;
+      return joanaD;
     } else if (row.id === 10) {
-      return guile;
+      return juri;
     } else if (row.id === 11) {
-      return manon;
+      return chunli;
     } else if (row.id === 12) {
-      return kimberly;
+      return cammy;
     } else if (row.id === 13) {
       return jp;
     } else if (row.id === 14) {
-      return cammy;
-    } else if (row.id === 15) {
       return ken;
+    } else if (row.id === 15) {
+      return kimberly;
     } else if (row.id === 16) {
-      return juri;
+      return jp;
+    } else if (row.id === 17) {
+      return cammy;
     } else if (row.id === 18) {
-      return chunli;
+      return ken;
     } else if (row.id === 19) {
+      return juri;
+    } else if (row.id === 20) {
+      return chunli;
+    } else if (row.id === 21) {
       return luke;
     } else if (row.id === null) {
       return avatar;

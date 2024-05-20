@@ -103,7 +103,7 @@
   }
 }
 
-@media (min-width: 1450px) {
+@media (min-width: 1024px) {
   .button {
     height: 3rem;
     width: 11.5rem;

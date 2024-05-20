@@ -19,8 +19,7 @@ const Footer = () => {
         </p>
         <p className={styles.copyright}>
           &copy; Desenvolvido pela Gerência de Tecnologia da Informação da
-          Defensoria Pública do Estado de Santa Catarina. Todos os direitos
-          reservados {new Date().getFullYear()}.
+          Defensoria Pública do Estado de Santa Catarina. Todos os direitos reservados {new Date().getFullYear()}.
         </p>
         <p className={styles.description}>
           <strong>Endereço:</strong> Av. Rio Branco, nº 919, Ed. Centro

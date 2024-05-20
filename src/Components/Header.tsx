@@ -81,7 +81,6 @@ const Header = () => {
                     src={image}
                     className={styles.logo}
                     alt="Logo"
-                    onClick={() => navigate('/saturno/vote/')}
                 />
                 {isLoggedIn() && (
                     <div className={styles.navigation}>
@@ -119,7 +118,7 @@ const Header = () => {
                                     }}
                                     className={`${styles.route} ${styles.logout}`}
                                 >
-                                    Validação de voto
+                                    Validação de Hash
                                 </span>
                             </>
                         )}
@@ -231,7 +230,7 @@ const Header = () => {
                                                     <span
                                                         className={`${styles.route} ${styles.logout}`}
                                                     >
-                                                        Validação de voto
+                                                        Validação de Hash
                                                     </span>
                                                 </li>
                                                 <li onClick={handleLogout}>
