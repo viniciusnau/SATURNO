@@ -86,7 +86,7 @@
 }
 
 .listItem {
-  font-size: var(--font-size) -0.5rem;
+  font-size: var(--font-size);
   list-style-type: none;
 }
 
