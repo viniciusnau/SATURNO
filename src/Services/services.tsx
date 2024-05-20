@@ -231,7 +231,7 @@ const services = {
       .then((data: any) => {
         return data;
       })
-      .catch((err: any) => console.log("err", err));
+      .catch((err: any) => console.log(err));
   },
 
   postRegister: async (data: IRegister) => {

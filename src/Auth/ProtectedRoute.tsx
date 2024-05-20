@@ -12,7 +12,9 @@ export const ProtectedRoute: React.FC<{
   accessRole?: string[];
 }> = ({ Component, accessRole, ...rest }) => {
   const dispatch = useDispatch<any>();
-  const { roles, loading, error } = useSelector((state: any) => state.rolesSlice);
+  const { roles, loading, error } = useSelector(
+    (state: any) => state.rolesSlice
+  );
   const [rolesLoaded, setRolesLoaded] = useState(false);
   const navigate = useNavigate();
 
@@ -46,14 +48,9 @@ export const ProtectedRoute: React.FC<{
     };
   }, [navigate]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   if (isLoggedIn() && !accessRole) {
     return <Component {...rest} />;
   }
-  console.log(roles)
 
   if (
     isLoggedIn() &&
@@ -68,7 +65,7 @@ export const ProtectedRoute: React.FC<{
     return <Navigate to="/saturno/login/" />;
   }
 
-  return <div>Loading...</div>;
+  return null;
 };
 
 export default ProtectedRoute;

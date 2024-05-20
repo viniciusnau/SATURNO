@@ -17,7 +17,6 @@ export const ClearCookiesProvider: React.FC<ClearCookiesProviderProps> = ({
   useEffect(() => {
     const clearCookies = () => {
       Object.keys(cookies).forEach((cookieName) => {
-        console.log(`Removing cookie: ${cookieName}`);
         removeCookie(cookieName, { path: "/" });
       });
     };
