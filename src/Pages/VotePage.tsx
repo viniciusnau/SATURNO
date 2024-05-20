@@ -241,15 +241,6 @@ const VotePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (timeRemaining > 0) {
-      const currentDateTime = new Date();
-      if (currentDateTime <= deadline.initialVote) {
-        setInitialVoteTime(false);
-      }
-    }
-  }, [timeRemaining]);
-
-  useEffect(() => {
     if (timeRemaining <= 0) {
       setInitialVoteTime(false);
     }
@@ -296,13 +287,6 @@ const VotePage: React.FC = () => {
   }, [timeRemaining]);
 
   useEffect(() => {
-    if (isDispatched && !loading && !error) {
-      const updatedRows = data;
-      setRows(updatedRows);
-    }
-  }, [isDispatched, loading, error, data]);
-
-  useEffect(() => {
     votePage && setModalNullVotes(false);
     dispatch(fetchListCandidates({ position_id: positionId })) &&
       setIsDispatched(true);
@@ -319,12 +303,6 @@ const VotePage: React.FC = () => {
       setRows(updatedRows);
     }
   }, [isDispatched, loading, error, data]);
-
-  useEffect(() => {
-    votePage && setModalNullVotes(false);
-    dispatch(fetchListCandidates({ position_id: positionId })) &&
-      setIsDispatched(true);
-  }, [votePage]);
 
   useEffect(() => {
     const finalVoteTimeInterval = setInterval(() => {
@@ -407,16 +385,18 @@ const VotePage: React.FC = () => {
           data={responseListCandidates.selectedCandidates}
         />
       </div>
-      <Button
-        className={styles.button}
-        onClick={handleSubmitNullVote}
-        disabled={responseSelectedCandidates.length > 0}
-      >
-        Votar Nulo
-      </Button>
-      <Button className={styles.button} onClick={handleSubmitVote}>
-        Finalizar Votação
-      </Button>
+      <div className={styles.buttonContainer}>
+        <Button
+          className={styles.button}
+          onClick={handleSubmitNullVote}
+          disabled={responseSelectedCandidates.length > 0}
+        >
+          Votar Nulo
+        </Button>
+        <Button className={styles.button} onClick={handleSubmitVote}>
+          Finalizar Votação
+        </Button>
+      </div>
     </div>
   );
 };
