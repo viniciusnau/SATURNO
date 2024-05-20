@@ -76,6 +76,8 @@
 .image {
   width: 12rem;
   max-width: 17rem;
+  height: 12rem;
+  max-height: 17rem;
   border-radius: .25rem;
   margin: 0 0.75rem;
 }
