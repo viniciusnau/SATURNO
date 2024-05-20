@@ -118,7 +118,7 @@ const Header = () => {
                                     }}
                                     className={`${styles.route} ${styles.logout}`}
                                 >
-                                    Validação de Voto
+                                    Validação de Hash
                                 </span>
                             </>
                         )}
@@ -230,7 +230,7 @@ const Header = () => {
                                                     <span
                                                         className={`${styles.route} ${styles.logout}`}
                                                     >
-                                                        Validação de Voto
+                                                        Validação de Hash
                                                     </span>
                                                 </li>
                                                 <li onClick={handleLogout}>
