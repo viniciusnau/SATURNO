@@ -108,3 +108,9 @@
   box-shadow: var(--shadow-color);
   font-size: var(--font-size);
 }
+
+@media (max-width: 1360px) {
+  .detailsContainer {
+    padding: 0 .5rem;
+  }
+}

@@ -92,9 +92,9 @@
 
 @media (min-width: 751px) {
   .button {
-    height: 2.5rem;
+    height: 3.5rem;
     width: 10rem;
-    font-size: var(--font-size) -.2rem;
+    font-size: var(--font-size) - .2rem;
     margin: 0 .75rem;
   }
 
