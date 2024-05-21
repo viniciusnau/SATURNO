@@ -14,7 +14,6 @@
   background-color: #f1f1f1;
   box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
   overflow-y: hidden;
-  padding: 0 0 3rem 0;
 }
 
 .topics {
@@ -92,5 +91,6 @@
     font-size: 14px;
     position: fixed;
     max-height: none;
+    padding: 0 0 3rem 0;
   }
 }
