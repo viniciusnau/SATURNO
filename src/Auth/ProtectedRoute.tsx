@@ -15,12 +15,10 @@ export const ProtectedRoute: React.FC<{
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("useEffect 1: Fetching roles");
     const fetchRoles = async () => {
       try {
         const apiToken = sessionStorage.getItem("apiToken");
         if (!apiToken) {
-          console.error("No API token provided.");
           setLoading(false);
           return;
         }
@@ -32,7 +30,6 @@ export const ProtectedRoute: React.FC<{
         setRoles(response.data.roles);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching roles data: ", error);
         setLoading(false);
         throw error;
       }
@@ -46,8 +43,6 @@ export const ProtectedRoute: React.FC<{
   }, []);
 
   useEffect(() => {
-    console.log("useEffect 2: Logged in status changed");
-
     const handleWebSocketMessage = (event: MessageEvent) => {
       const message = JSON.parse(event.data);
 
@@ -68,8 +63,6 @@ export const ProtectedRoute: React.FC<{
       websocket.close();
     };
   }, [navigate]);
-
-  console.log("Rendering ProtectedRoute");
 
   if (loading) {
     return <div>Loading...</div>;
