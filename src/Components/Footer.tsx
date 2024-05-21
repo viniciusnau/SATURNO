@@ -10,14 +10,7 @@ const Footer = () => {
   }
 
   return (
-    <footer
-      className={styles.footer}
-      style={
-        location.pathname === "/saturno"
-          ? { position: "fixed", bottom: "0" }
-          : {}
-      }
-    >
+    <footer className={styles.footer}>
       <div className={styles.topics}>
         <p className={styles.description}>
           <strong>Objetivo:</strong> Fornecer uma plataforma capaz de gerir as
