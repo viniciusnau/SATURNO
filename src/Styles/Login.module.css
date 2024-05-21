@@ -1,178 +1,178 @@
 @import "../colors.css";
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-  }
-  
-  .loginForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 20vw;
-    padding: 1.25rem;
-    border-radius: 0.25rem;
-  }
-  
-  .title {
-    text-align: center;
-    margin-bottom: 1.25rem;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
 
-  .input:hover,
-  .date:hover {
-    background-color: var(--second-button-color-hover);
-  }
-  
-  .input:disabled,
-  .date:disabled {
-    background-color: var(--second-button-color-disabled);
-  }
-  
-  .password {
-    display: flex;
-    align-items: center;
-    margin: 0.75rem 0 0;
-  }
-  
-  .passwordInput {
-    width: 100%;
-  }
-  
-  .passwordIcon {
-    margin-left: -2.5rem;
-    margin-top: 1.5rem;
-  }
-  
-  .form {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .google {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5rem;
-    background-color: var(--second-button-color) !important;
-    color: initial !important;
-    margin: 0 0 1.5rem 0;
-  }
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  padding: 1.25rem;
+  border-radius: 0.25rem;
+}
 
-  .google:hover {
-    background-color: var(--second-button-color-hover) !important;
-  }
+.title {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
 
-  .icon {
-    width: 2.25rem;
-    margin: 0 .5rem 0 0;
-    padding: .25rem;
-  }
-  
-  .login {
-    font-size: calc(var(--font-size) - 0.25rem);
-  }
-  
-  .linkContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 20rem;
-    margin: .25rem 0;
-    height: 3rem
-  }
 
-  .link {
-    text-align: center;
-    color: var(--link-color);
-    text-decoration: none;
-    width: 8rem;
-  }
+.input:hover,
+.date:hover {
+  background-color: var(--second-button-color-hover);
+}
 
-  .formButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .button {
-    height: 2.5rem;
-    width: 7.5rem;
-    font-size: var(--font-size);
-  }
-  
-  .lineContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 1rem 0 1.5rem 0;
-  }
-  
-  .line {
-    flex-grow: 1;
-    height: 0.15rem;
-    width: 4.5rem;
-    background-color: var(--second-button-color-focus);
-    border: none;
-    border-radius: 0.25rem;
-  }
-  
-  .text {
-    margin: 0 .37rem;
-    color: var(--first-text-color-disabled);
-    font-size: 1rem;
-    font-family: 'SourceCodePro', monospace;
+.input:disabled,
+.date:disabled {
+  background-color: var(--second-button-color-disabled);
+}
+
+.password {
+  display: flex;
+  align-items: center;
+  margin: 0.75rem 0 0;
+}
+
+.passwordInput {
+  width: 100%;
+}
+
+.passwordIcon {
+  margin-left: -2.5rem;
+  margin-top: 1.5rem;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5rem;
+  background-color: var(--second-button-color) !important;
+  color: initial !important;
+  margin: 0 0 1.5rem 0;
+}
+
+.google:hover {
+  background-color: var(--second-button-color-hover) !important;
+}
+
+.icon {
+  width: 2.25rem;
+  margin: 0 .5rem 0 0;
+  padding: .25rem;
+}
+
+.login {
+  font-size: calc(var(--font-size) - 0.1rem);
+}
+
+.linkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 20rem;
+  margin: .25rem 0;
+  height: 3rem
+}
+
+.link {
+  text-align: center;
+  color: var(--link-color);
+  text-decoration: none;
+  width: 8rem;
+}
+
+.formButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  height: 2.5rem;
+  width: 7.5rem;
+  font-size: var(--font-size);
+}
+
+.lineContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0 1.5rem 0;
+}
+
+.line {
+  flex-grow: 1;
+  height: 0.15rem;
+  width: 4.5rem;
+  background-color: var(--second-button-color-focus);
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.text {
+  margin: 0 .37rem;
+  color: var(--first-text-color-disabled);
+  font-size: 1rem;
+  font-family: 'SourceCodePro', monospace;
   src: local('SourceCodePro'),
-    url('../Fonts/SourceCodePro/SourceCodePro-Medium.ttf') format('truetype')
-  ;
+    url('../Fonts/SourceCodePro/SourceCodePro-Medium.ttf') format('truetype');
+}
+
+.register {
+  border-radius: 6.25rem;
+  border: 1px solid var(--sixth-color);
+  src: local('SourceCodePro'),
+    url('../Fonts/SourceCodePro/SourceCodePro-Medium.ttf') format('truetype');
+  background-color: transparent;
+  font-size: .9rem;
+  box-shadow: none;
+  color: initial;
+}
+
+.register:hover {
+  background-color: #f5f5f5;
+}
+
+@media (max-width: 750px) {
+  .title {
+    font-size: calc(var(--font-size) - 1rem);
   }
 
-  .register {
-    border-radius: 6.25rem;
-    border: 1px solid var(--sixth-color);
-    src: local('SourceCodePro'),
-        url('../Fonts/SourceCodePro/SourceCodePro-Medium.ttf') format('truetype')
-      ;
-    background-color: transparent;
-    font-size: .9rem;
-    box-shadow: none;
-    color: initial;
+  .label {
+    font-size: 0.8rem;
   }
 
-  .register:hover {
-    background-color: #f5f5f5;
+  .input,
+  .password {
+    width: 15rem;
   }
-  
-  @media (max-width: 750px) {
-    .title {
-      font-size: calc(var(--font-size) - 1rem);
-    }
-    .label {
-      font-size: 0.8rem;
-    }
-    .input,
-    .password {
-      width: 15rem;
-    }
+}
+
+@media (min-width: 751px) {
+  .title {
+    font-size: calc(var(--font-size) + .75rem);
   }
-  
-  @media (min-width: 751px) {
-    .title {
-      font-size: calc(var(--font-size) + .75rem);
-    }
-    .label {
-      font-size: 1rem;
-    }
-    .input,
-    .password {
-      width: 17.5rem;
-    }
+
+  .label {
+    font-size: 1rem;
   }
-  
-  @media (min-width: 1024px) {
+
+  .input,
+  .password {
+    width: 17.5rem;
   }
-  
+}
+
+@media (min-width: 1024px) {}
