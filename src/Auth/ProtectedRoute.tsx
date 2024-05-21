@@ -65,7 +65,7 @@ export const ProtectedRoute: React.FC<{
   }, [navigate]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   if (!isLoggedIn()) {
