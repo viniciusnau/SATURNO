@@ -70,7 +70,7 @@
 }
 
 
-@media (min-width: 2100px) and (min-height: 1100px) {
+@media (min-width: 2100px) and (min-height: 1000px) {
   .footer {
     font-size: 14px;
     position: fixed;
