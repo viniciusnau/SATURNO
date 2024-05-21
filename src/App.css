@@ -31,7 +31,7 @@ body {
 .App {
   display: flex;
   height: auto;
-  min-height: 100vh;
+  min-height: 105vh;
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
