@@ -27,7 +27,7 @@
 
 .copyright {
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   padding: 0 0 0.4rem 0;
   font-size: var(--font-size)-0.25rem;
 }
@@ -89,18 +89,4 @@
     overflow-y: hidden;
     padding-top: .5rem;
   }
-}
-
-
-.copyright {
-  align-items: baseline !important;
-}
-
-.title {
-  margin-bottom: 30px !important;
-  margin-top: 50px !important;
-}
-
-.button {
-  margin-bottom: 15px !important;
 }
