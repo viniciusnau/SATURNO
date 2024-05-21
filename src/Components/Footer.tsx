@@ -3,14 +3,13 @@ import styles from "../Styles/Footer.module.css";
 
 const Footer = () => {
   const location = useLocation();
-  const isPublicPage = location.pathname === "/login/";
-
-  if (isPublicPage) {
-    return null;
-  }
+  const isPublicPage = location.pathname === "/saturno";
 
   return (
-    <footer className={styles.footer}>
+    <footer
+      className={styles.footer}
+      style={isPublicPage ? { position: "fixed", bottom: "0" } : {}}
+    >
       <div className={styles.topics}>
         <p className={styles.description}>
           <strong>Objetivo:</strong> Fornecer uma plataforma capaz de gerir as
