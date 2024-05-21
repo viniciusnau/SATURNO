@@ -34,10 +34,6 @@
   font-size: var(--font-size)-0.25rem;
 }
 
-.centeredFooter {
-  padding: 1rem;
-}
-
 .redirect {
   color: var(--first-text-color);
 }
@@ -74,12 +70,12 @@
     position: fixed;
     justify-content: space-between;
     width: 100%;
-    font-size: 14px;
+    font-size: 12px;
     bottom: 0;
     left: 0;
     box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
-    max-height: none !important;
-    overflow-y: hidden;
+    max-height: 8rem;
+    overflow-y: auto;
     /* padding-top: .5rem; */
   }
 }
