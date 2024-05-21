@@ -1,73 +1,70 @@
 :root {
-    --font-size: 1rem;
-    --cursor-pointer: pointer;
-    --cursor-not-allowed: not-allowed;
-    --cursor-default: default;
-    --cursor-text: text;
-  }
-  
-  body {
-    margin: 0;
-  }
+  --font-size: 1em;
+  --cursor-pointer: pointer;
+  --cursor-not-allowed: not-allowed;
+  --cursor-default: default;
+  --cursor-text: text;
+}
 
-  *::-webkit-scrollbar {
-    width: 0.45rem;
-    background-color: transparent;
-  }
-  
-  *::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-    border-radius: 0.2rem;
-  }
-  
-  *::-webkit-scrollbar-thumb:hover {
-    background-color: #bbb;
-  }
-  
+body {
+  margin: 0;
+}
+
+*::-webkit-scrollbar {
+  width: 0.45rem;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 0.2rem;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #bbb;
+}
+
+.App {
+  display: flex;
+  height: auto;
+  min-height: 100vh;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.AppBody {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.invert-colors {
+  filter: invert(70%);
+}
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
+@media screen and (min-width: 1800px) {
   .App {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-    overflow-y: auto;
-    overflow-x: hidden;
-    text-align: center;
-  }
-  
-  .AppBody {
-    flex-grow: 1;
-    padding: 20px;
-  }
-  
-  .invert-colors {
-    filter: invert(70%);
-  }
-  
-  .grayscale {
-    filter: grayscale(100%);
-  }
-  
-  @media screen and (min-width: 1800px) {
-    .App {
-      background: linear-gradient(
-        0deg,
+    background: linear-gradient(0deg,
         rgba(204, 34, 41, 0.1516981792717087) 0%,
         rgba(255, 255, 255, 1) 17.5%,
-        rgba(159, 197, 77, 0.14609593837535018) 100%
-      );
-    }
+        rgba(159, 197, 77, 0.14609593837535018) 100%);
   }
-  
-  @media screen and (max-width: 1799px) {
-    .App {
-      background: linear-gradient(
-        270deg,
+}
+
+@media screen and (max-width: 1799px) {
+  .App {
+    background: linear-gradient(270deg,
         rgba(204, 34, 41, 0.1516981792717087) 0%,
         rgba(255, 255, 255, 1) 17.5%,
-        rgba(159, 197, 77, 0.14609593837535018) 100%
-      );
-    }
+        rgba(159, 197, 77, 0.14609593837535018) 100%);
   }
+}

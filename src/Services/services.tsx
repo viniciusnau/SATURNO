@@ -231,7 +231,7 @@ const services = {
       .then((data: any) => {
         return data;
       })
-      .catch((err: any) => console.log("err", err));
+      .catch((err: any) => console.log(err));
   },
 
   postRegister: async (data: IRegister) => {
@@ -310,6 +310,30 @@ const services = {
       })
       .catch((error) => {
         console.error("Error fetching PDF:", error);
+        throw error;
+      });
+  },
+
+  getApproveRegisterList: async (positionId: any) => {
+    const apiToken = sessionStorage.getItem("apiToken");
+    const headers = {
+      Authorization: `Bearer ${apiToken}`,
+    };
+
+    const params = {
+      position_id: positionId,
+    };
+
+    return axios
+      .get(`${PATH.base}/user/elections-result-pdf-data/`, {
+        params: params,
+        headers: headers,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.error("Error fetching PDF data:", error);
         throw error;
       });
   },

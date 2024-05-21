@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { isLoggedIn, logout } from "./Auth";
 import axios from "axios";
 import { PATH } from "../PATH";
+import { useDispatch, useSelector } from "react-redux";
 
 export const ProtectedRoute: React.FC<{
   Component: React.FC<any>;
@@ -10,6 +11,11 @@ export const ProtectedRoute: React.FC<{
   colorInverted?: boolean;
   accessRole?: string[];
 }> = ({ Component, accessRole, ...rest }) => {
+  const dispatch = useDispatch<any>();
+  // const { roles, loading, error } = useSelector(
+  //   (state: any) => state.rolesSlice
+  // );
+  const [rolesLoaded, setRolesLoaded] = useState(false);
   const [roles, setRoles] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
@@ -26,7 +32,9 @@ export const ProtectedRoute: React.FC<{
           Authorization: `Bearer ${apiToken}`,
         };
 
-        const response = await axios.get(`${PATH.base}/user/roles-view/`, { headers });
+        const response = await axios.get(`${PATH.base}/user/roles-view/`, {
+          headers,
+        });
         setRoles(response.data.roles);
         setLoading(false);
       } catch (error) {
@@ -46,7 +54,10 @@ export const ProtectedRoute: React.FC<{
     const handleWebSocketMessage = (event: MessageEvent) => {
       const message = JSON.parse(event.data);
 
-      if (message.access_token && message.access_token !== sessionStorage.getItem("apiToken")) {
+      if (
+        message.access_token &&
+        message.access_token !== sessionStorage.getItem("apiToken")
+      ) {
         logout(navigate);
       }
     };

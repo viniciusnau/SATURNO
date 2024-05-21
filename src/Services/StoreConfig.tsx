@@ -14,6 +14,7 @@ import RegisterSlice from "./Slices/postRegisterSlice";
 import electionsPDFDataSlice from "./Slices/electionsResultPDFDataSlice";
 import fileContentSlice from "./Slices/fileContentSlice";
 import rolesSlice from "./Slices/roles";
+import approveRegisterListSlice from "./Slices/approveRegisterListSlice";
 
 const reducer = combineReducers({
   loginSlice,
@@ -31,6 +32,7 @@ const reducer = combineReducers({
   electionsPDFDataSlice,
   fileContentSlice,
   rolesSlice,
+  approveRegisterListSlice,
 });
 
 export const store = configureStore({ reducer });

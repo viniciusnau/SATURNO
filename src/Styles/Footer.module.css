@@ -1,14 +1,17 @@
 @import "../colors.css";
 
+
 .footer {
-  justify-content: space-between;
-  background-color: #f1f1f1;
   position: fixed;
+  justify-content: space-between;
+  max-height: none;
+  font-size: 14px;
+  height: auto;
+  width: 100%;
+  padding-top: 0.5rem;
   left: 0;
   bottom: 0;
-  padding-top: 0.5rem;
-  width: 100%;
-  max-height: 2.1rem;
+  background-color: #f1f1f1;
   box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
   overflow-y: hidden;
 }
@@ -27,7 +30,7 @@
 
 .copyright {
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   padding: 0 0 0.4rem 0;
   font-size: var(--font-size)-0.25rem;
 }
@@ -53,52 +56,40 @@
   text-decoration: underline;
 }
 
-@media (max-width: 750px) {
+@media screen and (orientation: landscape) {
   .footer {
-    overflow-y: scroll;
-    z-index: 10;
-  }
-  .description,
-  .copyright {
-    font-size: var(--font-size)-0.12rem;
-  }
-  .copyright {
-    align-items: flex-start;
-  }
-}
-
-@media (min-width: 751px) {
-  .description,
-  .copyright {
-    font-size: var(--font-size)-0.12rem;
-  }
-  .copyright {
-    padding: 0 0 0 0;
-    align-items: flex-start;
+    position: relative;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 14px;
+    box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
+    max-height: none;
+    overflow-y: hidden;
+    padding-top: .5rem;
+    margin-top: 200px;
   }
 }
 
-@media (min-width: 1024px) {
-  .description,
-  .copyright {
-    font-size: var(--font-size)-0.25rem;
-  }
-  .copyright {
-    padding: 0;
-    align-items: flex-end;
+@media screen and (orientation: portrait) {
+  .footer {
+    position: fixed;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 14px;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
+    max-height: none !important;
+    overflow-y: hidden;
+    padding-top: .5rem;
   }
 }
 
-@media (min-width: 1361px) {
-  .description,
-  .copyright {
-    font-size: var(--font-size)-0.25rem;
-  }
-  .copyright {
-    padding-bottom: 0.5rem;
-    align-items: flex-end;
-  }
-  .description {
-    margin-top: 0;
+
+@media (min-width: 2100px) and (min-height: 1100px) {
+  .footer {
+    font-size: 14px;
+    position: fixed;
+    max-height: none;
   }
 }

@@ -3,14 +3,13 @@ import styles from "../Styles/Footer.module.css";
 
 const Footer = () => {
   const location = useLocation();
-  const isPublicPage = location.pathname === "/login/";
-
-  if (isPublicPage) {
-    return null;
-  }
+  const isPublicPage = location.pathname === "/saturno";
 
   return (
-    <footer className={styles.footer}>
+    <footer
+      className={styles.footer}
+      style={isPublicPage ? { position: "fixed", bottom: "0" } : {}}
+    >
       <div className={styles.topics}>
         <p className={styles.description}>
           <strong>Objetivo:</strong> Fornecer uma plataforma capaz de gerir as
@@ -19,7 +18,8 @@ const Footer = () => {
         </p>
         <p className={styles.copyright}>
           &copy; Desenvolvido pela Gerência de Tecnologia da Informação da
-          Defensoria Pública do Estado de Santa Catarina. Todos os direitos reservados {new Date().getFullYear()}.
+          Defensoria Pública do Estado de Santa Catarina. Todos os direitos
+          reservados {new Date().getFullYear()}.
         </p>
         <p className={styles.description}>
           <strong>Endereço:</strong> Av. Rio Branco, nº 919, Ed. Centro

@@ -36,10 +36,11 @@
   text-align: center;
   overflow-y: auto;
   font-size: 0.8rem;
-  min-width: 15rem;
+  min-width: 10rem;
   border-radius: .35rem;
   border: .15rem solid #ccc;
   margin: 0 0 0 3rem;
+  overflow-x: hidden;
 }
 
 
@@ -53,6 +54,7 @@
   overflow-y: scroll;
   min-width: 10rem;
   border: .15rem solid #ccc;
+  padding: 0 0 .5rem 0;
 }
 
 .candidateInfo {
@@ -71,32 +73,31 @@
   flex-direction: column;
 }
 
-.candidateImage {
+.image {
   width: 12rem;
   max-width: 17rem;
-  padding: 0.625rem;
+  height: 12rem;
+  max-height: 17rem;
+  border-radius: .25rem;
+  margin: 0 0.75rem;
 }
 
 .detailsContent {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+}
+
+.listItem {
+  font-size: .9rem;
+  list-style-type: none;
 }
 
 .candidateSelect {
- align-items: center; 
- margin: 0 .75rem 0 0;
-}
-
-.detailsContainer ul {
-  text-align: center;
-  padding-left: 0;
-}
-
-.detailsContainer ul li {
-  margin: 0;
-  padding: 0.2rem;
-  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 .5rem;
 }
 
 .clearButton {
@@ -108,5 +109,10 @@
   width: 8.5rem;
   box-shadow: var(--shadow-color);
   font-size: var(--font-size);
-  margin: auto;
+}
+
+@media (max-width: 1360px) {
+  .detailsContainer {
+    padding: 0 .5rem;
+  }
 }

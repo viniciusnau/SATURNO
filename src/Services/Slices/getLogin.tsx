@@ -51,7 +51,6 @@ export const fetchLogin = (body: any) => async (dispatch: any) => {
     const response = await services.getLogin(body);
     dispatch(getLoginSuccess(response?.data));
   } catch (err: any) {
-    console.log("err: ", err?.response);
     dispatch(getLoginFailure(err?.response?.status));
   }
 };

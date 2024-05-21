@@ -80,7 +80,7 @@ const ElectionsResults = () => {
       deadline.finalVote
     );
     setTimeRemaining(remainingTimeInSeconds);
-  
+
     if (remainingTimeInSeconds <= 0) {
       setFinalVoteTime(true);
     } else {
@@ -98,8 +98,6 @@ const ElectionsResults = () => {
       return () => clearInterval(intervalId);
     }
   }, []);
-  
-  
 
   const positionOptions = {
     "Defensor(a) Público-Geral": "1",
@@ -255,7 +253,10 @@ const ElectionsResults = () => {
         <div className={styles.nullVotesLegend}>
           <Title>
             Eleitores que não utilizaram o número máximo de votos:{" "}
-            {((blankVotes / totalPeople) * 100).toFixed(2)}% ({blankVotes})
+            {blankVotes && totalPeople
+              ? ((blankVotes / totalPeople) * 100).toFixed(2)
+              : "0"}
+            % ({blankVotes})
           </Title>
         </div>
         <Box className={styles.progressBarContainer}>
@@ -272,7 +273,11 @@ const ElectionsResults = () => {
       </div>
       <Box className={styles.megaBox}>
         <Box className={styles.listContainer}>
-          <select value={selectedPosition} onChange={handleChange}>
+          <select
+            value={selectedPosition}
+            onChange={handleChange}
+            className={styles.select}
+          >
             {Object.entries(positionOptions).map(([label, value]) => (
               <option key={value} value={value}>
                 {label}
@@ -359,7 +364,7 @@ const ElectionsResults = () => {
         <Box className={styles.detailsContainer}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <p className={styles.title}>
-              Detalhes do Candidato(a) Selecionado:
+              Detalhes do(a) Candidato(a) Selecionado:
             </p>
             {selectedCandidate && (
               <AiOutlineCloseCircle
@@ -417,7 +422,7 @@ const ElectionsResults = () => {
       <div>
         <Title>
           {" "}
-          A visualização dos resultados das eleicões estará disponível em:
+          A visualização dos resultados das eleições estará disponível em:
         </Title>
         <h2 className={styles.clock}>
           <div className={styles.blocktimer}>
