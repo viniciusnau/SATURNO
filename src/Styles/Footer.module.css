@@ -76,7 +76,18 @@
     box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
     max-height: 8rem;
     overflow-y: auto;
-    /* padding-top: .5rem; */
+  }
+}
+
+@media (max-height: 900px) {
+  .footer {
+    background-color: purple;
+    font-size: 14px;
+    position: fixed !important;
+    bottom: 0;
+    max-height: none;
+    padding: 0.5rem 0 3rem 0;
+    margin-top: 200px;
   }
 }
 
@@ -86,7 +97,6 @@
     font-size: 14px;
     position: fixed;
     max-height: none;
-    padding: 0 0 3rem 0;
-    padding-top: 0.5rem;
+    padding: 0.5rem 0 3rem 0;
   }
 }
