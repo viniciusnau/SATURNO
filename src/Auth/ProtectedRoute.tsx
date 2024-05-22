@@ -11,11 +11,6 @@ export const ProtectedRoute: React.FC<{
   colorInverted?: boolean;
   accessRole?: string[];
 }> = ({ Component, accessRole, ...rest }) => {
-  const dispatch = useDispatch<any>();
-  // const { roles, loading, error } = useSelector(
-  //   (state: any) => state.rolesSlice
-  // );
-  const [rolesLoaded, setRolesLoaded] = useState(false);
   const [roles, setRoles] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
