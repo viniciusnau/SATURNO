@@ -97,6 +97,12 @@
     font-size: 14px;
     position: fixed;
     max-height: none;
-    padding: 0.5rem 0 5rem 0;
+    padding: 0.5rem 0 3rem 0;
+  }
+}
+
+@media (min-width: 1300px) {
+  .footer {
+    padding-bottom: 5rem;
   }
 }
