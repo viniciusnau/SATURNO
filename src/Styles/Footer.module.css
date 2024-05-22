@@ -60,7 +60,7 @@
     box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
     max-height: none;
     overflow-y: hidden;
-    padding-top: 2.5rem;
+    padding-top: .5rem;
     margin-top: 200px;
   }
 }
@@ -97,6 +97,6 @@
     font-size: 14px;
     position: fixed;
     max-height: none;
-    padding: 0.5rem 0 3rem 0;
+    padding: 0.5rem 0 5rem 0;
   }
 }
