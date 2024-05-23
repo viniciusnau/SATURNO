@@ -2,7 +2,7 @@
   "name": "saturno",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/saturno/",
+  "homepage": "/saturno/login",
   "dependencies": {
     "@dotlottie/player-component": "^2.7.12",
     "@emotion/react": "^11.11.3",

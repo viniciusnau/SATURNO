@@ -47,6 +47,10 @@ export const Register = () => {
     });
   };
 
+  const handleDisabled = () => {
+    return !form.registration || !form.name || !form.password || loading;
+  };
+
   useEffect(() => {
     setIsDispatched(false);
   }, []);
@@ -97,7 +101,11 @@ export const Register = () => {
         placeholder="********"
       />
 
-      <Button className={styles.button} onClick={handleSubmit}>
+      <Button
+        className={styles.button}
+        onClick={handleSubmit}
+        disabled={handleDisabled()}
+      >
         Enviar solicitação
       </Button>
     </div>

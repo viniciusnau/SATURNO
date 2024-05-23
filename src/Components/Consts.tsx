@@ -80,7 +80,7 @@ export const snackbarConsts = {
   unauthorizedLogin: {
     title: "Conta em análise!",
     description: "Por favor, aguarde aprovação.",
-    color: "#9fc54d",
+    color: "#ff6464",
   },
 
   accountIsActive: {

@@ -1,26 +1,25 @@
 @import '../colors.css';
 
 .container {
-    box-shadow: var(--box-shadow);
-    cursor: var(--cursor-pointer);
-    border: none;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    font-family: 'SourceCodePro', monospace;
-    src: local('SourceCodePro'),
-      url('../Fonts/SourceCodePro/SourceCodePro-Regular.ttf') format('truetype')
-    ;
-    background-color: var(--fifth-button-color);
-    color: #fff;
-  }
+  box-shadow: var(--box-shadow);
+  cursor: var(--cursor-pointer);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-family: 'SourceCodePro', monospace;
+  src: local('SourceCodePro'),
+    url('../Fonts/SourceCodePro/SourceCodePro-Regular.ttf') format('truetype');
+  background-color: var(--fifth-button-color);
+  color: #fff;
+}
 
-  .container:hover {
-    background-color: var(--fifth-button-color-hover);
-    color: var(--second-text-color-hover);
-  }
+.container:hover {
+  background-color: var(--fifth-button-color-hover);
+  color: var(--second-text-color-hover);
+}
 
-  .container:disabled {
-    background-color: var(--fifth-button-color-disabled);
-    cursor: var(--cursor-not-allowed);
-    color: var(--second-text-color-disabled);
-  }   
+.container:disabled {
+  background-color: var(--fifth-button-color-disabled);
+  cursor: var(--cursor-not-allowed);
+  color: var(--second-text-color-disabled);
+}
