@@ -79,9 +79,22 @@
     bottom: 0;
     left: 0;
     box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
-    max-height: none !important;
-    overflow-y: hidden;
-    padding-top: .5rem;
+    max-height: 8rem;
+    overflow-y: auto;
+  }
+}
+
+@media (max-height: 900px) {
+  .footer {
+    font-size: 12px;
+    position: fixed !important;
+    bottom: 0;
+    max-height: none;
+    margin-top: 200px;
+  }
+
+  .copyright {
+    padding: 0;
   }
 }
 
