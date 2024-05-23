@@ -8,7 +8,6 @@
   font-size: 14px;
   height: auto;
   width: 100%;
-  padding-top: 0.5rem;
   left: 0;
   bottom: 0;
   background-color: #f1f1f1;
@@ -33,10 +32,6 @@
   align-items: baseline;
   padding: 0 0 0.4rem 0;
   font-size: var(--font-size)-0.25rem;
-}
-
-.centeredFooter {
-  padding: 1rem;
 }
 
 .redirect {
@@ -66,7 +61,7 @@
     max-height: none;
     overflow-y: hidden;
     padding-top: .5rem;
-    margin-top: 200px;
+    margin-top: 300px;
   }
 }
 
@@ -75,13 +70,24 @@
     position: fixed;
     justify-content: space-between;
     width: 100%;
-    font-size: 14px;
+    font-size: 12px;
     bottom: 0;
     left: 0;
     box-shadow: 0 -10px 8px -10px var(--light-shadow-color);
-    max-height: none !important;
-    overflow-y: hidden;
-    padding-top: .5rem;
+    max-height: 8rem;
+    overflow-y: auto;
+  }
+}
+
+@media (max-height: 900px) {
+  .footer {
+    background-color: purple;
+    font-size: 14px;
+    position: fixed !important;
+    bottom: 0;
+    max-height: none;
+    padding: 0.5rem 0 3rem 0;
+    margin-top: 200px;
   }
 }
 
@@ -91,5 +97,6 @@
     font-size: 14px;
     position: fixed;
     max-height: none;
+    padding: 0.5rem 0 3rem 0;
   }
 }
