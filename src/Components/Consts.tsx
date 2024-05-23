@@ -13,7 +13,7 @@ export const roles = {
 };
 
 export const deadline = {
-  initialVote: new Date("2024-05-23T08:00:00"), //tempo inicial de votacao
+  initialVote: new Date("2024-05-24T08:00:00"), //tempo inicial de votacao
   finalVote: new Date("2024-05-24T17:00:59"), //tempo final de votacao
   finalLoginTime: new Date("2025-05-24T16:50:00"), // tempo final de login
 
