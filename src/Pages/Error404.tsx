@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../Auth/Auth";
 
 const Error404 = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("saturno/login");
+    logout(navigate);
   }, []);
   return null;
 };
