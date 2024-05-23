@@ -15,6 +15,7 @@ import { Register } from "./Pages/Register";
 import { VoteReport } from "./Pages/VoteReport";
 import ApproveRegister from "./Pages/ApproveRegister";
 import { ClearCookiesProvider } from "./Components/ClearCookiesProvider";
+import Error404 from "./Pages/Error404";
 
 function App() {
   return (
@@ -88,6 +89,7 @@ function App() {
                 element={<Callback />}
               />
               <Route path="/saturno/register/" element={<Register />} />
+              <Route path="*" element={<Error404 />} />
             </Routes>
             <Footer />
           </ClearCookiesProvider>

@@ -71,7 +71,11 @@ const HashValidation = () => {
           value={form.hash}
           onChange={handleChange}
         />
-        <Button className={styles.button} onClick={handleSubmit}>
+        <Button
+          className={styles.button}
+          onClick={handleSubmit}
+          disabled={loading}
+        >
           {loading ? (
             <div
               style={{

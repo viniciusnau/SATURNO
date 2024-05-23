@@ -1,11 +1,20 @@
 import { useLocation } from "react-router-dom";
 import styles from "../Styles/Footer.module.css";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
   const location = useLocation();
+  const [showFooter, setShowFooter] = useState<boolean>(false);
   const isPublicPage = location.pathname === "/saturno";
 
-  return (
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowFooter(true);
+    }, 125);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return showFooter ? (
     <footer
       className={styles.footer}
       style={isPublicPage ? { position: "fixed", bottom: "0" } : {}}
@@ -30,7 +39,7 @@ const Footer = () => {
         </p>
       </div>
     </footer>
-  );
+  ) : null;
 };
 
 export default Footer;

@@ -3,7 +3,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { isLoggedIn, logout } from "./Auth";
 import axios from "axios";
 import { PATH } from "../PATH";
-import { useDispatch, useSelector } from "react-redux";
 
 export const ProtectedRoute: React.FC<{
   Component: React.FC<any>;
@@ -11,13 +10,7 @@ export const ProtectedRoute: React.FC<{
   colorInverted?: boolean;
   accessRole?: string[];
 }> = ({ Component, accessRole, ...rest }) => {
-  const dispatch = useDispatch<any>();
-  // const { roles, loading, error } = useSelector(
-  //   (state: any) => state.rolesSlice
-  // );
-  const [rolesLoaded, setRolesLoaded] = useState(false);
   const [roles, setRoles] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +18,6 @@ export const ProtectedRoute: React.FC<{
       try {
         const apiToken = sessionStorage.getItem("apiToken");
         if (!apiToken) {
-          setLoading(false);
           return;
         }
         const headers = {
@@ -36,17 +28,13 @@ export const ProtectedRoute: React.FC<{
           headers,
         });
         setRoles(response.data.roles);
-        setLoading(false);
       } catch (error) {
-        setLoading(false);
         throw error;
       }
     };
 
     if (isLoggedIn()) {
       fetchRoles();
-    } else {
-      setLoading(false);
     }
   }, []);
 
@@ -74,10 +62,6 @@ export const ProtectedRoute: React.FC<{
       websocket.close();
     };
   }, [navigate]);
-
-  if (loading) {
-    return <div></div>;
-  }
 
   if (!isLoggedIn()) {
     return <Navigate to="/saturno/login/" />;
