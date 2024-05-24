@@ -9,9 +9,12 @@ import Snackbar from "../Components/Snackbar";
 import Loading from "../Components/Loading";
 import React from "react";
 import Title from "../Components/Title";
+import { MdKeyboardReturn } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showsnackbar, setShowSnackbar] = useState<boolean>(false);
   const [form, setForm] = useState<any>({
     email: "",
@@ -38,47 +41,58 @@ const ResetPassword = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      {showsnackbar && error && (
-        <Snackbar setShowSnackbar={setShowSnackbar} type="resetError" />
-      )}
-      {showsnackbar && data?.message && (
-        <Snackbar setShowSnackbar={setShowSnackbar} type="resetSuccess" />
-      )}
-      <div
-        className={styles.form}
-        onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
-      >
-        <Title>Redefinir Senha</Title>
-        <Input
-          type="email"
-          className={styles.input}
-          fieldType="outlined"
-          label="Email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-        />
+    <>
+      <div className={styles.buttonContainer}>
         <Button
-          className={styles.button}
-          onClick={handleSubmit}
-          disabled={!form.email.includes("@defensoria.sc.gov.br")}
+          onClick={() => navigate("/saturno/login/")}
+          className={styles.returnButton}
         >
-          {loading ? (
-            <div
-              style={{
-                position: "relative",
-                top: "-2.5rem",
-              }}
-            >
-              <Loading size="1.5rem" type="spin" />
-            </div>
-          ) : (
-            "Enviar"
-          )}
+          <MdKeyboardReturn size={18} />
+          Voltar
         </Button>
       </div>
-    </div>
+      <div className={styles.container}>
+        {showsnackbar && error && (
+          <Snackbar setShowSnackbar={setShowSnackbar} type="resetError" />
+        )}
+        {showsnackbar && data?.message && (
+          <Snackbar setShowSnackbar={setShowSnackbar} type="resetSuccess" />
+        )}
+        <div
+          className={styles.form}
+          onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
+        >
+          <Title>Redefinir Senha</Title>
+          <Input
+            type="email"
+            className={styles.input}
+            fieldType="outlined"
+            label="Email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+          />
+          <Button
+            className={styles.button}
+            onClick={handleSubmit}
+            disabled={!form.email.includes("@defensoria.sc.gov.br")}
+          >
+            {loading ? (
+              <div
+                style={{
+                  position: "relative",
+                  top: "-2.5rem",
+                }}
+              >
+                <Loading size="1.5rem" type="spin" />
+              </div>
+            ) : (
+              "Enviar"
+            )}
+          </Button>
+        </div>
+      </div>
+    </>
   );
 };
 
