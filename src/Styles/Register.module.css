@@ -1,5 +1,18 @@
 @import "../colors.css";
 
+.buttonContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin: 2rem 0 0 2rem;
+}
+
+.returnButton {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  width: 5.5rem;
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -7,7 +20,6 @@
   flex-direction: column;
   height: 80vh;
 }
-
 
 .input,
 .password {

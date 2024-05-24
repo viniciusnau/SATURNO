@@ -9,9 +9,12 @@ import { fetchRegister } from "../Services/Slices/postRegisterSlice";
 import Snackbar from "../Components/Snackbar";
 import Title from "../Components/Title";
 import { handleKeyPress } from "../Components/Helper";
+import { useNavigate } from "react-router-dom";
+import { MdKeyboardReturn } from "react-icons/md";
 
 export const Register = () => {
   const dispatch = useDispatch<any>();
+  const navigate = useNavigate();
   const [form, setForm] = useState<IRegister>({
     registration: "",
     name: "",
@@ -52,54 +55,68 @@ export const Register = () => {
   }, []);
 
   return (
-    <div
-      className={styles.container}
-      onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
-    >
-      {!loading && !error && data && isDispatched && (
-        <Snackbar type="registerSuccess" setShowSnackbar={setIsDispatched} />
-      )}
-      {error && errorCode !== 409 && isDispatched && (
-        <Snackbar type="registerError" setShowSnackbar={setIsDispatched} />
-      )}
-      {error && errorCode === 409 && isDispatched && (
-        <Snackbar type="unauthorizedLogin" setShowSnackbar={setIsDispatched} />
-      )}
-      {error && errorCode === 406 && isDispatched && (
-        <Snackbar type="accountIsActive" setShowSnackbar={setIsDispatched} />
-      )}
-      <Title>Registrar conta</Title>
-      <Input
-        className={styles.input}
-        fieldType="outlined"
-        label="CPF"
-        name="registration"
-        onChange={handleChange}
-        value={form.registration}
-        placeholder="000.000.000-00"
-      />
-      <Input
-        className={styles.input}
-        fieldType="outlined"
-        label="Email"
-        name="name"
-        onChange={handleChange}
-        value={form.name}
-        placeholder="exemplo@defensoria.sc.gov.br"
-      />
-      <Input
-        className={styles.password}
-        fieldType="password"
-        label="Senha"
-        name="password"
-        onChange={handleChange}
-        value={form.password}
-        placeholder="********"
-      />
+    <>
+      <div className={styles.buttonContainer}>
+        <Button
+          onClick={() => navigate("/saturno/login/")}
+          className={styles.returnButton}
+        >
+          <MdKeyboardReturn size={18} />
+          Voltar
+        </Button>
+      </div>
+      <div
+        className={styles.container}
+        onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
+      >
+        {!loading && !error && data && isDispatched && (
+          <Snackbar type="registerSuccess" setShowSnackbar={setIsDispatched} />
+        )}
+        {error && errorCode !== 409 && isDispatched && (
+          <Snackbar type="registerError" setShowSnackbar={setIsDispatched} />
+        )}
+        {error && errorCode === 409 && isDispatched && (
+          <Snackbar
+            type="unauthorizedLogin"
+            setShowSnackbar={setIsDispatched}
+          />
+        )}
+        {error && errorCode === 406 && isDispatched && (
+          <Snackbar type="accountIsActive" setShowSnackbar={setIsDispatched} />
+        )}
+        <Title>Registrar conta</Title>
+        <Input
+          className={styles.input}
+          fieldType="outlined"
+          label="CPF"
+          name="registration"
+          onChange={handleChange}
+          value={form.registration}
+          placeholder="000.000.000-00"
+        />
+        <Input
+          className={styles.input}
+          fieldType="outlined"
+          label="Email"
+          name="name"
+          onChange={handleChange}
+          value={form.name}
+          placeholder="exemplo@defensoria.sc.gov.br"
+        />
+        <Input
+          className={styles.password}
+          fieldType="password"
+          label="Senha"
+          name="password"
+          onChange={handleChange}
+          value={form.password}
+          placeholder="********"
+        />
 
-      <Button className={styles.button} onClick={handleSubmit}>
-        Enviar solicitação
-      </Button>
-    </div>
+        <Button className={styles.button} onClick={handleSubmit}>
+          Enviar solicitação
+        </Button>
+      </div>
+    </>
   );
 };
