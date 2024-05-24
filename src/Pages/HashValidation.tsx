@@ -61,7 +61,7 @@ const HashValidation = () => {
         className={styles.form}
         onKeyUp={(e) => handleKeyPress(e, handleSubmit, "Enter")}
       >
-        <Title>Verificar votos</Title>
+        <Title>Verificar autenticidade do comprovante</Title>
         <Input
           type="text"
           className={styles.input}

@@ -359,7 +359,7 @@ const VotePage: React.FC = () => {
             sendVote: modalNullVotes
               ? {
                   title: "Confirmação de voto nulo!",
-                  description: `todos os votos serão anulados para ${positionCandidades}, deseja continuar?`,
+                  description: `TODOS os votos serão anulados para ${positionCandidades}, deseja continuar?`,
                   button: "Confirmar",
                 }
               : {
