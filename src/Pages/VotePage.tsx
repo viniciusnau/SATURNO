@@ -295,7 +295,7 @@ const VotePage: React.FC = () => {
   useEffect(() => {
     dispatch(fetchListCandidates({ position_id: positionId })) &&
       setIsDispatched(true);
-  }, [responseDataUser, positionId, dispatch]);
+  }, [positionId, dispatch]);
 
   useEffect(() => {
     if (isDispatched && !loading && !error && data.length > 0) {
