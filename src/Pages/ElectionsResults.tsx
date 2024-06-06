@@ -6,24 +6,20 @@ import Snackbar from "../Components/Snackbar";
 import styles from "../Styles/ElectionsResults.module.css";
 import avatar from "../Assets/avatar.svg";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import domPedro2 from "../Assets/domPedro2.jpg";
-import joanaD from "../Assets/joanaDarc.jpg";
-import luisxvi from "../Assets/luisxvi.jpg";
-import mariaAntonieta from "../Assets/mariaAntonieta.jpg";
-import napo from "../Assets/napo.jpg";
-import pedroAl from "../Assets/pedroAlv.jpeg";
-import akuma from "../Assets/kitana.jpeg";
-import blanka from "../Assets/blanka.jpeg";
-import chunli from "../Assets/chunli.jpeg";
-import jp from "../Assets/jp.jpeg";
-import juri from "../Assets/juri.jpeg";
-import ken from "../Assets/ken.jpeg";
-import guile from "../Assets/guile.jpeg";
-import manon from "../Assets/manon.jpeg";
-import ryu from "../Assets/ryu.jpeg";
-import kimberly from "../Assets/kimberly.jpeg";
-import cammy from "../Assets/cammy.jpeg";
-import luke from "../Assets/luke.jpeg";
+import alessandro from "../Assets/Alessandro.jpeg";
+import anderson from "../Assets/Anderson.jpeg";
+import daniel from "../Assets/Daniel.jpeg";
+import felipe from "../Assets/Felipe.jpeg";
+import fernanda from "../Assets/fernanda.jpeg";
+import jorge from "../Assets/Jorge.jpeg";
+import juliane from "../Assets/Juliane.jpeg";
+import pedro from "../Assets/pedroramos.jpeg";
+import suzi from "../Assets/Suzi.jpeg";
+import tiago from "../Assets/Tiago_Queiroz.jpeg";
+import fernando from "../Assets/Fernando_Correa.jpeg";
+import milton from "../Assets/Milton.jpeg";
+import ronaldo from "../Assets/ronaldo.jpeg";
+import valentim from "../Assets/Valentim.jpeg";
 import Title from "../Components/Title";
 import { deadline } from "../Components/Consts";
 
@@ -125,42 +121,40 @@ const ElectionsResults = () => {
     setSelectedCandidate(candidate);
     if (candidate) {
       if (candidate.id === 4) {
-        setSelectedCandidateImage(domPedro2);
+        setSelectedCandidateImage(alessandro);
       } else if (candidate.id === 5) {
-        setSelectedCandidateImage(pedroAl);
+        setSelectedCandidateImage(anderson);
       } else if (candidate.id === 6) {
-        setSelectedCandidateImage(mariaAntonieta);
+        setSelectedCandidateImage(daniel);
       } else if (candidate.id === 7) {
-        setSelectedCandidateImage(luisxvi);
+        setSelectedCandidateImage(felipe);
       } else if (candidate.id === 8) {
-        setSelectedCandidateImage(napo);
+        setSelectedCandidateImage(fernanda);
       } else if (candidate.id === 9) {
-        setSelectedCandidateImage(joanaD);
+        setSelectedCandidateImage(jorge);
       } else if (candidate.id === 10) {
-        setSelectedCandidateImage(juri);
+        setSelectedCandidateImage(juliane);
       } else if (candidate.id === 11) {
-        setSelectedCandidateImage(chunli);
+        setSelectedCandidateImage(pedro);
       } else if (candidate.id === 12) {
-        setSelectedCandidateImage(cammy);
+        setSelectedCandidateImage(suzi);
       } else if (candidate.id === 13) {
-        setSelectedCandidateImage(jp);
+        setSelectedCandidateImage(tiago);
       } else if (candidate.id === 14) {
-        setSelectedCandidateImage(ken);
+        setSelectedCandidateImage(fernando);
       } else if (candidate.id === 15) {
-        setSelectedCandidateImage(kimberly);
-      } else if (candidate.id === 16) {
-        setSelectedCandidateImage(jp);
-      } else if (candidate.id === 17) {
-        setSelectedCandidateImage(cammy);
-      } else if (candidate.id === 18) {
-        setSelectedCandidateImage(ken);
-      } else if (candidate.id === 19) {
-        setSelectedCandidateImage(juri);
-      } else if (candidate.id === 20) {
-        setSelectedCandidateImage(chunli);
-      } else if (candidate.id === 21) {
-        setSelectedCandidateImage(luke);
-      } else if (candidate.id === null) {
+        setSelectedCandidateImage(milton);
+      } else if (candidate.id === 212) {
+        setSelectedCandidateImage(ronaldo);
+      } else if (candidate.id === 213) {
+        setSelectedCandidateImage(valentim);
+      } else if (candidate.id === 0) {
+        setSelectedCandidateImage(avatar);
+      } else if (candidate.id === 909) {
+        setSelectedCandidateImage(avatar);
+      } else if (candidate.id === 101) {
+        setSelectedCandidateImage(avatar);
+      } else if (candidate.id === 20202) {
         setSelectedCandidateImage(avatar);
       } else {
         setSelectedCandidateImage(avatar);
@@ -175,41 +169,41 @@ const ElectionsResults = () => {
 
   const loadImage = (row: any) => {
     if (row.id === 4) {
-      return domPedro2;
+      return alessandro;
     } else if (row.id === 5) {
-      return pedroAl;
+      return anderson;
     } else if (row.id === 6) {
-      return mariaAntonieta;
+      return daniel;
     } else if (row.id === 7) {
-      return luisxvi;
+      return felipe;
     } else if (row.id === 8) {
-      return napo;
+      return fernanda;
     } else if (row.id === 9) {
-      return joanaD;
+      return jorge;
     } else if (row.id === 10) {
-      return juri;
+      return juliane;
     } else if (row.id === 11) {
-      return chunli;
+      return pedro;
     } else if (row.id === 12) {
-      return cammy;
+      return suzi;
     } else if (row.id === 13) {
-      return jp;
+      return tiago;
     } else if (row.id === 14) {
-      return ken;
+      return fernando;
     } else if (row.id === 15) {
-      return kimberly;
-    } else if (row.id === 16) {
-      return jp;
-    } else if (row.id === 17) {
-      return cammy;
-    } else if (row.id === 18) {
-      return ken;
-    } else if (row.id === 19) {
-      return juri;
-    } else if (row.id === 20) {
-      return chunli;
-    } else if (row.id === 21) {
-      return luke;
+      return milton;
+    } else if (row.id === 212) {
+      return ronaldo;
+    } else if (row.id === 213) {
+      return valentim;
+    } else if (row.id === 0) {
+      return avatar;
+    } else if (row.id === 909) {
+      return avatar;
+    } else if (row.id === 999) {
+      return avatar;
+    } else if (row.id === 9999999) {
+      return avatar;
     } else if (row.id === null) {
       return avatar;
     } else {
